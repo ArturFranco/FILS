@@ -1,6 +1,7 @@
 package com.example.gabriel.fils;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,8 @@ public class NovaAtividade extends AppCompatActivity{
                         .setAction("Action", null).show();
             }
         });
+
+
     }
 
     @Override
@@ -52,5 +55,7 @@ public class NovaAtividade extends AppCompatActivity{
             }
         });
 
+        String key = mFirebaseDatabaseReference.child("Treinos").push().getKey();
+        mFirebaseDatabaseReference.child("Treinos").child(key).setValue("Treino novo");
     }
 }
