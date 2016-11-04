@@ -31,6 +31,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text="@string/agendamento"
+            android:id="@+id/metasAgendamento"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/metas"
             android:id="@+id/metasButton"
             android:layout_weight="1"/>

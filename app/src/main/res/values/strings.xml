@@ -8,6 +8,7 @@
 
     <string name="nova_atividade">Nova Atividade</string>
     <string name="historico">Histórico</string>
+    <string name="agendamento">Agendamento</string>
     <string name="metas">Metas</string>
     <string name="saude">Saúde</string>
 </resources>
