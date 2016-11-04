@@ -39,7 +39,7 @@ public class NovaAtividade extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        mFirebaseDatabaseReference.child("Treio").addListenerForSingleValueEvent(new ValueEventListener() {
+        mFirebaseDatabaseReference.child("message").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
                 TextView textView = (TextView) findViewById(R.id.novotexto);
