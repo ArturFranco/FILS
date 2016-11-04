@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".NovaAtividade"
             android:label="@string/nova_atividade"/>
+        <activity android:name=".Historico"
+            android:label="Histórico"/>
     </application>
 
 </manifest>

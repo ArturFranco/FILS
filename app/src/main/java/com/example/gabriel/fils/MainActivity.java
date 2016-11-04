@@ -66,6 +66,16 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+        // para criar uma tela linkando com Historico, por exemplo
+
+        Button historicoButton = (Button) findViewById(R.id.historicoButton);
+        historicoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Historico.class);
+                startActivity(intent);
+            }
+        });
 
 
 
