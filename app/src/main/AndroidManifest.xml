@@ -22,6 +22,10 @@
             android:label="@string/nova_atividade"/>
         <activity android:name=".Historico"
             android:label="Histórico"/>
+        <activity android:name=".NovoTreino"
+            android:label="Treinos"/>
+        <activity android:name=".NovaRefeicao"
+            android:label="Refeições"/>
     </application>
 
 </manifest>

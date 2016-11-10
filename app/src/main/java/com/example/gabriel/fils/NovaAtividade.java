@@ -1,61 +1,68 @@
 package com.example.gabriel.fils;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+
 /**
  * Created by Gabriel on 28/10/2016.
+ *
+ * Tela para adicionar nova atividade realizada
  */
 public class NovaAtividade extends AppCompatActivity{
-    private DatabaseReference mFirebaseDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nova_atividade_main);
-    /*    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addFloatButton);
-        fab.setOnClickListener(new View.OnClickListener() {
+        //Quando clica em Treinos, troca para a tela de treinos
+        Button treinoButton = (Button) findViewById(R.id.treinoButton);
+        treinoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(NovaAtividade.this, NovoTreino.class);
+                startActivity(intent);
             }
         });
 
+        //Quando clica em Refeições, troca para a tela de refeições
+        Button refeicaoButton = (Button) findViewById(R.id.refeicaoButton);
+        refeicaoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NovaAtividade.this, NovaRefeicao.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mFirebaseDatabaseReference.child("message").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                TextView textView = (TextView) findViewById(R.id.novotexto);
-                textView.setText(dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        String key = mFirebaseDatabaseReference.child("Treinos").push().getKey();
-        mFirebaseDatabaseReference.child("Treinos").child(key).setValue("Treino novo");
+//
     }
+
 }

@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //Inicializando variaveis do firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MainActivity";
@@ -35,11 +36,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Setando o arquivo xml que vai ser usado
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Autenticacao firebase
         mAuth = FirebaseAuth.getInstance();
 
+        //Criando um listener para a autenticacao
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -56,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         };
 
 
+        //Metodo que troca de tela quando botao de nova atividade é clicado
         Button novaAtividadeButton = (Button) findViewById(R.id.novaAtividadeButton);
         novaAtividadeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
+        //Provavelmente esse é o código para a slide menu
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,6 +96,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        //Faz a autenticacao anonima
         mAuth.addAuthStateListener(mAuthListener);
         mAuth.signInAnonymously()
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -142,6 +151,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    //TODO
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
