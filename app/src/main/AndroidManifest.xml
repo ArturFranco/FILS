@@ -26,6 +26,8 @@
             android:label="Treinos"/>
         <activity android:name=".NovaRefeicao"
             android:label="Refeições"/>
+        <activity android:name=".AddTreino"
+            android:label="Adicionar Treino"/>
     </application>
 
 </manifest>
