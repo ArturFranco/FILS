@@ -10,18 +10,21 @@ android:layout_height="match_parent">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Café da Manhã"
+        android:backgroundTint="@color/botao"
         android:id="@+id/cafeDaManhaButton"
         android:layout_weight="1" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Almoço"
+        android:backgroundTint="@color/botao"
         android:id="@+id/almocoButton"
         android:layout_weight="1" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Jantar"
+        android:backgroundTint="@color/botao"
         android:id="@+id/jantarButton"
         android:layout_weight="1" />
 </LinearLayout>
