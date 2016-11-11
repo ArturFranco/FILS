@@ -1,5 +1,6 @@
 package com.example.gabriel.fils;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
@@ -72,8 +73,8 @@ public class NovoTreino extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(NovoTreino.this, AddTreino.class);
+                startActivity(intent);
             }
         });
     }

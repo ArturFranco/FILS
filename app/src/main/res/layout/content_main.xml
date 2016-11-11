@@ -20,30 +20,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/nova_atividade"
+            android:backgroundTint="@color/botao"
             android:id="@+id/novaAtividadeButton"
             android:layout_weight="1" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/historico"
+            android:backgroundTint="@color/botao"
             android:id="@+id/historicoButton"
             android:layout_weight="1"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/agendamento"
+            android:backgroundTint="@color/botao"
             android:id="@+id/metasAgendamento"
             android:layout_weight="1"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/metas"
+            android:backgroundTint="@color/botao"
             android:id="@+id/metasButton"
             android:layout_weight="1"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/saude"
+            android:backgroundTint="@color/botao"
             android:id="@+id/saudeButton"
             android:layout_weight="1"/>
     </LinearLayout>

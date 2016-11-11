@@ -10,8 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 
 public class Historico extends AppCompatActivity {
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.historico_main);
     }
 }
