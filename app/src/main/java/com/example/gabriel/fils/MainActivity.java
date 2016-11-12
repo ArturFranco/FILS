@@ -67,6 +67,27 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
+        //Faz a autenticacao anonima
+        /*mAuth.addAuthStateListener(mAuthListener);
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInAnonymously:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInAnonymously", task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });*/
+
 
         //Metodo que troca de tela quando botao de nova atividade é clicado
         Button novaAtividadeButton = (Button) findViewById(R.id.novaAtividadeButton);
@@ -102,31 +123,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
 
-        //Faz a autenticacao anonima
-        mAuth.addAuthStateListener(mAuthListener);
-        mAuth.signInAnonymously()
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    Log.d(TAG, "signInAnonymously:onComplete:" + task.isSuccessful());
+    public void onStart() {
+        super.onStart();
+        // Se o usuario nao esta logado, vai para a tela de login
+        if(mAuth.getCurrentUser() == null){
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
 
-                    // If sign in fails, display a message to the user. If sign in succeeds
-                    // the auth state listener will be notified and logic to handle the
-                    // signed in user can be handled in the listener.
-                    if (!task.isSuccessful()) {
-                        Log.w(TAG, "signInAnonymously", task.getException());
-                        Toast.makeText(MainActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
+    }
 
-                    // ...
-                }
-            });
-
-
-        //Attempting to sign in with facebook
-        //AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+    public void signOut() {
+        mAuth.signOut();
     }
 
     @Override
@@ -180,13 +191,16 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        }else if (id == R.id.signout){
+            signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 
 }

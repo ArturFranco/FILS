@@ -11,4 +11,5 @@
     <string name="agendamento">Agendamento</string>
     <string name="metas">Metas</string>
     <string name="saude">Saúde</string>
+    <string name="login_anonimo">Login Anônimo</string>
 </resources>
