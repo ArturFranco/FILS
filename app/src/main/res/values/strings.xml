@@ -12,4 +12,6 @@
     <string name="metas">Metas</string>
     <string name="saude">Saúde</string>
     <string name="login_anonimo">Login Anônimo</string>
+    <string name="facebook_app_id">1788944334653874</string>
+    <string name="fb_login_protocol_scheme">fb1788944334653874</string>
 </resources>
