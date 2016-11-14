@@ -31,8 +31,14 @@ public class AddTreino extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Toasty!",Toast.LENGTH_LONG);
+                mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+                EditText texto = (EditText) findViewById(R.id.addTreinoText);
+                mFirebaseDatabaseReference.child("Treinos").push().setValue(texto.getText().toString());
+
+                Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
                 toast.show();
+
+                finish();
             }
         });
 
