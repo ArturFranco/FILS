@@ -91,8 +91,9 @@ public class NovoTreino extends AppCompatActivity {
                         String entry = (String) parent.getAdapter().getItem(position);
 
                         TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
+                        nome.setText(entry.toString());
 
-
+                        //TODO relatar treino
                         Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirma);
                         botaoConfirma.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -101,9 +102,18 @@ public class NovoTreino extends AppCompatActivity {
                             }
                         });
 
+
+                        //Cancela o relato de treino
+                        Button botaoCancela = (Button) dialog.findViewById(R.id.botaoCancela);
+                        botaoCancela.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
+
                         dialog.show();
 
-                        nome.setText(entry.toString());
                     }
                 });
 
