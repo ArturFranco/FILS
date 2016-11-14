@@ -18,8 +18,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/uploadNovoTreino"
             android:text="Salvar"
-            android:layout_gravity="center_horizontal"
-            android:onClick="uploadTreino"/>
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 
 </LinearLayout>

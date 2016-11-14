@@ -39,6 +39,23 @@ public class NovoTreino extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.novo_treino_main);
 
+
+
+
+        //TODO adicionar a funcao de adicionar novos treinos
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addTreinoButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NovoTreino.this, AddTreino.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -64,17 +81,6 @@ public class NovoTreino extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-
-
-        //TODO adicionar a funcao de adicionar novos treinos
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addTreinoButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NovoTreino.this, AddTreino.class);
-                startActivity(intent);
             }
         });
     }
