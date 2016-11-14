@@ -1,11 +1,15 @@
 package com.example.gabriel.fils;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,18 +27,38 @@ public class AddTreino extends AppCompatActivity {
         setContentView(R.layout.add_treino_main);
 
 
-       // Button upload = (Button) findViewById(R.id.uploadNovoTreino);
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        Button upload = (Button) findViewById(R.id.uploadNovoTreino);
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+                EditText texto = (EditText) findViewById(R.id.addTreinoText);
+                mFirebaseDatabaseReference.child("Treinos").push().setValue(texto.getText().toString());
 
-        EditText texto = (EditText) findViewById(R.id.addTreinoText);
+                Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
+                toast.show();
+
+                finish();
+            }
+        });
 
     }
 
-    protected void uploadTreino (View view){
+   /* protected void uploadTreino (View view){
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         EditText texto = (EditText) findViewById(R.id.addTreinoText);
         mFirebaseDatabaseReference.child("Treinos").push().setValue(texto.getText().toString());
-    }
 
+        String toastText = "Treino Adicionado!";
+
+        Context context = getApplicationContext();
+
+        Toast toast = Toast.makeText(context, toastText,Toast.LENGTH_LONG);
+        toast.show();
+
+//        Intent intent = new Intent(AddTreino.this, NovoTreino.class);
+//        startActivity(intent);
+    }
+*/
 
 }
