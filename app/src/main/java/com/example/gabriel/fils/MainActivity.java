@@ -92,6 +92,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        // para criar uma tela linkando com Metas
+        Button metasButton = (Button) findViewById(R.id.metasButton);
+        metasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Metas.class);
+                startActivity(intent);
+            }
+        });
 
         //Provavelmente esse é o código para a slide menu
 

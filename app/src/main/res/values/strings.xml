@@ -14,4 +14,13 @@
     <string name="login_anonimo">Login Anônimo</string>
     <string name="facebook_app_id">1788944334653874</string>
     <string name="fb_login_protocol_scheme">fb1788944334653874</string>
+    
+    <string-array name="metas_escolher">
+        <item>Sarado</item>
+        <item>Gostoso</item>
+        <item>Delicia</item>
+        <item>Gordinho Gostoso</item>
+        <item>Vem ni mim gata</item>
+    </string-array>
+
 </resources>
