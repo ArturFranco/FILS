@@ -28,6 +28,8 @@
             android:label="Refeições"/>
         <activity android:name=".AddTreino"
             android:label="Adicionar Treino"/>
+        <activity android:name="AddRefeicao"
+            android:label="Adicionar Refeição"/>
         <activity android:name=".LoginActivity"
             android:label="Login"/>
 

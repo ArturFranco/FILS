@@ -39,7 +39,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 /**
  * Created by Gabriel on 10/11/2016.
  *
- * Tela que lista os treinos cadastrados e permite casdastrar novos
+ * Tela que lista os treinos cadastrados e permite cadastrar novos
  */
 
 public class NovoTreino extends AppCompatActivity {
