@@ -18,8 +18,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/uploadNovaRefeicao"
             android:text="Salvar"
-            android:layout_gravity="center_horizontal"
-            android:onClick="uploadRefeicao"/>
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 
 </LinearLayout>
