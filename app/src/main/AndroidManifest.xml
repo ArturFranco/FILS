@@ -28,8 +28,12 @@
             android:label="Refeições"/>
         <activity android:name=".AddTreino"
             android:label="Adicionar Treino"/>
+        <activity android:name="AddRefeicao"
+            android:label="Adicionar Refeição"/>
         <activity android:name=".LoginActivity"
             android:label="Login"/>
+        <activity android:name=".Metas"
+            android:label="Metas"/>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

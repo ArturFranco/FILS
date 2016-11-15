@@ -6,4 +6,5 @@
     <color name="verdePadrao">#00B395</color>
     <color name="escuro">#2EB1BB</color>
     <color name="botao">#2EB1BB</color>
+    <color name="transparente">#00FFFFFF</color>
 </resources>
