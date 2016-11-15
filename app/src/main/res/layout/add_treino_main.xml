@@ -33,7 +33,7 @@
             android:id="@+id/fowardAddTreino"/>
     </LinearLayout>
 
-   <!-- <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -49,6 +49,6 @@
             android:id="@+id/uploadNovoTreino"
             android:text="Salvar"
             android:layout_gravity="center_horizontal"/>
-    </LinearLayout>-->
+    </LinearLayout>
 
 </LinearLayout>
