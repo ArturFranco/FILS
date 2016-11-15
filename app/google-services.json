@@ -8,50 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:483455833341:android:9f68cea0a82b442d",
-        "android_client_info": {
-          "package_name": "com.android.fils"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "483455833341-s58g3nskc2vnrs63e5qak1sukmjik19f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.android.fils",
-            "certificate_hash": "DD579B6D9422457D8D882EAC80A4A4761AE37486"
-          }
-        },
-        {
-          "client_id": "483455833341-l7phs7t40cqp0i7vpli42c05p1rd09dv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBaH9RgXW3MPj74JiafBTRMQlL2HOoDYhQ"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "483455833341-l7phs7t40cqp0i7vpli42c05p1rd09dv.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:483455833341:android:bd8a5e86a52b5b65",
         "android_client_info": {
           "package_name": "com.example.gabriel.fils"
@@ -59,11 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "483455833341-kdhplqdn81l46s280a5clcu2n7ga0d6k.apps.googleusercontent.com",
+          "client_id": "483455833341-bfjip59caj36ni2eerl9k18tfkectork.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.gabriel.fils",
             "certificate_hash": "D298C349A2F66200D7C92F5A5A8B53510788CCBB"
+          }
+        },
+        {
+          "client_id": "483455833341-4r277d19cp418o8388l416cdujk10f9f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gabriel.fils",
+            "certificate_hash": "A992911C13DF38AA9804295C2AC9DB8C043B7F0D"
           }
         },
         {

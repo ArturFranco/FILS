@@ -15,6 +15,15 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp" />
 
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_below="@+id/facebook_login_button"/>
+
         <Button
             android:id="@+id/loginAnonimoButton"
             android:text="@string/login_anonimo"
@@ -23,7 +32,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:layout_below="@+id/button_facebook_login"/>
+            android:layout_below="@+id/google_login_button"/>
 
     </LinearLayout>
 </LinearLayout>
