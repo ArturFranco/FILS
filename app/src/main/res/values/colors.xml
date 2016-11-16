@@ -7,4 +7,5 @@
     <color name="escuro">#2EB1BB</color>
     <color name="botao">#2EB1BB</color>
     <color name="transparente">#00FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>
