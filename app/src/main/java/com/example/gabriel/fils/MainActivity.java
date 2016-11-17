@@ -1,7 +1,10 @@
 package com.example.gabriel.fils;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +16,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.facebook.FacebookSdk;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +41,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
 
         //Setando o arquivo xml que vai ser usado
         setContentView(R.layout.activity_main);
@@ -94,7 +100,6 @@ public class MainActivity extends AppCompatActivity
         });
 
         //Provavelmente esse é o código para a slide menu
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -104,6 +109,37 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        //Se algum usuario estiver logado, coloca nome, email e foto no slide menu
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null && !user.isAnonymous()) {
+            // Header do slide menu
+            View hView =  navigationView.getHeaderView(0);
+
+            //Nome
+            TextView nameTextView = (TextView) hView.findViewById(R.id.nameTextView);
+            nameTextView.setText(user.getDisplayName());
+
+            //Email
+            TextView emailTextView = (TextView) hView.findViewById(R.id.emailTextView);
+            emailTextView.setText(user.getEmail());
+
+            int SDK_INT = android.os.Build.VERSION.SDK_INT;
+            if (SDK_INT > 8) {
+                //Codigo complexo que permite que a main thread abra conexoes Http
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+
+                //Imagem, aumentando a escala
+                ImageView profileImage = (ImageView) hView.findViewById(R.id.profileImageView);
+                profileImage.setScaleX((float) 1.9);
+                profileImage.setScaleY((float) 1.9);
+                Bitmap bm = getBitmapFromURL(user.getPhotoUrl().toString());
+                profileImage.setImageBitmap(bm);
+            }
+
+        }
     }
 
     public void onStart() {
@@ -114,13 +150,6 @@ public class MainActivity extends AppCompatActivity
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
-
-    }
-
-    public void clearCookies(){
-        CookieSyncManager.createInstance(MainActivity.this);
-        CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.removeAllCookie();
     }
 
     @Override
@@ -184,6 +213,21 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
     }
 
 }
