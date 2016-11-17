@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -114,6 +115,26 @@ public class AddTreino extends AppCompatActivity {
         checkC.setChecked(false);
         checkD.setChecked(false);
         checkE.setChecked(false);
+
+        LinearLayout grupoA = (LinearLayout) findViewById(R.id.grupoAView);
+        grupoA.setVisibility(View.VISIBLE);
+        grupoA.setClickable(true);
+
+        LinearLayout grupoB = (LinearLayout) findViewById(R.id.grupoBView);
+        grupoB.setVisibility(View.INVISIBLE);
+        grupoB.setClickable(false);
+
+        LinearLayout grupoC = (LinearLayout) findViewById(R.id.grupoCView);
+        grupoC.setVisibility(View.INVISIBLE);
+        grupoC.setClickable(false);
+
+        LinearLayout grupoD = (LinearLayout) findViewById(R.id.grupoDView);
+        grupoD.setVisibility(View.INVISIBLE);
+        grupoD.setClickable(false);
+
+        LinearLayout grupoE = (LinearLayout) findViewById(R.id.grupoEView);
+        grupoE.setVisibility(View.INVISIBLE);
+        grupoE.setClickable(false);
     }
     protected void clickB(View view){
         CheckBox checkA = (CheckBox) findViewById(R.id.checkBoxA);
@@ -124,6 +145,26 @@ public class AddTreino extends AppCompatActivity {
         checkC.setChecked(false);
         checkD.setChecked(false);
         checkE.setChecked(false);
+
+        LinearLayout grupoA = (LinearLayout) findViewById(R.id.grupoAView);
+        grupoA.setVisibility(View.VISIBLE);
+        grupoA.setClickable(true);
+
+        LinearLayout grupoB = (LinearLayout) findViewById(R.id.grupoBView);
+        grupoB.setVisibility(View.VISIBLE);
+        grupoB.setClickable(true);
+
+        LinearLayout grupoC = (LinearLayout) findViewById(R.id.grupoCView);
+        grupoC.setVisibility(View.INVISIBLE);
+        grupoC.setClickable(false);
+
+        LinearLayout grupoD = (LinearLayout) findViewById(R.id.grupoDView);
+        grupoD.setVisibility(View.INVISIBLE);
+        grupoD.setClickable(false);
+
+        LinearLayout grupoE = (LinearLayout) findViewById(R.id.grupoEView);
+        grupoE.setVisibility(View.INVISIBLE);
+        grupoE.setClickable(false);
     }
     protected void clickC(View view){
         CheckBox checkB = (CheckBox) findViewById(R.id.checkBoxB);
@@ -134,6 +175,26 @@ public class AddTreino extends AppCompatActivity {
         checkA.setChecked(false);
         checkD.setChecked(false);
         checkE.setChecked(false);
+
+        LinearLayout grupoA = (LinearLayout) findViewById(R.id.grupoAView);
+        grupoA.setVisibility(View.VISIBLE);
+        grupoA.setClickable(true);
+
+        LinearLayout grupoB = (LinearLayout) findViewById(R.id.grupoBView);
+        grupoB.setVisibility(View.VISIBLE);
+        grupoB.setClickable(true);
+
+        LinearLayout grupoC = (LinearLayout) findViewById(R.id.grupoCView);
+        grupoC.setVisibility(View.VISIBLE);
+        grupoC.setClickable(true);
+
+        LinearLayout grupoD = (LinearLayout) findViewById(R.id.grupoDView);
+        grupoD.setVisibility(View.INVISIBLE);
+        grupoD.setClickable(false);
+
+        LinearLayout grupoE = (LinearLayout) findViewById(R.id.grupoEView);
+        grupoE.setVisibility(View.INVISIBLE);
+        grupoE.setClickable(false);
     }
     protected void clickD(View view){
         CheckBox checkB = (CheckBox) findViewById(R.id.checkBoxB);
@@ -144,6 +205,26 @@ public class AddTreino extends AppCompatActivity {
         checkC.setChecked(false);
         checkA.setChecked(false);
         checkE.setChecked(false);
+
+        LinearLayout grupoA = (LinearLayout) findViewById(R.id.grupoAView);
+        grupoA.setVisibility(View.VISIBLE);
+        grupoA.setClickable(true);
+
+        LinearLayout grupoB = (LinearLayout) findViewById(R.id.grupoBView);
+        grupoB.setVisibility(View.VISIBLE);
+        grupoB.setClickable(true);
+
+        LinearLayout grupoC = (LinearLayout) findViewById(R.id.grupoCView);
+        grupoC.setVisibility(View.VISIBLE);
+        grupoC.setClickable(true);
+
+        LinearLayout grupoD = (LinearLayout) findViewById(R.id.grupoDView);
+        grupoD.setVisibility(View.VISIBLE);
+        grupoD.setClickable(true);
+
+        LinearLayout grupoE = (LinearLayout) findViewById(R.id.grupoEView);
+        grupoE.setVisibility(View.INVISIBLE);
+        grupoE.setClickable(false);
     }
     protected void clickE(View view){
         CheckBox checkB = (CheckBox) findViewById(R.id.checkBoxB);
@@ -154,6 +235,26 @@ public class AddTreino extends AppCompatActivity {
         checkC.setChecked(false);
         checkD.setChecked(false);
         checkA.setChecked(false);
+
+        LinearLayout grupoA = (LinearLayout) findViewById(R.id.grupoAView);
+        grupoA.setVisibility(View.VISIBLE);
+        grupoA.setClickable(true);
+
+        LinearLayout grupoB = (LinearLayout) findViewById(R.id.grupoBView);
+        grupoB.setVisibility(View.VISIBLE);
+        grupoB.setClickable(true);
+
+        LinearLayout grupoC = (LinearLayout) findViewById(R.id.grupoCView);
+        grupoC.setVisibility(View.VISIBLE);
+        grupoC.setClickable(true);
+
+        LinearLayout grupoD = (LinearLayout) findViewById(R.id.grupoDView);
+        grupoD.setVisibility(View.VISIBLE);
+        grupoD.setClickable(true);
+
+        LinearLayout grupoE = (LinearLayout) findViewById(R.id.grupoEView);
+        grupoE.setVisibility(View.VISIBLE);
+        grupoE.setClickable(true);
     }
 
 
