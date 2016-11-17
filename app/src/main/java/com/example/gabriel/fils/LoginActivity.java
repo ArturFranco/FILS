@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -53,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements
 
     private CallbackManager mCallbackManager;
     public static GoogleApiClient mGoogleApiClient; // Esse atributo pode ser acessado a partir de qualquer outra classe
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +115,7 @@ public class LoginActivity extends AppCompatActivity implements
         // Salvando o request code do Facebook
         RC_FB_SIGN_IN = loginButton.getRequestCode();
 
+        /*
         //AccessTokenTracker para gerenciar o logout
         AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
             @Override
@@ -128,6 +129,7 @@ public class LoginActivity extends AppCompatActivity implements
         };
 
         accessTokenTracker.startTracking();
+        */
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -171,6 +173,7 @@ public class LoginActivity extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+
         // Se o usuario ja esta logado, vai para a tela inicial
         if(mAuth.getCurrentUser() != null){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -203,21 +206,6 @@ public class LoginActivity extends AppCompatActivity implements
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
-    }
-
-
-    // Faz logout do firebase, do facebook e do google
-    public void signOut() {
-        mAuth.signOut();
-        LoginManager.getInstance().logOut();
-        if(mGoogleApiClient.isConnected()) {
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                    new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(Status status) {
-                        }
-                    });
-        }
     }
 
     private void revokeAccess() {
@@ -273,6 +261,9 @@ public class LoginActivity extends AppCompatActivity implements
                         // ...
                     }
                 });
+
+        //Depois de fazer o login no firabase usando a credencial do facebook, podemos fazer logout no facebook
+        LoginManager.getInstance().logOut();
     }
 
     // Dado um GoogleSignInResult, faz login no firebase
@@ -300,10 +291,21 @@ public class LoginActivity extends AppCompatActivity implements
                             // ...
                         }
                     });
+
         } else {
             Log.w(TAG, "firebaseAuthWithGoogle: Failed");
             Toast.makeText(LoginActivity.this, "Authentication failed.",
                     Toast.LENGTH_SHORT).show();
+        }
+
+        //Depois de fazer o login no firabase usando a credencial do Google, podemos fazer logout no Google
+        if(LoginActivity.mGoogleApiClient.isConnected()) {
+            Auth.GoogleSignInApi.signOut(LoginActivity.mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                        }
+                    });
         }
     }
 
