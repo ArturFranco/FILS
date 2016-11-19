@@ -36,6 +36,9 @@
             android:label=""/>
         <activity android:name=".Metas"
             android:label="Metas"/>
+        <activity android:name=".AddGrupo"
+            android:label="Adicionar Grupo"/>
+
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
