@@ -128,7 +128,6 @@ public class NovoTreino extends AppCompatActivity {
 
 
 
-        //TODO adicionar a funcao de adicionar novos treinos
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addTreinoButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

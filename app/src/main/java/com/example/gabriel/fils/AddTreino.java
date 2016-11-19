@@ -1,5 +1,6 @@
 package com.example.gabriel.fils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,14 +56,6 @@ public class AddTreino extends AppCompatActivity {
         checkC = (CheckBox) findViewById(R.id.checkBoxC);
         checkD = (CheckBox) findViewById(R.id.checkBoxD);
         checkE = (CheckBox) findViewById(R.id.checkBoxE);
-
-        grupoA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
-
 
 
        /* Button upload = (Button) findViewById(R.id.uploadNovoTreino);
@@ -120,6 +113,17 @@ public class AddTreino extends AppCompatActivity {
             tipo = 4;
         }else{
             setContentView(R.layout.add_treino_musculacao);
+            grupoA = (LinearLayout) findViewById(R.id.grupoAView);
+            grupoB = (LinearLayout) findViewById(R.id.grupoBView);
+            grupoC = (LinearLayout) findViewById(R.id.grupoCView);
+            grupoD = (LinearLayout) findViewById(R.id.grupoDView);
+            grupoE = (LinearLayout) findViewById(R.id.grupoEView);
+
+            checkA = (CheckBox) findViewById(R.id.checkBoxA);
+            checkB = (CheckBox) findViewById(R.id.checkBoxB);
+            checkC = (CheckBox) findViewById(R.id.checkBoxC);
+            checkD = (CheckBox) findViewById(R.id.checkBoxD);
+            checkE = (CheckBox) findViewById(R.id.checkBoxE);
             tipo = 1;
         }
     }
@@ -130,6 +134,17 @@ public class AddTreino extends AppCompatActivity {
             tipo = 4;
         }else if(tipo == 2){
             setContentView(R.layout.add_treino_musculacao);
+            grupoA = (LinearLayout) findViewById(R.id.grupoAView);
+            grupoB = (LinearLayout) findViewById(R.id.grupoBView);
+            grupoC = (LinearLayout) findViewById(R.id.grupoCView);
+            grupoD = (LinearLayout) findViewById(R.id.grupoDView);
+            grupoE = (LinearLayout) findViewById(R.id.grupoEView);
+
+            checkA = (CheckBox) findViewById(R.id.checkBoxA);
+            checkB = (CheckBox) findViewById(R.id.checkBoxB);
+            checkC = (CheckBox) findViewById(R.id.checkBoxC);
+            checkD = (CheckBox) findViewById(R.id.checkBoxD);
+            checkE = (CheckBox) findViewById(R.id.checkBoxE);
             tipo = 1;
         }else if(tipo == 3){
             setContentView(R.layout.add_treino_corrida);
@@ -300,5 +315,61 @@ public class AddTreino extends AppCompatActivity {
         }
     }
 
+    protected void groupAClick(View view){
+        Intent intent = new Intent(AddTreino.this, AddGrupo.class);
+        intent.putExtra("titulo", "Grupo A");
+        startActivityForResult(intent, 1);
+    }
 
+    protected void groupBClick(View v){
+        Intent intent = new Intent(AddTreino.this, AddGrupo.class);
+        intent.putExtra("titulo", "Grupo B");
+        startActivityForResult(intent, 2);
+    }
+    protected void groupCClick(View v){
+        Intent intent = new Intent(AddTreino.this, AddGrupo.class);
+        intent.putExtra("titulo", "Grupo C");
+        startActivityForResult(intent, 3);
+    }
+    protected void groupDClick(View v){
+        Intent intent = new Intent(AddTreino.this, AddGrupo.class);
+        intent.putExtra("titulo", "Grupo D");
+        startActivityForResult(intent, 4);
+    }
+    protected void groupEClick(View v){
+        Intent intent = new Intent(AddTreino.this, AddGrupo.class);
+        intent.putExtra("titulo", "Grupo E");
+        startActivityForResult(intent, 5);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+                grupoAdesc.setText(data.getStringExtra("result"));
+            }
+        }else if(requestCode == 2){
+            if(resultCode == Activity.RESULT_OK){
+                TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
+                grupoBdesc.setText(data.getStringExtra("result"));
+            }
+        }else if(requestCode == 3){
+            if(resultCode == Activity.RESULT_OK){
+                TextView grupoCdesc = (TextView) findViewById(R.id.grupoCdescription);
+                grupoCdesc.setText(data.getStringExtra("result"));
+            }
+        }else if(requestCode == 4){
+            if(resultCode == Activity.RESULT_OK){
+                TextView grupoDdesc = (TextView) findViewById(R.id.grupoDdescription);
+                grupoDdesc.setText(data.getStringExtra("result"));
+            }
+        }else if(requestCode == 5){
+            if(resultCode == Activity.RESULT_OK){
+                TextView grupoEdesc = (TextView) findViewById(R.id.grupoEdescription);
+                grupoEdesc.setText(data.getStringExtra("result"));
+            }
+        }
+    }
 }

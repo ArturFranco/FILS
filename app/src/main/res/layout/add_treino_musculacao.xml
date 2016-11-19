@@ -200,7 +200,8 @@
                 android:orientation="horizontal"
                 android:id="@+id/grupoAView"
                 android:clickable="false"
-                android:visibility="invisible">
+                android:visibility="invisible"
+                android:onClick="groupAClick">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -228,7 +229,8 @@
                 android:orientation="horizontal"
                 android:id="@+id/grupoBView"
                 android:clickable="false"
-                android:visibility="invisible">
+                android:visibility="invisible"
+                android:onClick="groupBClick">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -242,6 +244,7 @@
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
+                    android:id="@+id/grupoBdescription"
                     android:textSize="35dp"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
@@ -255,7 +258,8 @@
                 android:orientation="horizontal"
                 android:id="@+id/grupoCView"
                 android:clickable="false"
-                android:visibility="invisible">
+                android:visibility="invisible"
+                android:onClick="groupCClick">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -269,6 +273,7 @@
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
+                    android:id="@+id/grupoCdescription"
                     android:textSize="35dp"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
@@ -282,7 +287,8 @@
                 android:orientation="horizontal"
                 android:id="@+id/grupoDView"
                 android:clickable="false"
-                android:visibility="invisible">
+                android:visibility="invisible"
+                android:onClick="groupDClick">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -298,6 +304,7 @@
                     android:layout_height="match_parent"
                     android:textSize="35dp"
                     android:textColor="@color/white"
+                    android:id="@+id/grupoDdescription"
                     android:layout_margin="5dp"
                     android:textAlignment="center"
                     android:background="@color/botao"
@@ -309,7 +316,8 @@
                 android:orientation="horizontal"
                 android:id="@+id/grupoEView"
                 android:clickable="false"
-                android:visibility="invisible">
+                android:visibility="invisible"
+                android:onClick="groupEClick">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -323,6 +331,7 @@
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
+                    android:id="@+id/grupoEdescription"
                     android:textSize="35dp"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
