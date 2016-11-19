@@ -215,6 +215,7 @@
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:textSize="35dp"
+                    android:id="@+id/grupoAdescription"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
                     android:textAlignment="center"
