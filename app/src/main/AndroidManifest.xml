@@ -34,6 +34,8 @@
             android:label="Adicionar Refeição"/>
         <activity android:name=".LoginActivity"
             android:label=""/>
+        <activity android:name=".PerfilActivity"
+            android:label=""/>
         <activity android:name=".Metas"
             android:label="Metas"/>
         <activity android:name=".AddGrupo"
@@ -60,11 +62,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        </activity>
 
     </application>
 </manifest>
