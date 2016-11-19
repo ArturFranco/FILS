@@ -10,6 +10,9 @@
     <string name="historico">Histórico</string>
     <string name="agendamento">Agendamento</string>
     <string name="metas">Metas</string>
+    <string name="atleta">Atleta</string>
+    <string name="personal_trainer">Personal Trainer</string>
+    <string name="nutricionista">Nutricionista</string>
     <string name="saude">Saúde</string>
     <string name="login_anonimo">Login Anônimo</string>
     <string name="facebook_app_id">1788944334653874</string>
