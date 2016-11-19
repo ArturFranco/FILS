@@ -101,6 +101,10 @@ public class AddTreino extends AppCompatActivity {
 //        startActivity(intent);
     }
 
+    protected void uploadCorrida(View view){
+
+    }
+
     protected void passarTipoTreino (View view){
         if(tipo == 1){
             setContentView(R.layout.add_treino_corrida);
