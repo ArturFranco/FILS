@@ -33,7 +33,7 @@
         <activity android:name="AddRefeicao"
             android:label="Adicionar Refeição"/>
         <activity android:name=".LoginActivity"
-            android:label="Login"/>
+            android:label=""/>
         <activity android:name=".Metas"
             android:label="Metas"/>
 

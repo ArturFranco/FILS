@@ -1,12 +1,16 @@
 package com.example.gabriel.fils;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -115,22 +119,6 @@ public class LoginActivity extends AppCompatActivity implements
         // Salvando o request code do Facebook
         RC_FB_SIGN_IN = loginButton.getRequestCode();
 
-        /*
-        //AccessTokenTracker para gerenciar o logout
-        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken,
-                                                       AccessToken currentAccessToken) {
-                if (currentAccessToken == null) {
-                    Log.d(TAG, "Loging out:" + oldAccessToken.getToken());
-                    signOut();
-                }
-            }
-        };
-
-        accessTokenTracker.startTracking();
-        */
-
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -160,13 +148,17 @@ public class LoginActivity extends AppCompatActivity implements
         signInButton.setOnClickListener(this);
 
         //Metodo que Faz o login anonimo quando botao de login anonimo é clicado
-        Button loginAnonimoButton = (Button) findViewById(R.id.loginAnonimoButton);
+        /*Button loginAnonimoButton = (Button) findViewById(R.id.loginAnonimoButton);
         loginAnonimoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 handleLoginAnonimo();
             }
-        });
+        });*/
+
+        ImageView imgView = (ImageView) findViewById(R.id.loginBackground);
+        Drawable imgDrawable=getResources().getDrawable(R.drawable.login_background);
+        imgView.setImageDrawable(imgDrawable);
     }
 
     @Override

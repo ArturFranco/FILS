@@ -1,6 +1,7 @@
 package com.example.gabriel.fils;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,10 +38,10 @@ public class MainActivity extends AppCompatActivity
     //Inicializando variaveis do firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         //Setando o arquivo xml que vai ser usado
@@ -79,7 +81,6 @@ public class MainActivity extends AppCompatActivity
 
 
         // para criar uma tela linkando com Historico, por exemplo
-
         Button historicoButton = (Button) findViewById(R.id.historicoButton);
         historicoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,11 +136,12 @@ public class MainActivity extends AppCompatActivity
                 ImageView profileImage = (ImageView) hView.findViewById(R.id.profileImageView);
                 profileImage.setScaleX((float) 1.9);
                 profileImage.setScaleY((float) 1.9);
-                Bitmap bm = getBitmapFromURL(user.getPhotoUrl().toString());
-                profileImage.setImageBitmap(bm);
-            }
+                Bitmap bitmap = getBitmapFromURL(user.getPhotoUrl().toString());
 
+                profileImage.setImageBitmap(bitmap);
+            }
         }
+
     }
 
     public void onStart() {
@@ -215,6 +217,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    //Pega a imagem como um Bitmap a partir de uma URL
     public static Bitmap getBitmapFromURL(String src) {
         try {
             URL url = new URL(src);
