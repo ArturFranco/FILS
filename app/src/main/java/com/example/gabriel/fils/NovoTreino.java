@@ -64,8 +64,12 @@ public class NovoTreino extends AppCompatActivity {
                 //Povoa uma lista com os nomes dos treinos
                 Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                 List<String> list = new ArrayList<String>();
-                while (it.hasNext())
-                    list.add(it.next().getValue().toString());
+                DataSnapshot aux;
+                String desc, t;
+                while (it.hasNext()) {
+                    aux = it.next();
+                    list.add(aux.child("Tipo").getValue() + ": " + aux.child("Descricao").getValue());
+                }
 
                 //Atribui a lista de nomes a listview
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(NovoTreino.this,android.R.layout.simple_list_item_1, list);

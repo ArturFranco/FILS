@@ -88,11 +88,11 @@ public class AddTreino extends AppCompatActivity {
 
 
    protected void uploadTreino (View view){
-       mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+      /* mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
        EditText texto = (EditText) findViewById(R.id.addTreinoText);
-       mFirebaseDatabaseReference.child("Treinos").push().setValue(texto.getText().toString());
+       mFirebaseDatabaseReference.child("Treinos").push().setValue(texto.getText().toString());*/
 
-       Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
+       Toast toast = Toast.makeText(AddTreino.this, "Função Ainda Não Implementada",Toast.LENGTH_LONG);
        toast.show();
 
        finish();
@@ -102,7 +102,21 @@ public class AddTreino extends AppCompatActivity {
     }
 
     protected void uploadCorrida(View view){
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        EditText desc = (EditText) findViewById(R.id.descCorrida);
+        EditText dur = (EditText) findViewById(R.id.durCorrida);
+        EditText dist = (EditText) findViewById(R.id.distCorrida);
+        String descricao = desc.getText().toString();
 
+        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Tipo").setValue("Corrida");
+        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Duracao").setValue(dur.getText().toString());
+        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Distancia").setValue(dist.getText().toString());
+
+        Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
+        toast.show();
+
+        finish();
     }
 
     protected void passarTipoTreino (View view){
