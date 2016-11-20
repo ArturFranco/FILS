@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -131,6 +132,25 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        ImageView imgView = (ImageView) findViewById(R.id.home1Background);
+        Drawable imgDrawable = getResources().getDrawable(R.drawable.home1);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.home2Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home2);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.home3Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home3);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.home4Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home4);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.home5Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home5);
+        imgView.setImageDrawable(imgDrawable);
     }
 
     public void onStart() {
