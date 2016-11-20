@@ -17,12 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
-        android:id="@+id/relativeLayout"
+        android:id="@+id/relativeLayout1"
         android:layout_below="@+id/tituloDialogTreino">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Treino:"
+            android:text="Corrida:"
             android:id="@+id/label1"/>
         <TextView
             android:layout_width="wrap_content"
@@ -30,10 +30,44 @@
             android:id="@+id/treinoNome"
             android:layout_toRightOf="@+id/label1"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_below="@+id/relativeLayout1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duração:"
+            android:id="@+id/label2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/duracaoText"
+            android:layout_toRightOf="@+id/label2"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:id="@+id/relativeLayout3"
+        android:layout_below="@+id/relativeLayout2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distância:"
+            android:id="@+id/label3"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/distText"
+            android:layout_toRightOf="@+id/label3"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
+        android:layout_below="@+id/relativeLayout3"
         android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"

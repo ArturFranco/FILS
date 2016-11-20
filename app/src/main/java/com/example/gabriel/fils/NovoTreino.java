@@ -57,7 +57,7 @@ public class NovoTreino extends AppCompatActivity {
         //Pega a referencia da lista de treinos
         mFirebaseDatabaseReference.child("Treinos").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+            public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
                 //Referencia a listview do xml
                 ListView listaDeAtividades = (ListView) findViewById(R.id.listaAtividades);
 
@@ -78,24 +78,44 @@ public class NovoTreino extends AppCompatActivity {
                 listaDeAtividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        /*String entry= (String) parent.getAdapter().getItem(position);
-                        Toast toast = Toast.makeText(NovoTreino.this, entry.toString(),Toast.LENGTH_SHORT);
-                        //toast.setGravity();
-
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.popup_treino,
-                                (ViewGroup) findViewById(R.id.custom_popup_treino));
-                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.setView(layout);
-                        toast.show();*/
-                        final Dialog dialog = new Dialog(NovoTreino.this);
-                        dialog.setTitle("Relatar Treino");
-                        dialog.setContentView(R.layout.dialog_novotreino);
 
                         String entry = (String) parent.getAdapter().getItem(position);
+                        final Dialog dialog = new Dialog(NovoTreino.this);
 
-                        TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
-                        nome.setText(entry.toString());
+
+                        if(entry.startsWith("Corrida")){
+                            dialog.setTitle("Relatar Treino");
+                            dialog.setContentView(R.layout.dialog_novotreino_corrida);
+
+                            TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
+                            String s = entry.toString();
+                            nome.setText(s.substring(s.lastIndexOf(":") + 1));
+
+
+                            //DatabaseReference ref = mFirebaseDatabaseReference.child("Treino").child(s.substring(s.lastIndexOf(":") + 2));
+                            TextView dur = (TextView) dialog.findViewById(R.id.duracaoText);
+                            dur.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Duracao").getValue().toString() + "h");
+
+                            TextView dis = (TextView) dialog.findViewById(R.id.distText);
+                            dis.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Distancia").getValue().toString() + "km");
+
+                        }else if(entry.startsWith("Outro")){
+                            dialog.setTitle("Relatar Treino");
+                            dialog.setContentView(R.layout.dialog_novotreino_outro);
+
+                            TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
+                            String s = entry.toString();
+                            nome.setText(s.substring(s.lastIndexOf(":") + 1));
+
+
+                            //DatabaseReference ref = mFirebaseDatabaseReference.child("Treino").child(s.substring(s.lastIndexOf(":") + 2));
+                            TextView dur = (TextView) dialog.findViewById(R.id.duracaoText);
+                            dur.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Duracao").getValue().toString() + "h");
+
+                           }
+
+
+
 
                         //TODO relatar treino
                         Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirma);

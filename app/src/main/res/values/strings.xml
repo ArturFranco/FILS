@@ -27,4 +27,17 @@
         <item>Vem ni mim gata</item>
     </string-array>
 
+    <string-array name="outros_esportes">
+        <item>Spinning</item>
+        <item>Ritmos</item>
+        <item>Jump</item>
+        <item>Pilates</item>
+        <item>Step</item>
+        <item>Judô</item>
+        <item>Jiu-Jitsu</item>
+        <item>Muay Thay</item>
+        <item>MMA</item>
+        <item>Outra</item>
+    </string-array>
+
 </resources>
