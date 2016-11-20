@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gabriel.fils.ProfissionalMainActivity"
+    tools:showIn="@layout/profissional_app_bar_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Botao 1"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/profissional_botao1"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Botao 2"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/profissional_botao2"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Botao 3"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/profissional_botao3"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Botao 4"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/profissional_botao4"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Botao 5"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/profissional_botao5"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</RelativeLayout>
