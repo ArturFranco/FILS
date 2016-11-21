@@ -148,7 +148,7 @@ public class AddTreino extends AppCompatActivity {
             setContentView(R.layout.add_treino_outro);
             tiposOutro = (Spinner) findViewById(R.id.spinnerOutro);
 
-            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.outros_esportes , android.R.layout.simple_spinner_item);
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.outros_esportes , android.R.layout.simple_spinner_dropdown_item);
             tiposOutro.setAdapter(adapter);
             tipo = 3;
         }else{

@@ -25,7 +25,7 @@ public class Metas extends AppCompatActivity {
 
         metas_opcoes = (Spinner) findViewById(R.id.spinnerMetas);
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.metas_escolher , android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.metas_escolher , android.R.layout.simple_spinner_dropdown_item);
         metas_opcoes.setAdapter(adapter);
 
         //Seleciona apetando o botao

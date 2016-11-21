@@ -94,7 +94,7 @@ public class NovoTreino extends AppCompatActivity {
 
                             //DatabaseReference ref = mFirebaseDatabaseReference.child("Treino").child(s.substring(s.lastIndexOf(":") + 2));
                             TextView dur = (TextView) dialog.findViewById(R.id.duracaoText);
-                            dur.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Duracao").getValue().toString() + "h");
+                            dur.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Duracao").getValue().toString() + "min");
 
                             TextView dis = (TextView) dialog.findViewById(R.id.distText);
                             dis.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Distancia").getValue().toString() + "km");
