@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity
 
     //Inicializando variaveis do firebase
     private FirebaseAuth mAuth;
+    private DatabaseReference mFirebaseDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity
 
         //Autenticacao firebase
         mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         //Metodo que troca de tela quando botao de nova atividade é clicado
         Button novaAtividadeButton = (Button) findViewById(R.id.novaAtividadeButton);
@@ -115,6 +119,7 @@ public class MainActivity extends AppCompatActivity
             TextView emailTextView = (TextView) hView.findViewById(R.id.emailTextView);
             emailTextView.setText(user.getEmail());
 
+            //Imagem
             int SDK_INT = android.os.Build.VERSION.SDK_INT;
             if (SDK_INT > 8) {
                 //Codigo complexo que permite que a main thread abra conexoes Http
@@ -130,6 +135,10 @@ public class MainActivity extends AppCompatActivity
 
                 profileImage.setImageBitmap(bitmap);
             }
+
+            //Adicionando uma entrada no Banco de Dados para esse usuario, se nao houver
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Nome").setValue(user.getDisplayName());
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("PhotoURL").setValue(user.getPhotoUrl().toString());
         }
 
         ImageView imgView = (ImageView) findViewById(R.id.home1Background);

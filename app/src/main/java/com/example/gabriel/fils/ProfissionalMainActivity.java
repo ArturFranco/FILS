@@ -1,6 +1,7 @@
 package com.example.gabriel.fils;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -16,9 +17,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,8 +39,11 @@ public class ProfissionalMainActivity extends AppCompatActivity
     private static final String TAG = "ProfissionalMainActivity";
     private static final String PREFS_NAME = "MyPrefs";
 
+    public static String perfilString;
+
     //Inicializando variaveis do firebase
     private FirebaseAuth mAuth;
+    private DatabaseReference mFirebaseDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,17 @@ public class ProfissionalMainActivity extends AppCompatActivity
 
         //Autenticacao firebase
         mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Salvando o perfil do usuario
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int perfil = settings.getInt("perfil", 0);
+        if(perfil == 2){
+            perfilString = "Personais";
+        }else{
+            perfilString = "Nutricionistas";
+        }
+
 
         //Provavelmente esse é o código para a slide menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.profissional_drawer_layout);
@@ -90,6 +108,10 @@ public class ProfissionalMainActivity extends AppCompatActivity
 
                 profileImage.setImageBitmap(bitmap);
             }
+
+            //Adicionando entrada no Banco de Dados para esse usuario, se nao houver
+            mFirebaseDatabaseReference.child(perfilString).child(user.getUid()).child("Nome").setValue(user.getDisplayName());
+            mFirebaseDatabaseReference.child(perfilString).child(user.getUid()).child("PhotoURL").setValue(user.getPhotoUrl().toString());
         }
 
     }
