@@ -11,17 +11,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Treinos"
+            android:textColor="@color/white"
             android:textSize="30dp"
             android:id="@+id/treinoButton"
             android:backgroundTint="@color/botao"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="15dp"
             android:layout_weight="1"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Refeições"
+            android:textColor="@color/white"
             android:textSize="30dp"
             android:backgroundTint="@color/botao"
             android:id="@+id/refeicaoButton"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
             android:layout_weight="1"/>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
