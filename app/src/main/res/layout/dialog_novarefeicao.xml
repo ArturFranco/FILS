@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Cancelar"
             android:backgroundTint="@color/verdePadrao"
-            android:id="@+id/botaoCancela"/>
+            android:id="@+id/botaoCancelaRef"/>
     </LinearLayout>
 
 </RelativeLayout>

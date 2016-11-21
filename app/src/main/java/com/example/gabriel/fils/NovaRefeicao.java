@@ -101,6 +101,15 @@ public class NovaRefeicao extends AppCompatActivity {
                             }
                         });
 
+                        //Cancela o relato de treino
+                        Button botaoCancela = (Button) dialog.findViewById(R.id.botaoCancelaRef);
+                        botaoCancela.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
+
                         dialog.show();
 
                         nome.setText(entry.toString());
