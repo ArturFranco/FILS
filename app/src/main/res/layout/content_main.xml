@@ -16,40 +16,113 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <Button
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/nova_atividade"
-            android:backgroundTint="@color/botao"
-            android:id="@+id/novaAtividadeButton"
-            android:layout_weight="1"/>
-        <Button
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/home1Background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/nova_atividade"
+                android:backgroundTint="@color/transparente"
+                android:id="@+id/novaAtividadeButton"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/historico"
-            android:backgroundTint="@color/botao"
-            android:id="@+id/historicoButton"
-            android:layout_weight="1"/>
-        <Button
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/home2Background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/historico"
+                android:backgroundTint="@color/transparente"
+                android:id="@+id/historicoButton"
+                android:textSize="20dp"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/agendamento"
-            android:backgroundTint="@color/botao"
-            android:id="@+id/metasAgendamento"
-            android:layout_weight="1"/>
-        <Button
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/home3Background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/agendamento"
+                android:backgroundTint="@color/transparente"
+                android:id="@+id/metasAgendamento"
+                android:textSize="20dp"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/metas"
-            android:backgroundTint="@color/botao"
-            android:id="@+id/metasButton"
-            android:layout_weight="1"/>
-        <Button
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/home4Background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/metas"
+                android:backgroundTint="@color/transparente"
+                android:id="@+id/metasButton"
+                android:textSize="20dp"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/saude"
-            android:backgroundTint="@color/botao"
-            android:id="@+id/saudeButton"
-            android:layout_weight="1"/>
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/home5Background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/saude"
+                android:backgroundTint="@color/transparente"
+                android:id="@+id/saudeButton"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
     </LinearLayout>
 </RelativeLayout>

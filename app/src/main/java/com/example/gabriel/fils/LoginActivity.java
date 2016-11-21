@@ -1,6 +1,7 @@
 package com.example.gabriel.fils;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -44,9 +45,11 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
+
     private static final String TAG = "LoginActivity";
     private static final int RC_GOOGLE_SIGN_IN = 9001;
     private static int RC_FB_SIGN_IN;
+    private static final String PREFS_NAME = "MyPrefs";
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -78,7 +81,19 @@ public class LoginActivity extends AppCompatActivity implements
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     //Dado que o usuario esta logado, vai para a tela inicial (menu)
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                    Intent intent;
+                    int perfil = settings.getInt("perfil", 0);
+                    if(perfil == 1){ //perfil == 1 indica que o usiario é um atleta
+                        intent = new Intent(LoginActivity.this, MainActivity.class);
+                    }else if(perfil == 2){ //perfil == 2 indica que o usiario é um personal
+                        intent = new Intent(LoginActivity.this, ProfissionalMainActivity.class);
+                    }else if(perfil == 3){ //perfil == 3 indica que o usiario é um nutricionista
+                        intent = new Intent(LoginActivity.this, ProfissionalMainActivity.class);
+                    }else{
+                        intent = new Intent(LoginActivity.this, PerfilActivity.class);
+                    }
+
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {

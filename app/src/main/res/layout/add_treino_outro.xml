@@ -40,19 +40,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <EditText
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Novo Treino"
-            android:id="@+id/addTreinoText"
-            android:layout_gravity="center_horizontal|center_vertical"/>
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/activity_horizontal_margin">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Tipo:"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerOutro" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/activity_horizontal_margin">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Duração(Horas):"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:inputType="number"
+                android:id="@+id/duracaoOutro"
+                android:hint="Informe a duração"/>
+        </LinearLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/uploadNovoTreino"
+            android:id="@+id/uploadNovaOutro"
             android:text="Salvar"
             android:layout_gravity="center_horizontal"
-            android:onClick="uploadTreino"/>
+            android:onClick="uploadOutro"
+            android:backgroundTint="@color/botao"/>
+
     </LinearLayout>
 
 </LinearLayout>

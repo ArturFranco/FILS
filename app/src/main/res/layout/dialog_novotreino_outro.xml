@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Treino:"
+            android:text="Tipo:"
             android:id="@+id/label1"/>
         <TextView
             android:layout_width="wrap_content"
@@ -30,10 +30,27 @@
             android:id="@+id/treinoNome"
             android:layout_toRightOf="@+id/label1"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_below="@+id/relativeLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duração:"
+            android:id="@+id/label2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/duracaoText"
+            android:layout_toRightOf="@+id/label2"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
+        android:layout_below="@+id/relativeLayout2"
         android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"

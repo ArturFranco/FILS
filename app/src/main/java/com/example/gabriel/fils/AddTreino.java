@@ -8,11 +8,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ public class AddTreino extends AppCompatActivity {
     private CheckBox checkC;
     private CheckBox checkD;
     private CheckBox checkE;
+
+    private Spinner tiposOutro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,16 +123,34 @@ public class AddTreino extends AppCompatActivity {
         finish();
     }
 
+    protected void uploadOutro(View view){
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        Spinner tipoOutro = (Spinner) findViewById(R.id.spinnerOutro);
+        EditText durOutro = (EditText) findViewById(R.id.duracaoOutro);
+        String descricao = tipoOutro.getSelectedItem().toString();
+
+        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Tipo").setValue("Outro");
+        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
+
+        Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
+        toast.show();
+
+        finish();
+
+    }
+
     protected void passarTipoTreino (View view){
         if(tipo == 1){
             setContentView(R.layout.add_treino_corrida);
             tipo = 2;
         }else if(tipo == 2){
-            setContentView(R.layout.add_treino_marcial);
-            tipo = 3;
-        }else if(tipo == 3){
             setContentView(R.layout.add_treino_outro);
-            tipo = 4;
+            tiposOutro = (Spinner) findViewById(R.id.spinnerOutro);
+
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.outros_esportes , android.R.layout.simple_spinner_item);
+            tiposOutro.setAdapter(adapter);
+            tipo = 3;
         }else{
             setContentView(R.layout.add_treino_musculacao);
             grupoA = (LinearLayout) findViewById(R.id.grupoAView);
@@ -149,7 +171,11 @@ public class AddTreino extends AppCompatActivity {
     protected void voltarTipoTreino (View view){
         if(tipo == 1){
             setContentView(R.layout.add_treino_outro);
-            tipo = 4;
+            tiposOutro = (Spinner) findViewById(R.id.spinnerOutro);
+
+            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.outros_esportes , android.R.layout.simple_spinner_item);
+            tiposOutro.setAdapter(adapter);
+            tipo = 3;
         }else if(tipo == 2){
             setContentView(R.layout.add_treino_musculacao);
             grupoA = (LinearLayout) findViewById(R.id.grupoAView);
@@ -164,12 +190,9 @@ public class AddTreino extends AppCompatActivity {
             checkD = (CheckBox) findViewById(R.id.checkBoxD);
             checkE = (CheckBox) findViewById(R.id.checkBoxE);
             tipo = 1;
-        }else if(tipo == 3){
+        }else{
             setContentView(R.layout.add_treino_corrida);
             tipo = 2;
-        }else{
-            setContentView(R.layout.add_treino_marcial);
-            tipo = 3;
         }
     }
 
