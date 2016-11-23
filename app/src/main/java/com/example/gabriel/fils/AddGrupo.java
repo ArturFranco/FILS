@@ -20,10 +20,15 @@ public class AddGrupo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_grupo_main);
         Bundle extras = getIntent().getExtras();
-        if (extras != null){
+        /*if (extras != null){
             TextView titulo = (TextView) findViewById(R.id.grupoTitulo);
             titulo.setText(extras.getString("titulo"));
-        }
+        }*/
+        String grupo = extras.getString("tipo");
+
+        TextView titulo = (TextView) findViewById(R.id.grupoTitulo);
+        titulo.setText("Grupo "+grupo);
+
         Button botao = (Button) findViewById(R.id.bot);
         botao.setOnClickListener(new View.OnClickListener() {
             @Override

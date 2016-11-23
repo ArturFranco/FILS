@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddTreino extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
     private int tipo;
 
     private LinearLayout grupoA;
@@ -47,6 +51,10 @@ public class AddTreino extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_treino_musculacao);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
         tipo = 1;
 
         grupoA = (LinearLayout) findViewById(R.id.grupoAView);
@@ -112,10 +120,10 @@ public class AddTreino extends AppCompatActivity {
         EditText dist = (EditText) findViewById(R.id.distCorrida);
         String descricao = desc.getText().toString();
 
-        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Tipo").setValue("Corrida");
-        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Descricao").setValue(descricao);
-        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Duracao").setValue(dur.getText().toString());
-        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Distancia").setValue(dist.getText().toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Corrida");
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(dur.getText().toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Distancia").setValue(dist.getText().toString());
 
         Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
         toast.show();
@@ -129,9 +137,9 @@ public class AddTreino extends AppCompatActivity {
         EditText durOutro = (EditText) findViewById(R.id.duracaoOutro);
         String descricao = tipoOutro.getSelectedItem().toString();
 
-        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Tipo").setValue("Outro");
-        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Descricao").setValue(descricao);
-        mFirebaseDatabaseReference.child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Outro");
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
 
         Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
         toast.show();

@@ -24,6 +24,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,17 +47,24 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 public class NovoTreino extends AppCompatActivity {
 
     private DatabaseReference mFirebaseDatabaseReference;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.novo_treino_main);
 
+        //Pega dados de autenticação
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
+
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         //Pega a referencia da lista de treinos
-        mFirebaseDatabaseReference.child("Treinos").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
                 //Referencia a listview do xml
