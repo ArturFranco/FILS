@@ -40,4 +40,148 @@
         <item>Outra</item>
     </string-array>
 
+    <string-array name="grupos_musculares">
+        <item>Bíceps</item>
+        <item>Tríceps</item>
+        <item>Antebraço</item>
+        <item>Costas</item>
+        <item>Lombar</item>
+        <item>Peito</item>
+        <item>Ombros</item>
+        <item>Quadríceps</item>
+        <item>Posterior</item>
+        <item>Glúteos</item>
+        <item>Panturrilhas</item>
+        <item>Abdominais</item>
+    </string-array>
+    
+    <string-array name="biceps">
+        <item>Rosca Alternada</item>
+        <item>Rosca Concentrada</item>
+        <item>Rosca Direta com Barra</item>
+        <item>Rosca Direta com Haltere</item>
+        <item>Rosca Scott com Barra</item>
+        <item>Rosca Scott com Haltere</item>
+        <item>Rosca Scott Unilateral</item>
+        <item>Rosca em Polia Baixa</item>
+        <item>Rosca em Polia Alta</item>
+    </string-array>
+
+    <string-array name="triceps">
+        <item>Tríceps na Polia em Pronação</item>
+        <item>Tríceps na Polia em Suinação</item>
+        <item>Tríceps na Polia com Corda</item>
+        <item>Tríceps Coice (Kickback)</item>
+        <item>Tríceps Testa Sentado</item>
+        <item>Tríceps Testa Deitado</item>
+        <item>Extensão Sobre a Cabeça</item>
+        <item>Paralelas</item>
+        <item>Fundos em Máquina</item>
+        <item>Supino Pegada Junta</item>
+        <item>Extensão de Tríceps Sentado com Haltere</item>
+    </string-array>
+
+    <string-array name="antebraco">
+        <item>Rosca com Barra em Pronação</item>
+        <item>Rosca com Halter em Semi-Pronação (Martelo)</item>
+        <item>Flexão dos Punhos em Pronação</item>
+        <item>Flexão dos Punhos em Pronação</item>
+    </string-array>
+
+    <string-array name="costas">
+        <item>Remada Curvada em Pronação</item>
+        <item>Remada Curvada em Supinaçãoo</item>
+        <item>Remada com Barra em T</item>
+        <item>Remada Sentado</item>
+        <item>Remada Unilateral na Máquina</item>
+        <item>Remada Unilateral com Haltere</item>
+        <item>Puxador a Frente em Pronação</item>
+        <item>Puxador a Frente em Supinação</item>
+        <item>Extensão da Coluna</item>
+        <item>Encolhimento de Ombros com Haltere</item>
+        <item>Levantamento Terra</item>
+        <item>Encolhimento de Ombros com Barra</item>
+        <item>Barra Fixa</item>
+    </string-array>
+
+    <string-array name="lombar">
+        <item>Hiperextensão em Banco</item>
+        <item>Super-Homem</item>
+    </string-array>
+
+    <string-array name="peito">
+        <item>Supino com Barra</item>
+        <item>Supino com Haltere</item>
+        <item>Voador</item>
+        <item>Peck Deck</item>
+        <item>Crucifixo</item>
+        <item>Crucifixo Inclinado</item>
+        <item>Crucifixo Declinado</item>
+        <item>Crucifixo na Polia</item>
+        <item>Crucifixo em Pé na Polia</item>
+        <item>Supino Inclinado com Barra</item>
+        <item>Supino Inclinado com Haltere</item>
+        <item>Supino Declinado com Barra</item>
+        <item>Supino Declinado com Haltere</item>
+        <item>Pullover</item>
+        <item>Crossover</item>
+    </string-array>
+
+    <string-array name="ombros">
+        <item>Desenvolvimento para Frente com Barra</item>
+        <item>Desenvolvimento para Trás com Haltere</item>
+        <item>Desenvolvimento para Frente com Haltere</item>
+        <item>Elevação Lateral na Máquina</item>
+        <item>Elevação Lateral com Haltere</item>
+        <item>Elevação Lateral curvado com Haltere</item>
+        <item>Remada Alta</item>
+        <item>Elevação Frontal com Barra</item>
+        <item>Elevaçao Frontal com Haltere em Pronação</item>
+        <item>Elevação Frontal com Haltere em Supinação</item>
+    </string-array>
+
+    <string-array name="quadriceps">
+        <item>Agachamento</item>
+        <item>Agachamento Frontal</item>
+        <item>Agachamento Hack em Máquina</item>
+        <item>Extensora</item>
+        <item>Avanço</item>
+        <item>Leg Press 45</item>
+        <item>Leg Press 90</item>
+        <item>Leg Press Horizontal</item>
+        <item>Levantamento Terra</item>
+    </string-array>
+
+    <string-array name="posterior">
+        <item>Stiff</item>
+        <item>Flexora Deitada</item>
+        <item>Flexora Sentada</item>
+    </string-array>
+    
+    <string-array name="gluteos">
+        <item>Step-up</item>
+        <item>Extensão do Quadril em Polia Baixa</item>
+        <item>Extensão do Quadril no Solo</item>
+        <item>Extensão do Quadril com Pés no Chão</item>
+    </string-array>
+
+    <string-array name="panturrilhas">
+        <item>Elevação de Calcanhar em pé</item>
+        <item>Elevação de Calcanhar Sentado</item>
+        <item>Elevação de Calcanhar em Máquina</item>
+        <item>Burrinho</item>
+    </string-array>
+
+    <string-array name="abdominais">
+        <item>Elevação de Pernas</item>
+        <item>Crunch</item>
+        <item>Obliquo</item>
+        <item>Troque nos Pés</item>
+        <item>Flexão do Quadril Suspenso em Barra Fixa</item>
+        <item>Flexão do Quadril em Banco Inclinado</item>
+        <item>Abdominal em Banco Inclinado</item>
+        <item>Abdominal em Polia Alta</item>
+        <item>Prancha</item>
+        <item>Prancha Lateral</item>
+    </string-array>
 </resources>
