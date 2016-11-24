@@ -137,8 +137,9 @@ public class MainActivity extends AppCompatActivity
             }
 
             //Adicionando uma entrada no Banco de Dados para esse usuario, se nao houver
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Nome").setValue(user.getDisplayName());
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("PhotoURL").setValue(user.getPhotoUrl().toString());
+            DatabaseReference referenciaDatabaseUsuario = mFirebaseDatabaseReference.child("Atletas").child(user.getUid());
+            referenciaDatabaseUsuario.child("Nome").setValue(user.getDisplayName());
+            referenciaDatabaseUsuario.child("PhotoURL").setValue(user.getPhotoUrl().toString());
         }
 
         ImageView imgView = (ImageView) findViewById(R.id.home1Background);

@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,6 +47,8 @@ public class ProfissionalMainActivity extends AppCompatActivity
     //Inicializando variaveis do firebase
     private FirebaseAuth mAuth;
     private DatabaseReference mFirebaseDatabaseReference;
+    DemoCollectionPagerAdapter mDemoCollectionPagerAdapter;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,75 @@ public class ProfissionalMainActivity extends AppCompatActivity
             perfilString = "Nutricionistas";
         }
 
+
+        // para criar uma tela linkando com Historico, por exemplo
+        Button button1 = (Button) findViewById(R.id.profissional_botao1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfissionalMainActivity.this, CollectionDemoActivity .class);
+                startActivity(intent);
+            }
+        });
+
+        //------------------------------------------------------------------------------------------------
+        // Parte do Swipe Views with Tabs
+        // ViewPager and its adapters use support library
+        // fragments, so use getSupportFragmentManager.
+ /*       mDemoCollectionPagerAdapter =
+                new DemoCollectionPagerAdapter(
+                        getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mDemoCollectionPagerAdapter);
+
+
+        //adicionando abas
+        final ActionBar actionBar = getSupportActionBar();
+
+        // Specify that tabs should be displayed in the action bar.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        // Create a tab listener that is called when the user changes tabs.
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+                // When the tab is selected, switch to the
+                // corresponding page in the ViewPager.
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
+            }
+        };
+
+        // Add 3 tabs, specifying the tab's text and TabListener
+        for (int i = 0; i < 2; i++) {
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText("Tab " + (i + 1))
+                            .setTabListener(tabListener));
+        }
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        // When swiping between pages, select the
+                        // corresponding tab.
+                        getSupportActionBar().setSelectedNavigationItem(position);
+                    }
+                });
+
+*/
+        //------------------------------------------------------------------------------------------------
 
         //Provavelmente esse é o código para a slide menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.profissional_drawer_layout);
@@ -109,9 +184,31 @@ public class ProfissionalMainActivity extends AppCompatActivity
             }
 
             //Adicionando entrada no Banco de Dados para esse usuario, se nao houver
-            mFirebaseDatabaseReference.child(perfilString).child(user.getUid()).child("Nome").setValue(user.getDisplayName());
-            mFirebaseDatabaseReference.child(perfilString).child(user.getUid()).child("PhotoURL").setValue(user.getPhotoUrl().toString());
+            DatabaseReference referenciaDatabaseUsuario = mFirebaseDatabaseReference.child(perfilString).child(user.getUid());
+            referenciaDatabaseUsuario.child("Nome").setValue(user.getDisplayName());
+            referenciaDatabaseUsuario.child("PhotoURL").setValue(user.getPhotoUrl().toString());
         }
+
+        //Background images
+        ImageView imgView = (ImageView) findViewById(R.id.profissional_home1Background);
+        Drawable imgDrawable = getResources().getDrawable(R.drawable.home1);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.profissional_home2Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home2);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.profissional_home3Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home3);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.profissional_home4Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home4);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.profissional_home5Background);
+        imgDrawable = getResources().getDrawable(R.drawable.home5);
+        imgView.setImageDrawable(imgDrawable);
 
     }
 
