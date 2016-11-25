@@ -57,7 +57,7 @@ public class CollectionDemoActivity extends AppCompatActivity {
         };
 
         // Add 3 tabs, specifying the tab's text and TabListener
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             actionBar.addTab(
                     actionBar.newTab()
                             .setText("Tab " + (i + 1))

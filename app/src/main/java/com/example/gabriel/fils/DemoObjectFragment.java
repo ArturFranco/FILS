@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -22,13 +24,20 @@ public class DemoObjectFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         // The last two arguments ensure LayoutParams are inflated
         // properly.
-
-        //Acredito que aqui eu posso pegar uma view diferente para o valor de Integer.toString(args.getInt(ARG_OBJECT))
-        View rootView = inflater.inflate(R.layout.fragment_pager_list, container, false);
         Bundle args = getArguments();
 
-        ((TextView) rootView.findViewById(R.id.text)).setText(
-                Integer.toString(args.getInt(ARG_OBJECT)));
+        View rootView = null;
+        //ListView listView = (ListView) rootView.findViewById(android.R.id.list);
+        if(args.getInt(ARG_OBJECT) == 1) {
+            rootView = inflater.inflate(R.layout.fragment_pager_perfil, container, false);
+        }else if(args.getInt(ARG_OBJECT) == 2){
+            rootView = inflater.inflate(R.layout.fragment_pager_alunos, container, false);
+        }else{
+            rootView = inflater.inflate(R.layout.fragment_pager_agenda, container, false);
+        }
+
+        //((TextView) rootView.findViewById(R.id.text)).setText(
+         //       Integer.toString(args.getInt(ARG_OBJECT)));
         return rootView;
     }
 }

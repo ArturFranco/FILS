@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private CallbackManager mCallbackManager;
-    public static GoogleApiClient mGoogleApiClient; // Esse atributo pode ser acessado a partir de qualquer outra classe
+    private static GoogleApiClient mGoogleApiClient; // Esse atributo pode ser acessado a partir de qualquer outra classe
 
 
     @Override
