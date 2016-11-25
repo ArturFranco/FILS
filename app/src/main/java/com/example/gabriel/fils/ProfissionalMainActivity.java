@@ -2,36 +2,16 @@ package com.example.gabriel.fils;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * Created by Felipe on 11/19/2016.
@@ -48,6 +28,7 @@ public class ProfissionalMainActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "MyPrefs";
 
     public static String perfilString;
+    public static String alunoAtual;
 
     //Inicializando variaveis do firebase
     private FirebaseAuth mAuth;
@@ -101,6 +82,9 @@ public class ProfissionalMainActivity extends AppCompatActivity {
         actionBar.addTab(actionBar.newTab().setText("Perfil").setTabListener(tabListener));
         actionBar.addTab(actionBar.newTab().setText("Alunos").setTabListener(tabListener));
         actionBar.addTab(actionBar.newTab().setText("Agenda").setTabListener(tabListener));
+
+        //Setando a aba segunda aba (alunos) como aba inical
+        actionBar.setSelectedNavigationItem(1);
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setOnPageChangeListener(

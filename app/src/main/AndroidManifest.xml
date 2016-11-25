@@ -41,8 +41,11 @@
         <activity android:name=".AddGrupo"
             android:label="Adicionar Grupo"/>
         <activity android:name=".CollectionDemoActivity" />
+        <activity android:name=".ProfissionalMainActivity" />
         <activity
-            android:name=".ProfissionalMainActivity" />
+            android:name=".AlunoActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"

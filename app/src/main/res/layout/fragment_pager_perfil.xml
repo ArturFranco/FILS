@@ -9,6 +9,7 @@
         android:id="@+id/profissional_nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="-16dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/profissional_nav_header_main"
