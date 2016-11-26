@@ -184,4 +184,21 @@
         <item>Prancha</item>
         <item>Prancha Lateral</item>
     </string-array>
+
+    <string-array name="grupos_alimentares">
+        <item>Cereais e derivados</item>
+        <item>Verduras, hortaliças e derivados</item>
+        <item>Gorduras e óleos</item>
+        <item>Pescados e frutos do mar</item>
+        <item>Carnes e derivados</item>
+        <item>Leite e derivados</item>
+        <item>Bebidas (alcoólicas e não-alcoólicas)</item>
+        <item>Ovos e derivados</item>
+        <item>Produtos açucarados</item>
+        <item>Miscelâneas</item>
+        <item>Alimentos preparados</item>
+        <item>Leguminosas e derivados</item>
+        <item>Nozes e sementes</item>
+    </string-array>
+
 </resources>

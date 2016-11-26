@@ -41,7 +41,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 /**
  * Created by Artur on 10/11/2016.
  *
- * Tela que lista as refeições cadastrados e permite cadastrar novass
+ * Tela que lista as refeições cadastradas e permite cadastrar novas
  */
 
 public class NovaRefeicao extends AppCompatActivity {
@@ -62,14 +62,14 @@ public class NovaRefeicao extends AppCompatActivity {
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-        //Pega a referencia da lista de treinos
+        //Pega a referencia da lista de refeições
         mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
                 //Referencia a listview do xml
                 ListView listaDeAtividades = (ListView) findViewById(R.id.listaAtividadesRef);
 
-                //Povoa uma lista com os nomes dos treinos
+                //Povoa uma lista com os nomes das refeições
                 Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                 List<String> list = new ArrayList<String>();
                 while (it.hasNext())
@@ -100,7 +100,7 @@ public class NovaRefeicao extends AppCompatActivity {
 
                         TextView nome = (TextView) dialog.findViewById(R.id.refeicaoNome);
 
-
+                        //Confirma relato de refeição
                         Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirmaRef);
                         botaoConfirma.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -109,7 +109,7 @@ public class NovaRefeicao extends AppCompatActivity {
                             }
                         });
 
-                        //Cancela o relato de treino
+                        //Cancela o relato de refeição
                         Button botaoCancela = (Button) dialog.findViewById(R.id.botaoCancelaRef);
                         botaoCancela.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -133,7 +133,7 @@ public class NovaRefeicao extends AppCompatActivity {
         });
 
 
-        //TODO adicionar a funcao de adicionar novos treinos
+        //TODO adicionar a função de adicionar novas refeições
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addRefeicaoButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
