@@ -5,69 +5,40 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Relatar Atividade"
+        android:text="Descrição"
         android:textSize="18dp"
         android:textAlignment="center"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
-        android:id="@+id/tituloDialogTreino"/>
-    <RelativeLayout
+        android:id="@+id/tituloDialogGrupo"/>
+   <!-- <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
-        android:id="@+id/relativeLayout1"
-        android:layout_below="@+id/tituloDialogTreino">
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/tituloDialogGrupo">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Corrida:"
+            android:text="Treino:"
             android:id="@+id/label1"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/treinoNome"
             android:layout_toRightOf="@+id/label1"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    </RelativeLayout>-->
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="5dp"
-        android:id="@+id/relativeLayout2"
-        android:layout_below="@+id/relativeLayout1">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Duração:"
-            android:id="@+id/label2"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/duracaoText"
-            android:layout_toRightOf="@+id/label2"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="5dp"
-        android:id="@+id/relativeLayout3"
-        android:layout_below="@+id/relativeLayout2">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Distância:"
-            android:id="@+id/label3"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/distText"
-            android:layout_toRightOf="@+id/label3"/>
-    </RelativeLayout>
+        android:id="@+id/descricaoText"
+        android:layout_below="@+id/tituloDialogGrupo"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout3"
+        android:layout_below="@+id/descricaoText"
         android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"

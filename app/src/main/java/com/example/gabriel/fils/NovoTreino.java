@@ -12,6 +12,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -74,7 +76,6 @@ public class NovoTreino extends AppCompatActivity {
                 Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                 List<String> list = new ArrayList<String>();
                 DataSnapshot aux;
-                String desc, t;
                 while (it.hasNext()) {
                     aux = it.next();
                     list.add(aux.child("Tipo").getValue() + ": " + aux.child("Descricao").getValue());
@@ -88,7 +89,7 @@ public class NovoTreino extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        String entry = (String) parent.getAdapter().getItem(position);
+                        final String entry = (String) parent.getAdapter().getItem(position);
                         final Dialog dialog = new Dialog(NovoTreino.this);
 
 
@@ -131,7 +132,20 @@ public class NovoTreino extends AppCompatActivity {
                         botaoConfirma.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                               dialog.dismiss();
+                                Calendar c = Calendar.getInstance();
+                                Integer ano = c.get(Calendar.YEAR);
+                                Integer dia = c.get(Calendar.DAY_OF_MONTH);
+                                Integer mes = c.get(Calendar.MONTH);
+                                mes++;
+                                Integer hora = c.get(Calendar.HOUR_OF_DAY);
+                                Integer minutos = c.get(Calendar.MINUTE);
+                                Integer segundos = c.get(Calendar.SECOND);
+                                String s = entry.toString();
+                                String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
+                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Treino");
+                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
+                                //Log.d("NovoTreino", day.toString());
+                                dialog.dismiss();
                             }
                         });
 

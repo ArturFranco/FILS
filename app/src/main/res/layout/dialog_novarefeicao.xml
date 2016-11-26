@@ -41,13 +41,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/botaoConfirmaRef"
             android:text="Confirma"
-            android:backgroundTint="@color/verdePadrao"/>
+            android:backgroundTint="@color/verdePadrao"
+            android:textColor="@color/white"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancelar"
             android:backgroundTint="@color/verdePadrao"
-            android:id="@+id/botaoCancelaRef"/>
+            android:id="@+id/botaoCancelaRef"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </RelativeLayout>

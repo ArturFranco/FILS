@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
@@ -9,7 +11,7 @@
         android:textSize="30dp"
         android:textAlignment="center"
         android:id="@+id/grupoTitulo"/>
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -26,7 +28,7 @@
             android:hint="Descriçao do Treino"
             android:textAlignment="center"
             android:id="@+id/descMusc"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +39,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grupo Muscular: "/>
+            android:text="Grupo Muscular: "
+            android:textSize="18dp"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,13 +57,44 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exercício: "/>
+            android:text="Exercício: "
+            android:textSize="18dp"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinnerExercicios">
         </Spinner>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Séries: "
+            android:textSize="18dp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/serieText"
+            android:layout_weight="1"
+            android:inputType="number"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repetições: "
+            android:layout_marginStart="12dp"
+            android:textSize="18dp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repText"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,20 +103,46 @@
         android:backgroundTint="@color/botao"
         android:textColor="@color/white"
         android:id="@+id/addExerButton"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exercício / Séries / Repetições"
+        android:textSize="18dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/listaExecicios"
         android:layout_weight="1">
     </ListView>
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/botao"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/salvarGrupoButton"
-        android:layout_margin="@dimen/activity_horizontal_margin"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/salvarGrupoButton"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refazer"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/refazerGrupoButton"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+        />
+    </LinearLayout>
+
 
 
 </LinearLayout>
