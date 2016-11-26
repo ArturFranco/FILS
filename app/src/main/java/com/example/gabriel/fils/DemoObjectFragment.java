@@ -62,8 +62,7 @@ public class DemoObjectFragment extends Fragment
         // properly.
         Bundle args = getArguments();
 
-        ;
-        //ListView listView = (ListView) rootView.findViewById(android.R.id.list);
+        //Tela "Perfil"
         if(args.getInt(ARG_OBJECT) == 1) {
             rootView = inflater.inflate(R.layout.fragment_pager_perfil, container, false);
 
@@ -100,8 +99,7 @@ public class DemoObjectFragment extends Fragment
                 }
             }
 
-
-        }else if(args.getInt(ARG_OBJECT) == 2){
+        }else if(args.getInt(ARG_OBJECT) == 2){ //Tela "Alunos"
             rootView = inflater.inflate(R.layout.fragment_pager_alunos, container, false);
 
             //Pega a referencia da lista de treinos
@@ -109,28 +107,45 @@ public class DemoObjectFragment extends Fragment
                 @Override
                 public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
                     //Referencia a listview do xml
-                    ListView listaDeAlnos = (ListView) rootView.findViewById(R.id.listaAlunos);
+                    ListView listaDeAlunos = (ListView) rootView.findViewById(R.id.listaAlunos);
+
+                    // Construct the data source
+                    ArrayList<Aluno> arrayOfAlunos = new ArrayList<Aluno>();
+                    // Create the adapter to convert the array to views
+                    final AlunosAdapter adapter = new AlunosAdapter(getActivity(), arrayOfAlunos);
+                    // Attach the adapter to a ListView
+                    listaDeAlunos.setAdapter(adapter);
+
+                    DatabaseReference atletasReference = mFirebaseDatabaseReference.child("Atletas");
 
                     //Povoa uma lista com os nomes dos treinos
                     Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
-                    List<String> list = new ArrayList<String>();
+                    //List<String> list = new ArrayList<String>();
                     DataSnapshot aux;
                     while (it.hasNext()) {
                         //Aqui eu tenho o userID do aluno, com o qual posso achar seu nome e foto
                         aux = it.next();
-                        list.add(aux.getValue().toString());
+                        atletasReference.child(aux.getValue().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                                adapter.add(new Aluno(dataSnapshot.child("Nome").getValue().toString(), dataSnapshot.child("PhotoURL").getValue().toString(), dataSnapshot.getKey()));
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
                     }
 
                     //Atribui a lista de nomes a listview
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
-                    listaDeAlnos.setAdapter(adapter);
 
-                    listaDeAlnos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                            String entry = (String) parent.getAdapter().getItem(position);
-                            ProfissionalMainActivity.alunoAtual = entry;
+                            Aluno entry =  (Aluno) parent.getAdapter().getItem(position);
+                            ProfissionalMainActivity.alunoAtual = entry.userID;
 
                             Intent intent = new Intent(getActivity(), AlunoActivity.class);
                             startActivity(intent);
@@ -145,12 +160,10 @@ public class DemoObjectFragment extends Fragment
                 }
             });
 
-        }else{
+        }else{ //Tela "Agenda"
             rootView = inflater.inflate(R.layout.fragment_pager_agenda, container, false);
         }
 
-        //((TextView) rootView.findViewById(R.id.text)).setText(
-         //       Integer.toString(args.getInt(ARG_OBJECT)));
         return rootView;
     }
 

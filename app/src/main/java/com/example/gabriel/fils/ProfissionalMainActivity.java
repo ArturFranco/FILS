@@ -80,7 +80,7 @@ public class ProfissionalMainActivity extends AppCompatActivity {
 
         // Add 3 tabs, specifying the tab's text and TabListener
         actionBar.addTab(actionBar.newTab().setText("Perfil").setTabListener(tabListener));
-        actionBar.addTab(actionBar.newTab().setText("Alunos").setTabListener(tabListener));
+        actionBar.addTab(actionBar.newTab().setText("Atletas").setTabListener(tabListener));
         actionBar.addTab(actionBar.newTab().setText("Agenda").setTabListener(tabListener));
 
         //Setando a aba segunda aba (alunos) como aba inical
