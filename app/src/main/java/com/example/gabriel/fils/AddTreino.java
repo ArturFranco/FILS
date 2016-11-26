@@ -8,20 +8,29 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Gabriel on 11/11/2016.
@@ -68,7 +77,7 @@ public class AddTreino extends AppCompatActivity {
         checkC = (CheckBox) findViewById(R.id.checkBoxC);
         checkD = (CheckBox) findViewById(R.id.checkBoxD);
         checkE = (CheckBox) findViewById(R.id.checkBoxE);
-
+        
 
        /* Button upload = (Button) findViewById(R.id.uploadNovoTreino);
         upload.setOnClickListener(new View.OnClickListener() {
@@ -120,15 +129,20 @@ public class AddTreino extends AppCompatActivity {
         EditText dist = (EditText) findViewById(R.id.distCorrida);
         String descricao = desc.getText().toString();
 
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Corrida");
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(dur.getText().toString());
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Distancia").setValue(dist.getText().toString());
+        if(desc.getText().toString().contentEquals("") || dur.getText().toString().contentEquals("") || dist.getText().toString().contentEquals("")){
+            Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
+        }else {
 
-        Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
-        toast.show();
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Corrida");
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(dur.getText().toString());
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Distancia").setValue(dist.getText().toString());
 
-        finish();
+            Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo", Toast.LENGTH_LONG);
+            toast.show();
+
+            finish();
+        }
     }
 
     protected void uploadOutro(View view){
@@ -137,14 +151,16 @@ public class AddTreino extends AppCompatActivity {
         EditText durOutro = (EditText) findViewById(R.id.duracaoOutro);
         String descricao = tipoOutro.getSelectedItem().toString();
 
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Outro");
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
-
-        Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
-        toast.show();
-
-        finish();
+        if(tipoOutro.getSelectedItem().toString().contentEquals("") || durOutro.getText().toString().contentEquals("")){
+            Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
+        }else {
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Outro");
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
+            Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
+            toast.show();
+            finish();
+        }
 
     }
 

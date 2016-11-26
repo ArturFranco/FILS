@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -94,7 +95,8 @@ public class NovoTreino extends AppCompatActivity {
 
 
                         if(entry.startsWith("Corrida")){
-                            dialog.setTitle("Relatar Treino");
+                            //dialog.setTitle("Relatar Treino");
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             dialog.setContentView(R.layout.dialog_novotreino_corrida);
 
                             TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
@@ -110,7 +112,8 @@ public class NovoTreino extends AppCompatActivity {
                             dis.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Distancia").getValue().toString() + "km");
 
                         }else if(entry.startsWith("Outro")){
-                            dialog.setTitle("Relatar Treino");
+                            //dialog.setTitle("Relatar Treino");
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             dialog.setContentView(R.layout.dialog_novotreino_outro);
 
                             TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
@@ -145,7 +148,8 @@ public class NovoTreino extends AppCompatActivity {
                                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Treino");
                                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
                                 //Log.d("NovoTreino", day.toString());
-                                dialog.dismiss();
+                                finish();
+                                //dialog.dismiss();
                             }
                         });
 

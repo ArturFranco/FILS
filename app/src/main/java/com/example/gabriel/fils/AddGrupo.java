@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class AddGrupo extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private boolean emptylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,8 @@ public class AddGrupo extends AppCompatActivity {
                     aux = it.next();
                     list.add(aux.child("Descricao").getValue() + " / " + aux.child("Series").getValue() + " / " + aux.child("Repeticoes").getValue());
                 }
+
+                emptylist = list.isEmpty();
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddGrupo.this, android.R.layout.simple_list_item_1, list);
                 listaDeExercicios.setAdapter(adapter);
@@ -191,7 +195,8 @@ public class AddGrupo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Dialog dialog = new Dialog(AddGrupo.this);
-                dialog.setTitle("Descrição");
+                //dialog.setTitle("Descrição");
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_salvar_grupo);
 
                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).addValueEventListener(new ValueEventListener() {
@@ -229,7 +234,12 @@ public class AddGrupo extends AppCompatActivity {
                     }
                 });
 
-                dialog.show();
+                if(emptylist){
+                    Toast.makeText(getApplicationContext(), "Lista está vazia", Toast.LENGTH_SHORT).show();
+                }else{
+                    dialog.show();
+                }
+
 
             }
         });
@@ -246,5 +256,6 @@ public class AddGrupo extends AppCompatActivity {
             }
         });
     }
+
 
 }

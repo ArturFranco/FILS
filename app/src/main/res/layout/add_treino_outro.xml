@@ -80,7 +80,8 @@
             android:text="Salvar"
             android:layout_gravity="center_horizontal"
             android:onClick="uploadOutro"
-            android:backgroundTint="@color/botao"/>
+            android:backgroundTint="@color/botao"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

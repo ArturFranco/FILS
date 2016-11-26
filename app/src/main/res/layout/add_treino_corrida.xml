@@ -100,7 +100,8 @@
             android:text="Salvar"
             android:layout_gravity="center_horizontal"
             android:onClick="uploadCorrida"
-            android:backgroundTint="@color/botao"/>
+            android:backgroundTint="@color/botao"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </LinearLayout>
