@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         historico_saude.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Historico.class);
+                Intent intent = new Intent(MainActivity.this, Historico_Saude.class);
                 startActivity(intent);
             }
         });
