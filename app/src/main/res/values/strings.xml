@@ -201,4 +201,45 @@
         <item>Nozes e sementes</item>
     </string-array>
 
+    <string name="nome">Nome:</string>
+    <string name="diabetes">Diabetes</string>
+    <string name="hipertensao">Hipertensão</string>
+    <string name="aterosclerose">Aterosclerose</string>
+    <string name="avc">Teve AVC</string>
+    <string name="iam">IAM</string>
+    <string name="rins">Doença Renal</string>
+    <string name="figado">Doença do Fígado</string>
+    <string name="tireoide">Doença de Tireóide</string>
+
+    <string name="glicose">Glicose</string>
+    <string name="colesterol">Colesterol</string>
+    <string name="triglicerideo">Triglicerídeo</string>
+    <string name="creatinina">Createnina</string>
+    <string name="acido_urico">Ácido úrico</string>
+
+    <string name="nao">Não</string>
+    <string name="sim">Sim</string>
+    <string name="quanto_tempo">Há quanto tempo?</string>
+
+
+    <string name="cirurgia">Cirurgia vascular ou cardíaca</string>
+    <string name="morte_subita">Morte súbita antes dos 55 anos (para homens) ou antes dos 65 anos (para mulheres)</string>
+
+
+    <string name="tontura">Tontura ou desmaio</string>
+    <string name="dor">Dor intensa nas pernas</string>
+    <string name="inchaco">Inchaço nas pernas</string>
+    <string name="falta_ar">Falta de ar</string>
+    <string name="taquicardia">Taquicardia</string>
+    <string name="falta_ar_deita">Falta de ar quando deita</string>
+    <string name="apneia">Apneia do sono</string>
+
+
+
+    <string name="outra">Outra</string>
+    <string name="qual">Qual?</string>
+
+    <string name="salvar">Salvar</string>
+    <string name="proximo">Próximo</string>
+
 </resources>

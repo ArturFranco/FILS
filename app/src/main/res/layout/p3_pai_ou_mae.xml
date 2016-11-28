@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:weightSum="1">
+
+
+    <TextView
+        android:id="@+id/txt_pai_ou_mae"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Você possui pai ou mãe com:"
+        android:textColor="@color/escuro"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+
+    <CheckBox
+        android:id="@+id/hipertensao3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hipertensao"
+        android:textSize="18dp" />
+
+    <CheckBox
+        android:id="@+id/iam3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/iam"
+        android:textSize="18dp"/>
+
+    <CheckBox
+        android:id="@+id/avc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/avc"
+        android:textSize="18dp" />
+
+    <CheckBox
+        android:id="@+id/cirurgia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cirurgia"
+        android:textSize="18dp" />
+
+    <CheckBox
+        android:id="@+id/morte_subita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/morte_subita"
+        android:textSize="18dp"/>
+
+
+    <!--
+    <RadioGroup
+        android:id="@+id/radio_pai_ou_mae"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+    </RadioGroup>
+-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="150dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/salvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/botao"
+                android:elevation="4dp"
+                android:paddingLeft="55dp"
+                android:paddingRight="55dp"
+                android:textColor="#fff"
+                android:text="@string/salvar"
+                android:layout_weight="1"
+                android:onClick="VoltarMenu"
+                android:textSize="12dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/proximo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/botao"
+                android:elevation="4dp"
+                android:paddingLeft="55dp"
+                android:paddingRight="55dp"
+                android:textColor="#fff"
+                android:text="@string/proximo"
+                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:onClick="Click4"
+                android:textSize="12dp"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

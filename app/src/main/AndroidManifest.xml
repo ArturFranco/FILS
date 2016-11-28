@@ -76,5 +76,11 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".Historico_Saude"
+            android:label="@string/app_name"
+            />
+
     </application>
 </manifest>

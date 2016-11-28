@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:id="@+id/menu">
+
+
+    <TextView
+        android:id="@+id/txt_historico_de_saude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Histórico de Saúde"
+        android:textColor="@color/escuro"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+
+    <TextView
+        android:id="@+id/txt_responder_sobre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Responder sobre"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="Click0"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txt_dados_gerais"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dados Gerais"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:textColor="@color/botao"/>
+
+        <ImageButton
+            android:layout_width="53dp"
+            android:layout_height="51dp"
+            android:src="@mipmap/foward_arrow"
+            android:backgroundTint="@color/transparente"
+            android:id="@+id/fowardAddTreino"
+
+            />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="Click1"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txt_problema_de_saude_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Problemas de Saúde"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:textColor="@color/botao"/>
+
+        <ImageButton
+            android:layout_width="53dp"
+            android:layout_height="51dp"
+            android:src="@mipmap/foward_arrow"
+            android:backgroundTint="@color/transparente"
+            android:id="@+id/fowardAddTreino"
+
+            />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="Click2"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txt_taxas_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Taxas"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:textColor="@color/botao"/>
+
+        <ImageButton
+            android:layout_width="53dp"
+            android:layout_height="51dp"
+            android:src="@mipmap/foward_arrow"
+            android:backgroundTint="@color/transparente"
+            android:id="@+id/fowardAddTreino"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="Click3"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txt_problemas_familiares_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Problemas familiares"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:textColor="@color/botao"/>
+
+        <ImageButton
+            android:layout_width="53dp"
+            android:layout_height="51dp"
+            android:src="@mipmap/foward_arrow"
+            android:backgroundTint="@color/transparente"
+            android:id="@+id/fowardAddTreino"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="Click4"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txt_consumo_farmacologico_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consumo Farmacológico"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:textColor="@color/botao"/>
+
+        <ImageButton
+            android:layout_width="53dp"
+            android:layout_height="51dp"
+            android:src="@mipmap/foward_arrow"
+            android:backgroundTint="@color/transparente"
+            android:id="@+id/fowardAddTreino"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="Click5"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txt_sintomas_recentes_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sintomas recentes"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:textColor="@color/botao"/>
+
+        <ImageButton
+            android:layout_width="53dp"
+            android:layout_height="51dp"
+            android:src="@mipmap/foward_arrow"
+            android:backgroundTint="@color/transparente"
+            android:id="@+id/fowardAddTreino"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <!--
+    <RadioGroup
+        android:id="@+id/radio_problema_de_saude"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+
+    </RadioGroup>
+-->
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+

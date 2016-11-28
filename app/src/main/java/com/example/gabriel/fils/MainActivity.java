@@ -84,6 +84,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        Button historico_saude = (Button) findViewById(R.id.saudeButton);
+        historico_saude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Historico.class);
+                startActivity(intent);
+            }
+        });
+
         //para criar uma tela linkando com Agendamento
         Button agendamentoButton = (Button) findViewById(R.id.agendamentoButton);
         agendamentoButton.setOnClickListener(new View.OnClickListener() {
