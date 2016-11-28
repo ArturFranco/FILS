@@ -63,7 +63,7 @@
                 android:id="@+id/idade"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="number" />
         </RelativeLayout>
 
 
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Altura (m):"
+                android:text="Altura (cm):"
                 android:textSize="20dp"
                 android:textColor="#000000"
                 />
@@ -103,7 +103,7 @@
                 android:id="@+id/altura"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="number"/>
         </RelativeLayout>
 
 
@@ -144,7 +144,7 @@
                 android:id="@+id/peso"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="numberDecimal"/>
         </RelativeLayout>
 
 
@@ -176,7 +176,6 @@
                 android:textColor="#fff"
                 android:text="@string/salvar"
                 android:layout_weight="1"
-                android:onClick="VoltarMenu"
                 android:textSize="12dp"/>
         </RelativeLayout>
 

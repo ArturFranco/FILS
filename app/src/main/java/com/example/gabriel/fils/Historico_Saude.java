@@ -4,6 +4,7 @@ package com.example.gabriel.fils;
  * Created by leticialapenda on 26/11/16.
  */
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -99,17 +100,48 @@ public class Historico_Saude extends AppCompatActivity {
         setContentView(R.layout.p0_dados_gerais);
         tipo = 0;
 
-        EditText idade = (EditText) findViewById(R.id.idade);
-        EditText altura = (EditText) findViewById(R.id.altura);
-        EditText peso = (EditText) findViewById(R.id.peso);
 
-/*
+        final EditText idade = (EditText) findViewById(R.id.idade);
+        final EditText altura = (EditText) findViewById(R.id.altura);
+        final EditText peso = (EditText) findViewById(R.id.peso);
+
+
+        final Button salvar = (Button) findViewById(R.id.salvar);
+        salvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Altura").setValue(altura.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Peso").setValue(peso.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Idade").setValue(idade.getText().toString());
+
+            VoltarMenu(salvar);
+            }
+        });
+
+
+
         mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot){
-                alturas = dataSnapshot.child("Altura").getValue().toString();
-                pesos = dataSnapshot.child("Peso").getValue().toString();
-                idades = dataSnapshot.child("Idade").getValue().toString();
+
+
+
+                if(dataSnapshot.child("Altura").getValue()!=null){
+                    alturas = dataSnapshot.child("Altura").getValue().toString();
+                    altura.setText(alturas);
+
+                }
+                if(dataSnapshot.child("Peso").getValue()!=null){
+                    pesos = dataSnapshot.child("Peso").getValue().toString();
+                    peso.setText(pesos);
+
+                }
+                if(dataSnapshot.child("Idade").getValue()!=null){
+                    idades = dataSnapshot.child("Idade").getValue().toString();
+                    idade.setText(idades);
+
+                }
 
             }
 
@@ -118,12 +150,6 @@ public class Historico_Saude extends AppCompatActivity {
 
             }
         });
-        */
-
-
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Altura").setValue(alturas);
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Peso").setValue(pesos);
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Idade").setValue(idades);
 
     }
 
