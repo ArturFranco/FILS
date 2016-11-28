@@ -32,6 +32,12 @@
             android:label="Adicionar Treino"/>
         <activity android:name="AddRefeicao"
             android:label="Adicionar Refeição"/>
+        <activity android:name=".Agendamento"
+            android:label="Agendamento"/>
+        <activity android:name=".Consultas"
+            android:label="Consultas Marcadas"/>
+        <activity android:name=".NovaConsulta"
+            android:label="Marcar nova consulta"/>
         <activity android:name=".LoginActivity"
             android:label=""/>
         <activity android:name=".PerfilActivity"

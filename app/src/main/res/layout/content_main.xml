@@ -77,7 +77,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/agendamento"
                 android:backgroundTint="@color/transparente"
-                android:id="@+id/metasAgendamento"
+                android:id="@+id/agendamentoButton"
                 android:textSize="20dp"
                 android:textColor="@color/white" />
         </RelativeLayout>
@@ -123,6 +123,7 @@
                 android:textSize="20dp"
                 android:textColor="@color/white"/>
         </RelativeLayout>
+
 
     </LinearLayout>
 </RelativeLayout>

@@ -84,6 +84,17 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        //para criar uma tela linkando com Agendamento
+        Button agendamentoButton = (Button) findViewById(R.id.agendamentoButton);
+        agendamentoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Agendamento.class);
+                startActivity(intent);
+            }
+        });
+
+
         // para criar uma tela linkando com Metas
         Button metasButton = (Button) findViewById(R.id.metasButton);
         metasButton.setOnClickListener(new View.OnClickListener() {
