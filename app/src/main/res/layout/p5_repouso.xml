@@ -98,7 +98,6 @@
             android:textColor="#fff"
             android:text="@string/salvar"
             android:layout_weight="1"
-            android:onClick="VoltarMenu"
             android:textSize="12dp"/>
 
 

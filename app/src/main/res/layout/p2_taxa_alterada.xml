@@ -140,7 +140,6 @@
                 android:textColor="#fff"
                 android:text="@string/salvar"
                 android:layout_weight="1"
-                android:onClick="VoltarMenu"
                 android:textSize="12dp"
                 />
         </RelativeLayout>
@@ -163,7 +162,6 @@
                 android:text="@string/proximo"
                 android:layout_weight="1"
                 android:layout_alignParentTop="true"
-                android:onClick="Click3"
                 android:textSize="12dp"/>
         </RelativeLayout>
 
