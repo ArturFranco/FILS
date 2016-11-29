@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
 
-
         //Setando o arquivo xml que vai ser usado
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity
 
         //Se algum usuario estiver logado, coloca nome, email e foto no slide menu
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null && !user.isAnonymous()) {
+        if(user != null && !user.isAnonymous() && perfil == 1) {
             // Header do slide menu
             View hView =  navigationView.getHeaderView(0);
 
@@ -161,6 +160,7 @@ public class MainActivity extends AppCompatActivity
             DatabaseReference referenciaDatabaseUsuario = mFirebaseDatabaseReference.child("Atletas").child(user.getUid());
             referenciaDatabaseUsuario.child("Nome").setValue(user.getDisplayName());
             referenciaDatabaseUsuario.child("PhotoURL").setValue(user.getPhotoUrl().toString());
+            referenciaDatabaseUsuario.child("Email").setValue(user.getEmail());
         }
 
         ImageView imgView = (ImageView) findViewById(R.id.home1Background);
@@ -234,11 +234,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.slideMenu_personal) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.slideMenu_nutricionista) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.slideMenu_notificacoes) {
 
         } else if (id == R.id.nav_manage) {
 

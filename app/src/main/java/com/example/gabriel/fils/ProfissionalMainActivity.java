@@ -120,6 +120,7 @@ public class ProfissionalMainActivity extends AppCompatActivity {
             DatabaseReference referenciaDatabaseUsuario = mFirebaseDatabaseReference.child(perfilString).child(user.getUid());
             referenciaDatabaseUsuario.child("Nome").setValue(user.getDisplayName());
             referenciaDatabaseUsuario.child("PhotoURL").setValue(user.getPhotoUrl().toString());
+            referenciaDatabaseUsuario.child("Email").setValue(user.getEmail());
         }
     }
 

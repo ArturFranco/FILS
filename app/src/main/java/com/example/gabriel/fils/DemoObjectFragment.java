@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -138,8 +139,6 @@ public class DemoObjectFragment extends Fragment
                         });
                     }
 
-                    //Atribui a lista de nomes a listview
-
                     listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -157,6 +156,15 @@ public class DemoObjectFragment extends Fragment
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
+                }
+            });
+
+            FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.addAlunoButton);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), AddAluno.class);
+                    startActivity(intent);
                 }
             });
 

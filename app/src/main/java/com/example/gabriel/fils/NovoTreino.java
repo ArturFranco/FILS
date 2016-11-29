@@ -47,6 +47,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
  * Tela que lista os treinos cadastrados e permite cadastrar novos
  */
 
+
 public class NovoTreino extends AppCompatActivity {
 
     private DatabaseReference mFirebaseDatabaseReference;

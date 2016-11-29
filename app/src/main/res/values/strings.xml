@@ -18,7 +18,8 @@
     <string name="facebook_app_id">1788944334653874</string>
     <string name="fb_login_protocol_scheme">fb1788944334653874</string>
     <string name="server_client_id">483455833341-l7phs7t40cqp0i7vpli42c05p1rd09dv.apps.googleusercontent.com</string>
-    
+    <string name="digite_email_aluno">Digite o email do aluno procurado</string>
+
     <string-array name="metas_escolher">
         <item>Sarado</item>
         <item>Gostoso</item>
