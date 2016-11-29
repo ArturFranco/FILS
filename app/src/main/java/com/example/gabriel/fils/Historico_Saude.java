@@ -268,6 +268,8 @@ public class Historico_Saude extends AppCompatActivity {
 
                 if (outra.isChecked()) {
                     mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Outra").setValue(qual.getText().toString());
+                }else {
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Outra").setValue(null);
                 }
 
                 VoltarMenu(salvar);
@@ -350,6 +352,8 @@ public class Historico_Saude extends AppCompatActivity {
 
                 if (outra.isChecked()) {
                     mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Outra").setValue(qual.getText().toString());
+                }else {
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Outra").setValue(null);
                 }
 
                 Click2(proximo);
@@ -364,55 +368,55 @@ public class Historico_Saude extends AppCompatActivity {
 
                 //dataSnapshot.child("Outra").getValue()!=null
 
-                if(dataSnapshot.child("Diabetes").getValue()=="true"){
+                if(dataSnapshot.child("Diabetes").getValue().toString().equals("true")){
                     diabetes.setChecked(true);
                 }else{
                     diabetes.setChecked(false);
                 }
 
-                if(dataSnapshot.child("Hipertensao").getValue()=="true"){
+                if(dataSnapshot.child("Hipertensao").getValue().toString().equals("true")){
                   hipertensao.setChecked(true);
                 }else{
                     hipertensao.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Aterosclerose").getValue()=="true"){
+                if(dataSnapshot.child("Aterosclerose").getValue().toString().equals("true")){
                     aterosclerose.setChecked(true);
                 }else{
                     aterosclerose.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("AVC").getValue()=="true"){
+                if(dataSnapshot.child("AVC").getValue().toString().equals("true")){
                     teve_avc.setChecked(true);
                 }else{
                     teve_avc.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("IAM").getValue()=="true"){
+                if(dataSnapshot.child("IAM").getValue().toString().equals("true")){
                     iam.setChecked(true);
                 }else{
                     iam.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Doenca_Renal").getValue()=="true"){
+                if(dataSnapshot.child("Doenca_Renal").getValue().toString().equals("true")){
                     doenca_renal.setChecked(true);
                 }else{
                     doenca_renal.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Doenca_de_Figado").getValue()=="true"){
+                if(dataSnapshot.child("Doenca_de_Figado").getValue().toString().equals("true")){
                     doenca_de_figado.setChecked(true);
                 }else{
                     doenca_de_figado.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Doenca_de_Tireoide").getValue()=="true"){
+                if(dataSnapshot.child("Doenca_de_Tireoide").getValue().toString().equals("true")){
                     doenca_de_tireoide.setChecked(true);
                 }else{
                     doenca_de_tireoide.setChecked(false);
@@ -420,8 +424,11 @@ public class Historico_Saude extends AppCompatActivity {
 
 
                 if(dataSnapshot.child("Outra").getValue()!=null){
+                    outra.setChecked(true);
                     quals = dataSnapshot.child("Outra").getValue().toString();
                     qual.setText(quals);
+                }else{
+                    outra.setChecked(false);
                 }
 
             }
@@ -496,6 +503,9 @@ public class Historico_Saude extends AppCompatActivity {
                 if (outra2.isChecked()) {
                     mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Outra").setValue(qual.getText().toString());
                 }
+                else{
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Outra").setValue(null);
+                }
 
                 VoltarMenu(salvar);
             }
@@ -547,6 +557,9 @@ public class Historico_Saude extends AppCompatActivity {
                 if (outra2.isChecked()) {
                     mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Outra").setValue(qual.getText().toString());
                 }
+                else{
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Outra").setValue(null);
+                }
 
                 Click3(proximo);
             }
@@ -561,34 +574,34 @@ public class Historico_Saude extends AppCompatActivity {
 
                 //dataSnapshot.child("Outra").getValue()!=null
 
-                if(dataSnapshot.child("Glicose").getValue()=="true"){
+                if(dataSnapshot.child("Glicose").getValue().toString().equals("true")){
                     glicose.setChecked(true);
                 }else{
                     glicose.setChecked(false);
                 }
 
-                if(dataSnapshot.child("Colesterol").getValue()=="true"){
+                if(dataSnapshot.child("Colesterol").getValue().toString().equals("true")){
                     colesterol.setChecked(true);
                 }else{
                     colesterol.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Triglicerideo").getValue()=="true"){
+                if(dataSnapshot.child("Triglicerideo").getValue().toString().equals("true")){
                     triglicerideo.setChecked(true);
                 }else{
                     triglicerideo.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Createnina").getValue()=="true"){
+                if(dataSnapshot.child("Createnina").getValue().toString().equals("true")){
                     createnina.setChecked(true);
                 }else{
                     createnina.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Acido_Urico").getValue()=="true"){
+                if(dataSnapshot.child("Acido_Urico").getValue().toString().equals("true")){
                     acido_urico.setChecked(true);
                 }else{
                     acido_urico.setChecked(false);
@@ -596,9 +609,13 @@ public class Historico_Saude extends AppCompatActivity {
 
 
                 if(dataSnapshot.child("Outra").getValue()!=null){
+                    outra2.setChecked(true);
                     quals = dataSnapshot.child("Outra").getValue().toString();
                     qual.setText(quals);
+                }else{
+                    outra2.setChecked(false);
                 }
+
 
             }
 
@@ -624,7 +641,6 @@ public class Historico_Saude extends AppCompatActivity {
         final CheckBox avc3 = (CheckBox) findViewById(R.id.avc3);
         final CheckBox cirurgia = (CheckBox) findViewById(R.id.cirurgia);
         final CheckBox morte_subita = (CheckBox) findViewById(R.id.morte_subita);
-
 
 
         final Button salvar = (Button) findViewById(R.id.salvar);
@@ -723,40 +739,40 @@ public class Historico_Saude extends AppCompatActivity {
 
 
 
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Familiares").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_familiares").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot){
 
                 //dataSnapshot.child("Outra").getValue()!=null
 
-                if(dataSnapshot.child("Hipertensao").getValue()=="true"){
+                if(dataSnapshot.child("Hipertensao").getValue().toString().equals("true")){
                     hipertensao3.setChecked(true);
                 }else{
                     hipertensao3.setChecked(false);
                 }
 
-                if(dataSnapshot.child("IAM").getValue()=="true"){
+                if(dataSnapshot.child("IAM").getValue().toString().equals("true")){
                     iam3.setChecked(true);
                 }else{
                     iam3.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("AVC").getValue()=="true"){
+                if(dataSnapshot.child("AVC").getValue().toString().equals("true")){
                     avc3.setChecked(true);
                 }else{
                     avc3.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Cirurgia").getValue()=="true"){
+                if(dataSnapshot.child("Cirurgia").getValue().toString().equals("true")){
                     cirurgia.setChecked(true);
                 }else{
                     cirurgia.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Morte_Subita").getValue()=="true"){
+                if(dataSnapshot.child("Morte_Subita").getValue().toString().equals("true")){
                     morte_subita.setChecked(true);
                 }else{
                     morte_subita.setChecked(false);
@@ -869,7 +885,7 @@ public class Historico_Saude extends AppCompatActivity {
 
                 //dataSnapshot.child("Outra").getValue()!=null
 
-                if(dataSnapshot.child("Sim").getValue()=="true"){
+                if(dataSnapshot.child("Sim").getValue().toString().equals("true")){
                     p4.check(R.id.sim);
 
                     if(dataSnapshot.child("Qual").getValue()!=null){
@@ -907,6 +923,7 @@ public class Historico_Saude extends AppCompatActivity {
         setContentView(R.layout.p5_repouso);
         tipo = 5;
 
+
         final CheckBox tontura = (CheckBox) findViewById(R.id.tontura);
         final CheckBox dor = (CheckBox) findViewById(R.id.dor);
         final CheckBox inchaco = (CheckBox) findViewById(R.id.inchaco);
@@ -914,7 +931,6 @@ public class Historico_Saude extends AppCompatActivity {
         final CheckBox taquicardia = (CheckBox) findViewById(R.id.taquicardia);
         final CheckBox falta_ar_deita = (CheckBox) findViewById(R.id.falta_ar_deita);
         final CheckBox apneia = (CheckBox) findViewById(R.id.apneia);
-
 
 
         final Button salvar = (Button) findViewById(R.id.salvar);
@@ -984,46 +1000,46 @@ public class Historico_Saude extends AppCompatActivity {
 
                 //dataSnapshot.child("Outra").getValue()!=null
 
-                if(dataSnapshot.child("Tontura").getValue()=="true"){
+                if(dataSnapshot.child("Tontura").getValue().toString().equals("true")){
                     tontura.setChecked(true);
                 }else{
                     tontura.setChecked(false);
                 }
 
-                if(dataSnapshot.child("Dor").getValue()=="true"){
+                if(dataSnapshot.child("Dor").getValue().toString().equals("true")){
                     dor.setChecked(true);
                 }else{
                     dor.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Inchaco").getValue()=="true"){
+                if(dataSnapshot.child("Inchaco").getValue().toString().equals("true")){
                     inchaco.setChecked(true);
                 }else{
                     inchaco.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Falta_ar").getValue()=="true"){
+                if(dataSnapshot.child("Falta_ar").getValue().toString().equals("true")){
                     falta_ar.setChecked(true);
                 }else{
                     falta_ar.setChecked(false);
                 }
 
 
-                if(dataSnapshot.child("Taquicardia").getValue()=="true"){
+                if(dataSnapshot.child("Taquicardia").getValue().toString().equals("true")){
                     taquicardia.setChecked(true);
                 }else{
                     taquicardia.setChecked(false);
                 }
 
-                if(dataSnapshot.child("Apneia").getValue()=="true"){
+                if(dataSnapshot.child("Apneia").getValue().toString().equals("true")){
                     apneia.setChecked(true);
                 }else{
                     apneia.setChecked(false);
                 }
 
-                if(dataSnapshot.child("Falta_ar_deita").getValue()=="true"){
+                if(dataSnapshot.child("Falta_ar_deita").getValue().toString().equals("true")){
                     falta_ar_deita.setChecked(true);
                 }else{
                     falta_ar_deita.setChecked(false);
