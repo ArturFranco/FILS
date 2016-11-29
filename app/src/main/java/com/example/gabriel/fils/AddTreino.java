@@ -77,7 +77,10 @@ public class AddTreino extends AppCompatActivity {
         checkC = (CheckBox) findViewById(R.id.checkBoxC);
         checkD = (CheckBox) findViewById(R.id.checkBoxD);
         checkE = (CheckBox) findViewById(R.id.checkBoxE);
-        
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").setValue(null);
+
 
        /* Button upload = (Button) findViewById(R.id.uploadNovoTreino);
         upload.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +126,7 @@ public class AddTreino extends AppCompatActivity {
     }
 
     protected void uploadCorrida(View view){
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
         EditText desc = (EditText) findViewById(R.id.descCorrida);
         EditText dur = (EditText) findViewById(R.id.durCorrida);
         EditText dist = (EditText) findViewById(R.id.distCorrida);
@@ -146,7 +149,6 @@ public class AddTreino extends AppCompatActivity {
     }
 
     protected void uploadOutro(View view){
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         Spinner tipoOutro = (Spinner) findViewById(R.id.spinnerOutro);
         EditText durOutro = (EditText) findViewById(R.id.duracaoOutro);
         String descricao = tipoOutro.getSelectedItem().toString();
@@ -436,5 +438,11 @@ public class AddTreino extends AppCompatActivity {
                 grupoEdesc.setText(data.getStringExtra("result"));
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mFirebaseDatabaseReference.child("Atleta").child(user.getUid()).child("temp").setValue(null);
     }
 }

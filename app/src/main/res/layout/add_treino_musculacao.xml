@@ -213,12 +213,12 @@
                     android:layout_margin="5dp"
                     android:textAlignment="center"
                     android:background="@color/botao"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:id="@+id/grupoAdescription"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
@@ -242,13 +242,13 @@
                     android:layout_margin="5dp"
                     android:textAlignment="center"
                     android:background="@color/botao"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:id="@+id/grupoBdescription"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
                     android:textAlignment="center"
@@ -271,13 +271,13 @@
                     android:layout_margin="5dp"
                     android:textAlignment="center"
                     android:background="@color/botao"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:id="@+id/grupoCdescription"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
                     android:textAlignment="center"
@@ -300,12 +300,12 @@
                     android:layout_margin="5dp"
                     android:textAlignment="center"
                     android:background="@color/botao"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:textColor="@color/white"
                     android:id="@+id/grupoDdescription"
                     android:layout_margin="5dp"
@@ -329,13 +329,13 @@
                     android:layout_margin="5dp"
                     android:textAlignment="center"
                     android:background="@color/botao"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:layout_weight="1"/>
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:id="@+id/grupoEdescription"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:textColor="@color/white"
                     android:layout_margin="5dp"
                     android:textAlignment="center"
@@ -345,7 +345,15 @@
 
 
         </LinearLayout>
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/botao"
+            android:text="Salvar"
+            android:visibility="visible"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/uploadMusc"/>
 
 <!--
         <EditText
