@@ -88,7 +88,7 @@ public class AddAluno extends AppCompatActivity {
                 DataSnapshot aux;
                 while (it.hasNext()) {
                     aux = it.next();
-                    if (aux.child("Email").getValue().equals(email)) {
+                    if (aux.child("Email").getValue().toString().contains(email)) {
                         adapter.add(new Aluno(aux.child("Nome").getValue().toString(), aux.child("PhotoURL").getValue().toString(), aux.getKey()));
                     }
                 }
@@ -130,12 +130,12 @@ public class AddAluno extends AppCompatActivity {
                                             Toast.makeText(AddAluno.this, "Convite enviado para " + entry.nome,
                                                     Toast.LENGTH_SHORT).show();
 
-                                            userDatabaseReference.child("Alunos_Pendentes").push().setValue(entry.userID);
+                                            //userDatabaseReference.child("Alunos_Pendentes").push().setValue(entry.userID);
 
                                             if (ProfissionalMainActivity.perfilString.equals("Personais")){
-                                                mFirebaseDatabaseReference.child("Atletas").child(entry.userID).child("Notificacoes").setValue(new Notificacao("Solicitacao Personal", user.getUid().toString()));
+                                                mFirebaseDatabaseReference.child("Atletas").child(entry.userID).child("Notificacoes").push().setValue(new Notificacao("Solicitacao Personal", user.getUid().toString()));
                                             }else{//Nutricionistas
-                                                mFirebaseDatabaseReference.child("Atletas").child(entry.userID).child("Notificacoes").setValue(new Notificacao("Solicitacao Nutricionista", user.getUid().toString()));
+                                                mFirebaseDatabaseReference.child("Atletas").child(entry.userID).child("Notificacoes").push().setValue(new Notificacao("Solicitacao Nutricionista", user.getUid().toString()));
                                             }
                                         }
                                     }
