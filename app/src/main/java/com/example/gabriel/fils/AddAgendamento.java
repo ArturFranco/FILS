@@ -34,5 +34,6 @@ public class AddAgendamento extends AppCompatActivity {
         nutricionista = (CheckBox) findViewById(R.id.nutricionista);
 
 
+
     }
 }

@@ -1,18 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:gravity="center_vertical"
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:orientation="vertical">
 
-    <Spinner
+    <TextView
+        android:text="Meta de Peso"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerMetas"
-        android:layout_weight="0.07" />
+        android:id="@+id/textmetaPeso"
+        android:textSize="20dp"/>
 
-    <Button
-        android:text="OK"
-        android:layout_width="78dp"
+    <SeekBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonOk" />
+        android:max="130"
+        android:id="@+id/seekBarPeso" />
+
+    <TextView
+        android:text=""
+        android:layout_marginBottom="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/verdePadrao"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textseekbarPeso"
+        android:textSize="20dp"/>
+
+
+
+
+    <TextView
+        android:text="Meta do Percentual de Gordura"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textmetaGordura"
+        android:textSize="20dp"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="40"
+        android:id="@+id/seekBarGordura" />
+
+    <TextView
+        android:text=""
+        android:layout_marginBottom="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/verdePadrao"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textseekbarGordura"
+        android:textSize="20dp"/>
+
+
+
+    <TextView
+        android:text="Meta de Corrida"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textmetaCorrida"
+        android:textSize="20dp"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="49"
+        android:id="@+id/seekBarCorrida" />
+
+    <TextView
+        android:text=""
+        android:textStyle="bold"
+        android:textColor="@color/verdePadrao"
+        android:layout_marginBottom="40dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textseekbarCorrida"
+        android:textSize="20dp"/>
+
+
+
+    <TextView
+        android:text="Meta da Quantidade de Treinos"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textmetaTreino"
+        android:textSize="20dp"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="364"
+        android:id="@+id/seekBarTreino" />
+
+    <TextView
+        android:text=""
+        android:textStyle="bold"
+        android:textColor="@color/verdePadrao"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textseekbarTreino"
+        android:textSize="20dp"/>
+
 </LinearLayout>

@@ -18,8 +18,8 @@
     <string name="facebook_app_id">1788944334653874</string>
     <string name="fb_login_protocol_scheme">fb1788944334653874</string>
     <string name="server_client_id">483455833341-l7phs7t40cqp0i7vpli42c05p1rd09dv.apps.googleusercontent.com</string>
-    <string name="digite_email_aluno">Digite o email do aluno procurado</string>
-
+	<string name="digite_email_aluno">Digite o email do aluno procurado</string>
+    
     <string-array name="metas_escolher">
         <item>Sarado</item>
         <item>Gostoso</item>
@@ -193,7 +193,7 @@
         <item>Pescados e frutos do mar</item>
         <item>Carnes e derivados</item>
         <item>Leite e derivados</item>
-        <item>Bebidas (alcoólicas e não-alcoólicas)</item>
+        <item>Bebidas (alcoólicas e não alcoólicas)</item>
         <item>Ovos e derivados</item>
         <item>Produtos açucarados</item>
         <item>Miscelâneas</item>
@@ -201,8 +201,8 @@
         <item>Leguminosas e derivados</item>
         <item>Nozes e sementes</item>
     </string-array>
-
-    <string name="nome">Nome:</string>
+	
+	<string name="nome">Nome:</string>
     <string name="diabetes">Diabetes</string>
     <string name="hipertensao">Hipertensão</string>
     <string name="aterosclerose">Aterosclerose</string>
@@ -236,11 +236,11 @@
     <string name="apneia">Apneia do sono</string>
 
 
-
     <string name="outra">Outra</string>
     <string name="qual">Qual?</string>
 
     <string name="salvar">Salvar</string>
     <string name="proximo">Próximo</string>
+
 
 </resources>

@@ -38,7 +38,7 @@ public class TimeLine extends AppCompatActivity {
     protected int month = 0;
     protected int year = 0;
     protected int clickDay = 1;
-
+    TextView currentData;
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -47,11 +47,14 @@ public class TimeLine extends AppCompatActivity {
     String[] days30 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
     String[] days29 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"};
     String[] days28 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"};
-
+    String[] months = {"jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dec"};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timeline_main);
+
+        currentData = (TextView) findViewById(R.id.monthYear);
+
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -65,7 +68,9 @@ public class TimeLine extends AppCompatActivity {
         year = bundle.getInt("year");
         clickDay = bundle.getInt("day");
 
-        Toast toast = Toast.makeText(TimeLine.this, day+"/"+month+"/"+year,Toast.LENGTH_LONG);
+        currentData.setText(new StringBuilder().append(months[month-1]+" "+year));
+
+        Toast toast = Toast.makeText(TimeLine.this, day+"/"+month+"/"+year,Toast.LENGTH_SHORT);
         toast.show();
 
         ListView list = (ListView) findViewById(R.id.listDays);
@@ -89,7 +94,7 @@ public class TimeLine extends AppCompatActivity {
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Toast.makeText(getBaseContext(), "Clicou no item na posição " + arg2, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Clicou no item na posição " + arg2, Toast.LENGTH_SHORT).show();
                 clickDay = arg2 + 1;
                 getHistorical();
             }
@@ -98,13 +103,8 @@ public class TimeLine extends AppCompatActivity {
 
     public void getHistorical(){
 
-        String[] days30 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
-
-        ListView list1 = (ListView) findViewById(R.id.listDays);
-        list1.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, days31));
-
-        Toast toast = Toast.makeText(TimeLine.this, clickDay+"",Toast.LENGTH_LONG);
-        toast.show();
+        /*        Toast toast = Toast.makeText(TimeLine.this, clickDay+"",Toast.LENGTH_LONG);
+        toast.show();*/
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -120,18 +120,16 @@ public class TimeLine extends AppCompatActivity {
                 Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                 List<String> list = new ArrayList<String>();
                 DataSnapshot aux;
-                String desc, t;
                 while (it.hasNext()) {
                     aux = it.next();
+
                     list.add(aux.getKey() + "-" + aux.child("Id").getValue() + aux.child("Tipo").getValue());
                 }
 
                 //Atribui a lista de nomes a listview
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(TimeLine.this,android.R.layout.simple_list_item_1, list);
                 listaDeAtividades.setAdapter(adapter);
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

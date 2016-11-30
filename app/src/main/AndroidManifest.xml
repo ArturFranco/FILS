@@ -85,6 +85,11 @@
             android:label="@string/app_name"
             />
 
+        <activity
+            android:name=".PersonalDadosGerais"
+            android:label="@string/app_name"
+            />
+
     </application>
 </manifest>
 

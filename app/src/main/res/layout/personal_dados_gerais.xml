@@ -5,46 +5,30 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:weightSum="1">
+    android:padding="16dp">
 
 
     <TextView
-        android:id="@+id/txt_remedios"
+        android:id="@+id/txt_problema_de_saude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="5dp"
-        android:text="Faz uso de algum medicamento?"
+        android:text="Dados Gerais"
         android:textColor="@color/escuro"
-        android:textSize="25sp"
+        android:textSize="25dp"
         android:textStyle="bold"/>
 
+    <!--
     <RadioGroup
-        android:id="@+id/radio_remedios"
+        android:id="@+id/radio_problema_de_saude"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <RadioButton
-            android:id="@+id/nao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nao"
-            android:textSize="18dp"/>
-
-
-        <RadioButton
-            android:id="@+id/sim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sim"
-            android:textSize="18dp"/>
+        android:layout_height="wrap_content">
 
 
     </RadioGroup>
-
-
+-->
 
 
 
@@ -63,7 +47,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/qual"
+                android:text="Idade:"
                 android:textSize="20dp"
                 android:textColor="#000000"
                 />
@@ -76,7 +60,47 @@
             android:layout_weight="1">
 
             <EditText
-                android:id="@+id/qual"
+                android:id="@+id/idade"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+
+        <RelativeLayout
+            android:layout_width="400dp"
+            android:layout_height="40dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Local de Trabalho:"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/local_trabalho"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -84,7 +108,6 @@
 
 
     </LinearLayout>
-
 
 
 
@@ -98,14 +121,14 @@
 
 
         <RelativeLayout
-            android:layout_width="350dp"
-            android:layout_height="100dp"
+            android:layout_width="450dp"
+            android:layout_height="40dp"
             android:layout_weight="1">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Há quanto tempo?"
+                android:text="Tempo de Experiência:"
                 android:textSize="20dp"
                 android:textColor="#000000"
                 />
@@ -118,7 +141,47 @@
             android:layout_weight="1">
 
             <EditText
-                android:id="@+id/quanto_tempo"
+                android:id="@+id/tempo_experiencia"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+
+        <RelativeLayout
+            android:layout_width="450dp"
+            android:layout_height="40dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Informação Adicional:"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/informacao_adicional"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -133,52 +196,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="130dp">
+        android:layout_marginTop="190dp">
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/salvar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/botao"
-                android:elevation="4dp"
-                android:paddingLeft="55dp"
-                android:paddingRight="55dp"
-                android:textColor="#fff"
-                android:text="@string/salvar"
-                android:layout_weight="1"
-                android:textSize="12dp"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/proximo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/botao"
-                android:elevation="4dp"
-                android:paddingLeft="55dp"
-                android:paddingRight="55dp"
-                android:textColor="#fff"
-                android:text="@string/proximo"
-                android:layout_weight="1"
-                android:layout_alignParentTop="true"
-                android:textSize="12dp"/>
-        </RelativeLayout>
+        <Button
+            android:id="@+id/salvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/botao"
+            android:elevation="4dp"
+            android:paddingLeft="55dp"
+            android:paddingRight="55dp"
+            android:textColor="#fff"
+            android:text="@string/salvar"
+            android:layout_weight="1"
+            android:textSize="12dp"/>
 
 
     </LinearLayout>
 
 
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+

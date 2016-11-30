@@ -190,7 +190,9 @@ public class DemoObjectFragment extends Fragment
 
         } else if (id == R.id.profissional_nav_manage) {
 
-        } else if (id == R.id.profissional_nav_share) {
+        } else if (id == R.id.dados_gerais) {
+            Intent intent = new Intent(getActivity(), PersonalDadosGerais.class);
+            startActivity(intent);
 
         } else if (id == R.id.profissional_nav_send) {
 
