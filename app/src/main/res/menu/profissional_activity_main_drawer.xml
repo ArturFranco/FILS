@@ -20,12 +20,12 @@
             android:title="Tools" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Conta">
         <menu>
             <item
-                android:id="@+id/profissional_nav_share"
+                android:id="@+id/dados_gerais"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Dados Gerais" />
             <item
                 android:id="@+id/profissional_nav_send"
                 android:icon="@drawable/ic_menu_send"

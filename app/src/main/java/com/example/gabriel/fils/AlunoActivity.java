@@ -165,7 +165,7 @@ public class AlunoActivity extends AppCompatActivity
 
         } else if (id == R.id.profissional_nav_manage) {
 
-        } else if (id == R.id.profissional_nav_share) {
+        } else if (id == R.id.dados_gerais) {
 
         } else if (id == R.id.profissional_nav_send) {
 
