@@ -103,8 +103,6 @@ public class TimeLine extends AppCompatActivity {
 
     public void getHistorical(){
 
-        //String[] days30 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
-
         /*        Toast toast = Toast.makeText(TimeLine.this, clickDay+"",Toast.LENGTH_LONG);
         toast.show();*/
 
@@ -124,15 +122,14 @@ public class TimeLine extends AppCompatActivity {
                 DataSnapshot aux;
                 while (it.hasNext()) {
                     aux = it.next();
+
                     list.add(aux.getKey() + "-" + aux.child("Id").getValue() + aux.child("Tipo").getValue());
                 }
 
                 //Atribui a lista de nomes a listview
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(TimeLine.this,android.R.layout.simple_list_item_1, list);
                 listaDeAtividades.setAdapter(adapter);
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

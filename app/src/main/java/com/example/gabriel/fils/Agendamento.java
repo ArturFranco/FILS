@@ -44,7 +44,6 @@ public class Agendamento extends AppCompatActivity {
     protected int day = 0;
     protected int month = 0;
     protected int year = 0;
-    TextView currentData;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,6 @@ public class Agendamento extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        currentData = (TextView) findViewById(R.id.year);
         final Calendar c1 = Calendar.getInstance();
         year = c1.get(Calendar.YEAR);
         month = c1.get(Calendar.MONTH);
