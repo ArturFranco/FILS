@@ -3,6 +3,7 @@ package com.example.gabriel.fils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,23 +71,23 @@ public class NotificacaoAdapter extends ArrayAdapter<Notificacao> {
                     nome.setText(dataSnapshot.child("Nome").getValue().toString());
 
                     if(dataSnapshot.hasChild("Dados_Gerais")) {
-                        if(dataSnapshot.hasChild("Idade")) {
+                        if(dataSnapshot.child("Dados_Gerais").hasChild("Idade")) {
                             TextView idade = (TextView) cv.findViewById(R.id.notificacao_Idade);
                             idade.setText(dataSnapshot.child("Dados_Gerais").child("Idade").getValue().toString() + " anos");
                         }
 
-                        if(dataSnapshot.hasChild("TempoExperiencia")) {
+                        if(dataSnapshot.child("Dados_Gerais").hasChild("TempoExperiencia")) {
                             TextView exp = (TextView) cv.findViewById(R.id.notificacao_Experiencia);
                             exp.setText("Experiência: " + dataSnapshot.child("Dados_Gerais").child("TempoExperiencia").getValue().toString() + " anos");
                         }
 
-                        if(dataSnapshot.hasChild("LocalTabalho")) {
+                        if(dataSnapshot.child("Dados_Gerais").hasChild("LocalTrabalho")) {
                             TextView localidade = (TextView) cv.findViewById(R.id.notificacao_Localidade);
-                            localidade.setText("Localidade: " + dataSnapshot.child("Dados_Gerais").child("LocalTabalho").getValue().toString());
+                            localidade.setText("Localidade: " + dataSnapshot.child("Dados_Gerais").child("LocalTrabalho").getValue().toString());
                         }
 
-                        if(dataSnapshot.hasChild("InformacaoAdicional")) {
-                            TextView extras = (TextView) cv.findViewById(R.id.notificacao_Experiencia);
+                        if(dataSnapshot.child("Dados_Gerais").hasChild("InformacaoAdicional")) {
+                            TextView extras = (TextView) cv.findViewById(R.id.notificacao_Extras);
                             extras.setText(dataSnapshot.child("Dados_Gerais").child("InformacaoAdicional").getValue().toString());
                         }
                     }
