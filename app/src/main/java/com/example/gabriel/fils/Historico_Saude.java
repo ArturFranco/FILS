@@ -81,7 +81,7 @@ public class Historico_Saude extends AppCompatActivity {
 
     private String trues = "true";
     private String falses = "false";
-
+    private String na = "na";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +94,46 @@ public class Historico_Saude extends AppCompatActivity {
 
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+
+        //Click1
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Diabetes").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Hipertensao").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Aterosclerose").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("AVC").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("IAM").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Doenca_Renal").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Doenca_de_Figado").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").child("Doenca_de_Tireoide").setValue(falses.toString());
+
+        //Click2
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Glicose").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Colesterol").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Triglicerideo").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Createnina").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Taxas").child("Acido_Urico").setValue(falses.toString());
+
+        //Click3
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_familiares").child("Hipertensao").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_familiares").child("IAM").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_familiares").child("AVC").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_familiares").child("Cirurgia").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_familiares").child("Morte_Subita").setValue(falses.toString());
+
+
+        //Click4
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Remedios").child("Qual").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Remedios").child("Sim").setValue(falses.toString());
+
+
+        //Click5
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Sintomas_recentes").child("Tontura").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Sintomas_recentes").child("Dor").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Sintomas_recentes").child("Inchaco").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Sintomas_recentes").child("Falta_ar").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Sintomas_recentes").child("Taquicardia").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Sintomas_recentes").child("Falta_ar_deita").setValue(falses.toString());
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Sintomas_recentes").child("Apneia").setValue(falses.toString());
 
 
     }
@@ -362,82 +402,83 @@ public class Historico_Saude extends AppCompatActivity {
 
 
 
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot){
+       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Problemas_Saude").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
 
-                //dataSnapshot.child("Outra").getValue()!=null
+                    //dataSnapshot.child("Outra").getValue()!=null
 
-                if(dataSnapshot.child("Diabetes").getValue().toString().equals("true")){
-                    diabetes.setChecked(true);
-                }else{
-                    diabetes.setChecked(false);
+                    if (dataSnapshot.child("Diabetes").getValue().toString().equals("true")) {
+                        diabetes.setChecked(true);
+                    } else {
+                        diabetes.setChecked(false);
+                    }
+
+                    if (dataSnapshot.child("Hipertensao").getValue().toString().equals("true")) {
+                        hipertensao.setChecked(true);
+                    } else {
+                        hipertensao.setChecked(false);
+                    }
+
+
+                    if (dataSnapshot.child("Aterosclerose").getValue().toString().equals("true")) {
+                        aterosclerose.setChecked(true);
+                    } else {
+                        aterosclerose.setChecked(false);
+                    }
+
+
+                    if (dataSnapshot.child("AVC").getValue().toString().equals("true")) {
+                        teve_avc.setChecked(true);
+                    } else {
+                        teve_avc.setChecked(false);
+                    }
+
+
+                    if (dataSnapshot.child("IAM").getValue().toString().equals("true")) {
+                        iam.setChecked(true);
+                    } else {
+                        iam.setChecked(false);
+                    }
+
+
+                    if (dataSnapshot.child("Doenca_Renal").getValue().toString().equals("true")) {
+                        doenca_renal.setChecked(true);
+                    } else {
+                        doenca_renal.setChecked(false);
+                    }
+
+
+                    if (dataSnapshot.child("Doenca_de_Figado").getValue().toString().equals("true")) {
+                        doenca_de_figado.setChecked(true);
+                    } else {
+                        doenca_de_figado.setChecked(false);
+                    }
+
+
+                    if (dataSnapshot.child("Doenca_de_Tireoide").getValue().toString().equals("true")) {
+                        doenca_de_tireoide.setChecked(true);
+                    } else {
+                        doenca_de_tireoide.setChecked(false);
+                    }
+
+
+                    if (dataSnapshot.child("Outra").getValue() != null) {
+                        outra.setChecked(true);
+                        quals = dataSnapshot.child("Outra").getValue().toString();
+                        qual.setText(quals);
+                    } else {
+                        outra.setChecked(false);
+                    }
+
                 }
 
-                if(dataSnapshot.child("Hipertensao").getValue().toString().equals("true")){
-                  hipertensao.setChecked(true);
-                }else{
-                    hipertensao.setChecked(false);
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
+            });
 
-
-                if(dataSnapshot.child("Aterosclerose").getValue().toString().equals("true")){
-                    aterosclerose.setChecked(true);
-                }else{
-                    aterosclerose.setChecked(false);
-                }
-
-
-                if(dataSnapshot.child("AVC").getValue().toString().equals("true")){
-                    teve_avc.setChecked(true);
-                }else{
-                    teve_avc.setChecked(false);
-                }
-
-
-                if(dataSnapshot.child("IAM").getValue().toString().equals("true")){
-                    iam.setChecked(true);
-                }else{
-                    iam.setChecked(false);
-                }
-
-
-                if(dataSnapshot.child("Doenca_Renal").getValue().toString().equals("true")){
-                    doenca_renal.setChecked(true);
-                }else{
-                    doenca_renal.setChecked(false);
-                }
-
-
-                if(dataSnapshot.child("Doenca_de_Figado").getValue().toString().equals("true")){
-                    doenca_de_figado.setChecked(true);
-                }else{
-                    doenca_de_figado.setChecked(false);
-                }
-
-
-                if(dataSnapshot.child("Doenca_de_Tireoide").getValue().toString().equals("true")){
-                    doenca_de_tireoide.setChecked(true);
-                }else{
-                    doenca_de_tireoide.setChecked(false);
-                }
-
-
-                if(dataSnapshot.child("Outra").getValue()!=null){
-                    outra.setChecked(true);
-                    quals = dataSnapshot.child("Outra").getValue().toString();
-                    qual.setText(quals);
-                }else{
-                    outra.setChecked(false);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
     }
 
