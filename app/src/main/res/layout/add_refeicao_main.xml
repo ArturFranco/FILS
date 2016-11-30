@@ -1,36 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Adicionar Refeição"
-        android:textSize="25dp"
-        android:textAlignment="center"
-        android:padding="5dp"
-        android:id="@+id/grupoTitulo"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin">>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Descrição: "
-            android:textSize="15dp"
-            android:padding="5dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Digite aqui"
-            android:id="@+id/qtdAlimento"
-            android:textSize="15dp"
-            android:inputType="text"/>
-    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -38,7 +10,7 @@
         android:text="Adicionar Alimento"
         android:textSize="25dp"
         android:textAlignment="center"
-        android:padding="5dp"
+        android:padding="8dp"
         android:id="@+id/grupoTituloNovoAlimento"/>
 
     <LinearLayout
@@ -51,13 +23,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Categoria: "
-            android:textSize="15dp"
-            android:padding="5dp"/>
+            android:textSize="20dp"
+            android:padding="8dp"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbarSize="15dp"
-            android:padding="5dp"
+            android:scrollbarSize="20dp"
+            android:padding="8dp"
             android:id="@+id/spinnerGrupoAlimento">
         </Spinner>
     </LinearLayout>
@@ -72,13 +44,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Alimento: "
-            android:textSize="15dp"
-            android:padding="5dp"/>
+            android:textSize="20dp"
+            android:padding="8dp"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbarSize="15dp"
-            android:paddingBottom="5dp"
+            android:scrollbarSize="20dp"
+            android:paddingBottom="8dp"
             android:id="@+id/spinnerAlimento">
         </Spinner>
     </LinearLayout>
@@ -92,8 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Quantidade (g): "
-            android:textSize="15dp"
-            android:padding="5dp"/>
+            android:textSize="20dp"
+            android:padding="8dp"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -109,22 +81,44 @@
         android:textColor="@color/white"
         android:backgroundTint="@color/botao"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/adicionarAlimentoButton"/>
+        android:id="@+id/buttonAddAlimento"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alimento / Quantidade (g)"
+        android:textSize="20dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listaAlimentosSalvos"
         android:layout_weight="1">
     </ListView>
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/botao"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/salvarGrupoButton"
-        android:layout_marginBottom="5dp"/>
-
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/buttonSalvarRefeicao"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refazer"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/botao"
+            android:id="@+id/buttonRefazerRefeicao"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+        </LinearLayout>
 </LinearLayout>

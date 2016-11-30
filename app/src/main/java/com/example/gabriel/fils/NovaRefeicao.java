@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -67,19 +68,19 @@ public class NovaRefeicao extends AppCompatActivity {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
                 //Referencia a listview do xml
-                ListView listaDeAtividades = (ListView) findViewById(R.id.listaAtividadesRef);
+                ListView listaDeRefeicoes = (ListView) findViewById(R.id.listaAtividadesRef);
 
                 //Povoa uma lista com os nomes das refeições
                 Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                 List<String> list = new ArrayList<String>();
                 while (it.hasNext())
-                    list.add(it.next().getValue().toString());
+                    list.add(it.next().getKey());
 
                 //Atribui a lista de nomes a listview
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(NovaRefeicao.this, android.R.layout.simple_list_item_1, list);
-                listaDeAtividades.setAdapter(adapter);
+                listaDeRefeicoes.setAdapter(adapter);
 
-                listaDeAtividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listaDeRefeicoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         /*String entry= (String) parent.getAdapter().getItem(position);
@@ -92,24 +93,40 @@ public class NovaRefeicao extends AppCompatActivity {
                         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                         toast.setView(layout);
                         toast.show();*/
+
                         final Dialog dialog = new Dialog(NovaRefeicao.this);
                         dialog.setTitle("Relatar Refeição");
                         dialog.setContentView(R.layout.dialog_novarefeicao);
 
-                        String entry = (String) parent.getAdapter().getItem(position);
+                        final String entry = (String) parent.getAdapter().getItem(position);
 
-                        TextView nome = (TextView) dialog.findViewById(R.id.refeicaoNome);
+                        //TextView nome = (TextView) dialog.findViewById(R.id.refeicaoNome);
 
-                        //Confirma relato de refeição
+                        //TODO relatar treino
                         Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirmaRef);
                         botaoConfirma.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                dialog.dismiss();
+                                Calendar c = Calendar.getInstance();
+                                Integer ano = c.get(Calendar.YEAR);
+                                Integer dia = c.get(Calendar.DAY_OF_MONTH);
+                                Integer mes = c.get(Calendar.MONTH);
+                                mes++;
+                                Integer hora = c.get(Calendar.HOUR_OF_DAY);
+                                Integer minutos = c.get(Calendar.MINUTE);
+                                Integer segundos = c.get(Calendar.SECOND);
+                                String s = entry;
+                                String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
+                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Refeição");
+                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
+                                //Log.d("NovoTreino", day.toString());
+                                finish();
+                                //dialog.dismiss();
                             }
                         });
 
-                        //Cancela o relato de refeição
+
+                        //Cancela o relato de treino
                         Button botaoCancela = (Button) dialog.findViewById(R.id.botaoCancelaRef);
                         botaoCancela.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -119,8 +136,6 @@ public class NovaRefeicao extends AppCompatActivity {
                         });
 
                         dialog.show();
-
-                        nome.setText(entry.toString());
                     }
                 });
 

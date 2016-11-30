@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,14 +35,23 @@ import java.util.List;
 
 public class AddRefeicao extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
     private Spinner spinnerGruposAlimentares;
     private Spinner spinnerAlimentos;
     ArrayAdapter adapterAlimentos;
+    private boolean emptylistAlimentos;
+
+    private List<String> listaAlimentosRefeicao = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_refeicao_main);
+
+        //Pega dados de autenticação
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
@@ -60,12 +72,14 @@ public class AddRefeicao extends AppCompatActivity {
 
                 System.out.println(item);
 
-                //Pega a referencia da lista de treinos
+                //Pega a referencia da lista de alimentos
                 mFirebaseDatabaseReference.child("ALIMENTOS").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
+                        //Referencia a listview do xml
+                        //ListView listaDeAlimentosSalvos = (ListView) findViewById(R.id.listaAlimentosSalvos);
 
-                        //Povoa uma lista com os nomes dos treinos
+                        //Povoa uma lista com os nomes dos alimentos
                         Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                         List<String> list = new ArrayList<String>();
                         DataSnapshot aux;
@@ -78,6 +92,13 @@ public class AddRefeicao extends AppCompatActivity {
                         //Atribui a lista de nomes a listview
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddRefeicao.this, android.R.layout.simple_spinner_dropdown_item, list);
                         spinnerAlimentos.setAdapter(adapter);
+
+                        /*listaDeAlimentosSalvos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        });*/
 
                         /*listaDeAtividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
@@ -147,31 +168,115 @@ public class AddRefeicao extends AppCompatActivity {
                     }
                 });
 
-
                 spinnerAlimentos.setAdapter(adapterAlimentos);
                 // Toast.makeText(getApplicationContext(), "Item escolhido: "+item,Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         };
 
-       spinnerGruposAlimentares.setOnItemSelectedListener(escolhaGrupo);
+        spinnerGruposAlimentares.setOnItemSelectedListener(escolhaGrupo);
 
-
-        /*Button botao = (Button) findViewById(R.id.salvarGrupoButton);
-        botao.setOnClickListener(new View.OnClickListener() {
+        Button botaoAdd = (Button) findViewById(R.id.buttonAddAlimento);
+        botaoAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent returnIntent = getIntent();
-                EditText texto = (EditText) findViewById(R.id.descMusc);
-                returnIntent.putExtra("result", texto.getText().toString());
-                setResult(Activity.RESULT_OK, returnIntent);
-                finish();
+                ListView listaDeAlimentosSalvos = (ListView) findViewById(R.id.listaAlimentosSalvos);
+                Spinner alimentos = (Spinner) findViewById(R.id.spinnerAlimento);
+                EditText qtdAlimento = (EditText) findViewById(R.id.qtdAlimento);
+
+                if (qtdAlimento.getText().toString().contentEquals("")) {
+                    Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    listaAlimentosRefeicao.add(alimentos.getSelectedItem().toString() + " / " + qtdAlimento.getText().toString());
+
+                    emptylistAlimentos = listaAlimentosRefeicao.isEmpty();
+
+                    //Atribui a lista de nomes a listview
+                    ArrayAdapter<String> adapterAlimentos = new ArrayAdapter<String>(AddRefeicao.this, android.R.layout.simple_list_item_1, listaAlimentosRefeicao);
+                    listaDeAlimentosSalvos.setAdapter(adapterAlimentos);
+
+                    //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child("Nome da Refeição").child(alimentos.getSelectedItem().toString());
+                    //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child("Nome da Refeição").child(alimentos.getSelectedItem().toString()).child("Quantidade (g)").setValue(qtdAlimento.getText().toString());
+                }
             }
-        });*/
+        });
+
+        Button botaoSalvar = (Button) findViewById(R.id.buttonSalvarRefeicao);
+        botaoSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(AddRefeicao.this);
+                //dialog.setTitle("Descrição");
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_salvar_refeicao);
+
+                /*mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
+                        EditText descTextRef = (EditText) dialog.findViewById(R.id.descricaoTextRef);
+                        if (dataSnapshot.getValue() != null)
+                            descTextRef.setText(dataSnapshot.getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });*/
+
+                Button botaoConfirmarDialog = (Button) dialog.findViewById(R.id.botaoConfirma);
+                botaoConfirmarDialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent returnIntent = getIntent();
+                        EditText descTextRef = (EditText) dialog.findViewById(R.id.descricaoTextRef);
+                        DatabaseReference mestreSousa = mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child(descTextRef.getText().toString());
+
+                        Iterator<String> it = listaAlimentosRefeicao.iterator();
+                        String aux;
+                        while (it.hasNext()) {
+                            aux = it.next();
+                            String[] infoAlimento = aux.split(" / ");
+                            mestreSousa.child(infoAlimento[0]).child("Quantidade (g)").setValue(infoAlimento[1]);
+                        }
+                        //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child(descTextRef.getText().toString()).child(alimentos.getSelectedItem().toString());
+                        //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child(alimentos.getSelectedItem().toString()).child("Quantidade (g)").setValue(qtdAlimento.getText().toString());
+                        setResult(RESULT_OK, returnIntent);
+                        finish();
+                    }
+                });
+
+                Button botaoCancelarDialog = (Button) dialog.findViewById(R.id.botaoCancela);
+                botaoCancelarDialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                if(emptylistAlimentos){
+                    Toast.makeText(getApplicationContext(), "Lista está vazia", Toast.LENGTH_SHORT).show();
+                }else{
+                    dialog.show();
+                }
+
+            }
+        });
+
+        Button botaoRefazer = (Button) findViewById(R.id.buttonRefazerRefeicao);
+        botaoRefazer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").removeValue();
+                EditText qtdAlimento = (EditText) findViewById(R.id.qtdAlimento);
+                qtdAlimento.setText("");
+            }
+        });
     }
 }
 
