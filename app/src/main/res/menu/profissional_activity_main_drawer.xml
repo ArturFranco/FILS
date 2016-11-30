@@ -24,7 +24,7 @@
         <menu>
             <item
                 android:id="@+id/dados_gerais"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@android:drawable/ic_dialog_info"
                 android:title="Dados Gerais" />
             <item
                 android:id="@+id/profissional_nav_send"
