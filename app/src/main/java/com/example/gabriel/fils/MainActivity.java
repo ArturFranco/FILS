@@ -19,16 +19,21 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -130,6 +135,7 @@ public class MainActivity extends AppCompatActivity
         if(user != null && !user.isAnonymous() && perfil == 1) {
             // Header do slide menu
             View hView =  navigationView.getHeaderView(0);
+            final Menu menu =  navigationView.getMenu();
 
             //Nome
             TextView nameTextView = (TextView) hView.findViewById(R.id.nameTextView);
@@ -161,6 +167,25 @@ public class MainActivity extends AppCompatActivity
             referenciaDatabaseUsuario.child("Nome").setValue(user.getDisplayName());
             referenciaDatabaseUsuario.child("PhotoURL").setValue(user.getPhotoUrl().toString());
             referenciaDatabaseUsuario.child("Email").setValue(user.getEmail());
+
+            referenciaDatabaseUsuario.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                    long count;
+                    if(!dataSnapshot.hasChild("Notificacoes")){
+                        count = 0;
+                    }else{
+                        count = dataSnapshot.child("Notificacoes").getChildrenCount();
+                    }
+
+                    menu.findItem(R.id.slideMenu_notificacoes).setTitle("Notificações (" + count + ")");
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
 
         ImageView imgView = (ImageView) findViewById(R.id.home1Background);
@@ -239,7 +264,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.slideMenu_nutricionista) {
 
         } else if (id == R.id.slideMenu_notificacoes) {
-
+            Intent intent = new Intent(MainActivity.this, NotificacoesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

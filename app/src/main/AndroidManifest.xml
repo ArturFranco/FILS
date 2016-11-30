@@ -47,7 +47,9 @@
         <activity android:name=".AddGrupo"
             android:label="Adicionar Grupo"/>
         <activity android:name=".AddAluno"
-            android:label="" />
+            android:label="Adicionar Aluno" />
+        <activity android:name=".NotificacoesActivity"
+            android:label="Notificações" />
         <activity android:name=".ProfissionalMainActivity" />
         <activity
             android:name=".AlunoActivity"
