@@ -24,6 +24,8 @@
             android:label="@string/nova_atividade"/>
         <activity android:name=".Historico"
             android:label="Histórico"/>
+        <activity android:name=".TimeLine"
+            android:label="Histórico de Atividades"/>
         <activity android:name=".NovoTreino"
             android:label="Treinos"/>
         <activity android:name=".NovaRefeicao"
@@ -84,3 +86,4 @@
 
     </application>
 </manifest>
+

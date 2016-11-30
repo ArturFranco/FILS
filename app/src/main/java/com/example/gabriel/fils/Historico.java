@@ -35,7 +35,6 @@ public class Historico extends AppCompatActivity {
     private int currentdayofMonth= 0;
     TextView currentData;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +44,12 @@ public class Historico extends AppCompatActivity {
         final Calendar c = Calendar.getInstance();
         currentYear = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
-        daysMonth = c.get(Calendar.DAY_OF_MONTH);
+        currentdayofMonth = c.get(Calendar.DAY_OF_MONTH);
 
        /* long date = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
         String dateString = sdf.format(date);*/
         currentData.setText(new StringBuilder().append(currentYear));
-
     }
 
     protected void previousYear(View view) {
@@ -68,69 +66,87 @@ public class Historico extends AppCompatActivity {
     }
 
     protected void janeiro(View view) {
-        //currentMonth = 1;
-        setContentView(R.layout.timeline_main);
 
-
-
-        /*ListView daysOfWeek = (ListView) findViewById(R.id.listDays);
-
+        currentMonth = 1;
         daysMonth = 31;
-
-        List<String> listDays = new ArrayList<String>();
-        int i = 0;
-        while(i < daysMonth){
-            listDays.add(String.valueOf(i+1));
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, listDays);
-
-        daysOfWeek.setAdapter(adapter);*/
+        toTimeLine();
     }
     protected void fevereiro(View view) {
-        //currentMonth = 2;
-        setContentView(R.layout.timeline_main);
+
+        currentMonth = 2;
+        if(isPealYear(currentYear)){
+            daysMonth = 29;
+        }
+        else {
+            daysMonth = 28;
+        }
+
+        toTimeLine();
     }
     protected void marco(View view) {
-        //currentMonth = 3;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 3;
+        daysMonth = 31;
+        toTimeLine();
     }
     protected void abril(View view) {
-        //currentMonth = 4;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 4;
+        daysMonth = 30;
+        toTimeLine();
     }
     protected void maio(View view) {
-        //currentMonth = 5;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 5;
+        daysMonth = 31;
+        toTimeLine();
     }
     protected void junho(View view) {
-        //currentMonth = 6;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 6;
+        daysMonth = 30;
+        toTimeLine();
     }
     protected void julho(View view) {
-        //currentMonth = 7;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 7;
+        daysMonth = 31;
+        toTimeLine();
     }
     protected void agosto(View view) {
-        //currentMonth = 8;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 8;
+        daysMonth = 31;
+        toTimeLine();
     }
     protected void setembro(View view) {
-        //currentMonth = 9;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 9;
+        daysMonth = 30;
+        toTimeLine();
     }
     protected void outubro(View view) {
-        //currentMonth = 10;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 10;
+        daysMonth = 31;
+        toTimeLine();
     }
     protected void novembro(View view) {
-        //currentMonth = 11;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 11;
+        daysMonth = 30;
+        toTimeLine();
     }
     protected void dezembro(View view) {
-        //currentMonth = 12;
-        setContentView(R.layout.timeline_main);
+        currentMonth = 12;
+        daysMonth = 31;
+        toTimeLine();
+    }
+
+    public void toTimeLine(){
+
+        Intent intent = new Intent(Historico.this, TimeLine.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("month",getCurrentMonth());
+        bundle.putInt("year",getCurrentYear());
+        bundle.putInt("days",getDaysMonth());
+        bundle.putInt("day",getCurrentDay());
+
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
     public int getDaysMonth(){
@@ -139,8 +155,17 @@ public class Historico extends AppCompatActivity {
     public int getCurrentYear(){
         return this.currentYear;
     }
+    public int getCurrentDay(){
+        return this.currentdayofMonth;
+    }
     public int getCurrentMonth(){
         return this.currentMonth;
+    }
+    public boolean isPealYear(int year){
+        if((year % 4 == 0) && ( (year % 100 != 0) || (year % 400 == 0))){
+            return true;
+        }
+        return false;
     }
     @Override
     protected void onStart() {

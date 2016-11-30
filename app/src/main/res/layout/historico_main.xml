@@ -27,8 +27,7 @@
             android:textStyle="bold"
             android:layout_weight="0.01"
             android:layout_marginTop="10dp"
-            android:background="@color/botao"
-            android:textColor="@color/white" />
+            android:textColor="@color/botao" />
 
         <ImageButton
             android:layout_width="wrap_content"
