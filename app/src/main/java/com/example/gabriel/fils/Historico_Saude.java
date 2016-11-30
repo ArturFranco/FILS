@@ -98,8 +98,6 @@ public class Historico_Saude extends AppCompatActivity {
 
     }
 
-
-
     //---------------------------------------------------------
     //CLICK0
     protected void Click0(View v) {

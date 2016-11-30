@@ -65,7 +65,7 @@ public class TimeLine extends AppCompatActivity {
         year = bundle.getInt("year");
         clickDay = bundle.getInt("day");
 
-        Toast toast = Toast.makeText(TimeLine.this, day+"/"+month+"/"+year,Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(TimeLine.this, day+"/"+month+"/"+year,Toast.LENGTH_SHORT);
         toast.show();
 
         ListView list = (ListView) findViewById(R.id.listDays);
@@ -89,7 +89,7 @@ public class TimeLine extends AppCompatActivity {
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Toast.makeText(getBaseContext(), "Clicou no item na posição " + arg2, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Clicou no item na posição " + arg2, Toast.LENGTH_SHORT).show();
                 clickDay = arg2 + 1;
                 getHistorical();
             }
@@ -103,8 +103,8 @@ public class TimeLine extends AppCompatActivity {
         ListView list1 = (ListView) findViewById(R.id.listDays);
         list1.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, days31));
 
-        Toast toast = Toast.makeText(TimeLine.this, clickDay+"",Toast.LENGTH_LONG);
-        toast.show();
+/*        Toast toast = Toast.makeText(TimeLine.this, clickDay+"",Toast.LENGTH_LONG);
+        toast.show();*/
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
