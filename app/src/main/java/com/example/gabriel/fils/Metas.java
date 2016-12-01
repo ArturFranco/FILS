@@ -51,6 +51,7 @@ public class Metas extends AppCompatActivity {
         int perfil = settings.getInt("perfil", 0);
         if(perfil == 1){
             IdAluno = user.getUid();
+
         }
         else{
             IdAluno = ProfissionalMainActivity.alunoAtual;
