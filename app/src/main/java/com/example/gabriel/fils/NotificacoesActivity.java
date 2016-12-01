@@ -97,8 +97,6 @@ public class NotificacoesActivity  extends AppCompatActivity {
                             TextView pergunta = (TextView) dialog.findViewById(R.id.label1);
                             pergunta.setText("Aceitar Solicitacão?");
 
-                        }else {
-
                         }
 
                         //TODO relatar treino
@@ -106,6 +104,12 @@ public class NotificacoesActivity  extends AppCompatActivity {
                         botaoConfirma.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                if(entry.descricao.startsWith("Solicitacao Personal")) {
+                                    mFirebaseDatabaseReference.child("Personais").child(entry.id).child("Alunos").push().setValue(user.getUid());
+                                }else{
+                                    mFirebaseDatabaseReference.child("Nutricionistas").child(entry.id).child("Alunos").push().setValue(user.getUid());
+                                }
+
                                 userDatabaseReference.child("Notificacoes").addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {

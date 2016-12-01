@@ -37,12 +37,12 @@ public class NotificacaoAdapter extends ArrayAdapter<Notificacao> {
         final Notificacao notificacao = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            if(notificacao.descricao.equals("Solicitacao Personal") || notificacao.descricao.equals("Solicitacao Nutricionista")) {
+            if(notificacao.descricao.startsWith("Solicitacao")) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_notificacao_solicitacao_prof, parent, false);
             }
         }
 
-        if(notificacao.descricao.equals("Solicitacao Personal") || notificacao.descricao.equals("Solicitacao Nutricionista")) {
+        if(notificacao.descricao.startsWith("Solicitacao")) {
             // Lookup view for data population
             TextView tvDescricao = (TextView) convertView.findViewById(R.id.notificacao_Descricao);
             // Populate the data into the template view using the data object
