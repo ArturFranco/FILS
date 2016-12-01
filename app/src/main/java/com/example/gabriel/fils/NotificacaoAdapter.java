@@ -39,6 +39,8 @@ public class NotificacaoAdapter extends ArrayAdapter<Notificacao> {
         if (convertView == null) {
             if(notificacao.descricao.startsWith("Solicitacao")) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_notificacao_solicitacao_prof, parent, false);
+            }else if(notificacao.descricao.startsWith("Nov")){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_notificacao_nova_atividade, parent, false);
             }
         }
 
@@ -114,6 +116,18 @@ public class NotificacaoAdapter extends ArrayAdapter<Notificacao> {
                 }
             });
 
+        }else if(notificacao.descricao.startsWith("Nov")){
+            // Lookup view for data population
+            TextView tvDescricao = (TextView) convertView.findViewById(R.id.notificacao_Descricao);
+            TextView tvLabel1 = (TextView) convertView.findViewById(R.id.notificacao_label1);
+            // Populate the data into the template view using the data object
+            if(notificacao.descricao.equals("Novo Treino")){
+                tvDescricao.setText("Novo Treino");
+            }else{
+                tvDescricao.setText("Nova Refeição");
+            }
+
+            tvLabel1.setText(notificacao.id);
         }
 
         // Return the completed view to render on screen

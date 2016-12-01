@@ -97,19 +97,19 @@ public class NotificacoesActivity  extends AppCompatActivity {
                             TextView pergunta = (TextView) dialog.findViewById(R.id.label1);
                             pergunta.setText("Aceitar Solicitacão?");
 
+                        }else if(entry.descricao.startsWith("Nov")){
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.dialog_notificacao_nova_atividade);
+
+                            TextView pergunta = (TextView) dialog.findViewById(R.id.label1);
+                            pergunta.setText(entry.id);
                         }
 
                         //TODO relatar treino
-                        Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirma);
-                        botaoConfirma.setOnClickListener(new View.OnClickListener() {
+                        Button botaoVer = (Button) dialog.findViewById(R.id.botaoVer);
+                        botaoVer.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(entry.descricao.startsWith("Solicitacao Personal")) {
-                                    mFirebaseDatabaseReference.child("Personais").child(entry.id).child("Alunos").push().setValue(user.getUid());
-                                }else{
-                                    mFirebaseDatabaseReference.child("Nutricionistas").child(entry.id).child("Alunos").push().setValue(user.getUid());
-                                }
-
                                 userDatabaseReference.child("Notificacoes").addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
@@ -130,17 +130,26 @@ public class NotificacoesActivity  extends AppCompatActivity {
 
                                     }
                                 });
+
+                                Intent intent;
+
+                                if(entry.descricao.startsWith("Novo Treino")){
+                                    intent = new Intent(NotificacoesActivity.this, NovoTreino.class);
+                                }else{
+                                    intent = new Intent(NotificacoesActivity.this, NovaRefeicao.class);
+                                }
+                                startActivity(intent);
+
                                 dialog.dismiss();
                             }
                         });
 
 
                         //Cancela o relato de treino
-                        Button botaoRecusar = (Button) dialog.findViewById(R.id.botaoRecusar);
-                        botaoRecusar.setOnClickListener(new View.OnClickListener() {
+                        Button botaoOK = (Button) dialog.findViewById(R.id.botaoOK);
+                        botaoOK.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
                                 userDatabaseReference.child("Notificacoes").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {

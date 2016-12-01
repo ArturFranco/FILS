@@ -11,6 +11,9 @@ public class Notificacao {
     // "Meta"
     // "Novo Treino"
     // "Nova Refeicao"
+    // "Agendamento Personal"
+    // "Agendamento Nutricionista"
+    // "Agendamento Aluno"
     public String descricao;
     public String id; // pode identificar uma pessoal, um treino, uma dieta ou um atributo (para as metas)
 
