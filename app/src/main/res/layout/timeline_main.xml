@@ -14,7 +14,8 @@
                 android:text="Dia"
                 android:textColor="@color/botao"
                 android:textSize="25dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

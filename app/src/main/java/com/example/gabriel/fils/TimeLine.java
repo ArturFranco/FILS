@@ -74,6 +74,8 @@ public class TimeLine extends AppCompatActivity {
 
         currentData.setText(new StringBuilder().append(months[month-1]+" "+year));
 
+        getHistorical();
+
         Toast toast = Toast.makeText(TimeLine.this, day+"/"+month+"/"+year,Toast.LENGTH_SHORT);
         toast.show();
 
@@ -104,7 +106,7 @@ public class TimeLine extends AppCompatActivity {
             }
         });
 
-        getHistorical();
+
     }
 
     public void getHistorical(){

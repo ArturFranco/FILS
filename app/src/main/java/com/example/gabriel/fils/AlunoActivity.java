@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,9 +39,20 @@ public class AlunoActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
     private DatabaseReference mFirebaseDatabaseReference;
 
+    public String typeUser;
+
+    public Drawable imgDrawable;
+    TextView currentData;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        typeUser = ProfissionalMainActivity.perfilString;
+
+        Toast toast = Toast.makeText(AlunoActivity.this, typeUser+"",Toast.LENGTH_SHORT);
+        toast.show();
 
         //Setando o arquivo xml que vai ser usado
         setContentView(R.layout.profissional_activity_main);
@@ -95,26 +107,120 @@ public class AlunoActivity extends AppCompatActivity
 
         }
 
+        //Metodo que troca de tela quando botao de nova atividade é clicado
+        Button novaAtividadeButton = (Button) findViewById(R.id.novaAtividadeButton);
+        novaAtividadeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(typeUser == "Personais") {
+                    Intent intent = new Intent(AlunoActivity.this, NovoTreino.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(AlunoActivity.this, NovaRefeicao.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
+        // para criar uma tela linkando com Historico, por exemplo
+        Button historicoButton = (Button) findViewById(R.id.seeHistoricoButton);
+        historicoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AlunoActivity.this, Historico.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        //para criar uma tela linkando com Agendamento
+        Button agendamentoButton = (Button) findViewById(R.id.seeAgendamentoButton);
+        agendamentoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AlunoActivity.this, Agendamento.class);
+                startActivity(intent);
+            }
+        });
+
+
+        // para criar uma tela linkando com Metas
+        Button metasButton = (Button) findViewById(R.id.seeMetasButton);
+        metasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AlunoActivity.this, Metas.class);
+                startActivity(intent);
+            }
+        });
+
+
+        Button historico_saude = (Button) findViewById(R.id.seeSaudeButton);
+        historico_saude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AlunoActivity.this, Historico_Saude.class);
+                startActivity(intent);
+            }
+        });
+
         //Background images
-        ImageView imgView = (ImageView) findViewById(R.id.profissional_home1Background);
-        Drawable imgDrawable = getResources().getDrawable(R.drawable.home1);
+        ImageView imgView = (ImageView) findViewById(R.id.addAtividadeBackground);
+        currentData = (TextView) findViewById(R.id.novaAtividadeButton);
+
+        if(typeUser == "Personais") {
+            currentData.setText("Adicionar Treino");
+            imgDrawable = getResources().getDrawable(R.drawable.home1);
+        }
+        else{
+            currentData.setText("Adicionar Dieta");
+            imgDrawable = getResources().getDrawable(R.drawable.alimentacaosaudavel_prato);
+        }
         imgView.setImageDrawable(imgDrawable);
 
-        imgView = (ImageView) findViewById(R.id.profissional_home2Background);
+        imgView = (ImageView) findViewById(R.id.seeHistoricoBackground);
         imgDrawable = getResources().getDrawable(R.drawable.home2);
         imgView.setImageDrawable(imgDrawable);
 
-        imgView = (ImageView) findViewById(R.id.profissional_home3Background);
+        imgView = (ImageView) findViewById(R.id.seeAgendamentoBackground);
         imgDrawable = getResources().getDrawable(R.drawable.home3);
         imgView.setImageDrawable(imgDrawable);
 
-        imgView = (ImageView) findViewById(R.id.profissional_home4Background);
+        imgView = (ImageView) findViewById(R.id.seeMetasBackground);
         imgDrawable = getResources().getDrawable(R.drawable.home4);
         imgView.setImageDrawable(imgDrawable);
 
-        imgView = (ImageView) findViewById(R.id.profissional_home5Background);
+        imgView = (ImageView) findViewById(R.id.seeSaudeBackground);
         imgDrawable = getResources().getDrawable(R.drawable.home5);
         imgView.setImageDrawable(imgDrawable);
+
+        /*//Background images
+        ImageView imgView = (ImageView) findViewById(R.id.atividadeBackground);
+        if(typeUser == "2") {
+            imgDrawable = getResources().getDrawable(R.drawable.addtreinobutton);
+        }
+        else{
+            imgDrawable = getResources().getDrawable(R.drawable.addrefeicaobutton);
+        }
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.historicoBackground);
+        imgDrawable = getResources().getDrawable(R.drawable.home2);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.agendamentoBackground);
+        imgDrawable = getResources().getDrawable(R.drawable.home3);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.metasBackground);
+        imgDrawable = getResources().getDrawable(R.drawable.home4);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.saudeBackground);
+        imgDrawable = getResources().getDrawable(R.drawable.home5);
+        imgView.setImageDrawable(imgDrawable);*/
 
     }
 

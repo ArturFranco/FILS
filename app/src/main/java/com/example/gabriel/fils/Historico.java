@@ -27,7 +27,6 @@ import java.util.List;
 public class Historico extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
     private int currentYear = 0;
-    private int month= 0;
     private int currentMonth= 0;
     private int daysMonth= 0;
     private int currentdayofMonth= 0;
