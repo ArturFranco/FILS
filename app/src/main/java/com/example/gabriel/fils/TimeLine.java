@@ -76,8 +76,8 @@ public class TimeLine extends AppCompatActivity {
 
         getHistorical();
 
-        Toast toast = Toast.makeText(TimeLine.this, day+"/"+month+"/"+year,Toast.LENGTH_SHORT);
-        toast.show();
+        /*Toast toast = Toast.makeText(TimeLine.this, day+"/"+month+"/"+year,Toast.LENGTH_SHORT);
+        toast.show();*/
 
         ListView list = (ListView) findViewById(R.id.listDays);
 

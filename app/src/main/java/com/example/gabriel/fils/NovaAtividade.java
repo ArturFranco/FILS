@@ -1,6 +1,7 @@
 package com.example.gabriel.fils;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -56,6 +58,14 @@ public class NovaAtividade extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        ImageView imgView = (ImageView) findViewById(R.id.addTreinos);
+        Drawable imgDrawable = getResources().getDrawable(R.drawable.addtreino);
+        imgView.setImageDrawable(imgDrawable);
+
+        imgView = (ImageView) findViewById(R.id.addrefeicao);
+        imgDrawable = getResources().getDrawable(R.drawable.addrefeicao);
+        imgView.setImageDrawable(imgDrawable);
 
     }
 

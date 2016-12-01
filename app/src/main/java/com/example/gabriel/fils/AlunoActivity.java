@@ -195,33 +195,6 @@ public class AlunoActivity extends AppCompatActivity
         imgView = (ImageView) findViewById(R.id.seeSaudeBackground);
         imgDrawable = getResources().getDrawable(R.drawable.home5);
         imgView.setImageDrawable(imgDrawable);
-
-        /*//Background images
-        ImageView imgView = (ImageView) findViewById(R.id.atividadeBackground);
-        if(typeUser == "2") {
-            imgDrawable = getResources().getDrawable(R.drawable.addtreinobutton);
-        }
-        else{
-            imgDrawable = getResources().getDrawable(R.drawable.addrefeicaobutton);
-        }
-        imgView.setImageDrawable(imgDrawable);
-
-        imgView = (ImageView) findViewById(R.id.historicoBackground);
-        imgDrawable = getResources().getDrawable(R.drawable.home2);
-        imgView.setImageDrawable(imgDrawable);
-
-        imgView = (ImageView) findViewById(R.id.agendamentoBackground);
-        imgDrawable = getResources().getDrawable(R.drawable.home3);
-        imgView.setImageDrawable(imgDrawable);
-
-        imgView = (ImageView) findViewById(R.id.metasBackground);
-        imgDrawable = getResources().getDrawable(R.drawable.home4);
-        imgView.setImageDrawable(imgDrawable);
-
-        imgView = (ImageView) findViewById(R.id.saudeBackground);
-        imgDrawable = getResources().getDrawable(R.drawable.home5);
-        imgView.setImageDrawable(imgDrawable);*/
-
     }
 
     @Override
