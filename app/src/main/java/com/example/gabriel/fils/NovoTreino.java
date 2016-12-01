@@ -27,6 +27,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -103,7 +104,7 @@ public class NovoTreino extends AppCompatActivity {
 
                 listaDeAtividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
 
                         final String entry = (String) parent.getAdapter().getItem(position);
                         final Dialog dialog = new Dialog(NovoTreino.this);
@@ -197,11 +198,32 @@ public class NovoTreino extends AppCompatActivity {
                                     Integer hora = c.get(Calendar.HOUR_OF_DAY);
                                     Integer minutos = c.get(Calendar.MINUTE);
                                     Integer segundos = c.get(Calendar.SECOND);
-                                    String s = entry.toString();
+                                    final String s = entry.toString();
                                     String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
                                     mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Treino");
                                     mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
-                                    //Log.d("NovoTreino", day.toString());
+                                    if(entry.startsWith("Corrida")){
+                                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot2) {
+                                                if(dataSnapshot2.hasChild("Metas")){
+                                                    Integer meta = dataSnapshot2.child("Metas").child("Corrida").getValue(Integer.class);
+                                                    int distCorridaAtual = Integer.parseInt(dataSnapshot2.child("Treinos").child(s.substring(s.lastIndexOf(":") + 2)).child("Distancia").getValue().toString());
+                                                    if(distCorridaAtual >= meta){
+                                                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Notificacoes").push().setValue(new Notificacao("Metas", "Você correu "+distCorridaAtual+"km."));
+                                                        if(dataSnapshot2.hasChild("Personal")){
+                                                            mFirebaseDatabaseReference.child("Personais").child(dataSnapshot2.child("Personal").getValue().toString()).child("Notificacoes").push().setValue(new Notificacao("Metas", user.getDisplayName()+ "Correu "+distCorridaAtual+"km."));
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
                                     finish();
                                     //dialog.dismiss();
                                 }
