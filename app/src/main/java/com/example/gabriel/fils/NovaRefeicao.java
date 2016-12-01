@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
@@ -16,6 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -50,6 +52,8 @@ public class NovaRefeicao extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private static final String PREFS_NAME = "MyPrefs";
+    private String IdAluno;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,11 +64,21 @@ public class NovaRefeicao extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
+        //Se o usuario está logando como profissional de saude, vai para a tela correta
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int perfil = settings.getInt("perfil", 0);
+        if(perfil == 1){
+            IdAluno = user.getUid();
+        }
+        else{
+            IdAluno = ProfissionalMainActivity.alunoAtual;
+        }
+
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         //Pega a referencia da lista de refeições
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Refeições").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
                 //Referencia a listview do xml
@@ -95,7 +109,8 @@ public class NovaRefeicao extends AppCompatActivity {
                         toast.show();*/
 
                         final Dialog dialog = new Dialog(NovaRefeicao.this);
-                        dialog.setTitle("Relatar Refeição");
+                        //dialog.setTitle("Relatar Refeição");
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.dialog_novarefeicao);
 
                         final String entry = (String) parent.getAdapter().getItem(position);
@@ -117,8 +132,8 @@ public class NovaRefeicao extends AppCompatActivity {
                                 Integer segundos = c.get(Calendar.SECOND);
                                 String s = entry;
                                 String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
-                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Refeição");
-                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
+                                mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Refeição");
+                                mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
                                 //Log.d("NovoTreino", day.toString());
                                 finish();
                                 //dialog.dismiss();

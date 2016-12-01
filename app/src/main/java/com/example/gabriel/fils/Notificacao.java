@@ -8,7 +8,6 @@ public class Notificacao {
     // pode ser:
     // "Solicitacao Personal"
     // "Solicitacao Nutricionista"
-    // "Solicitacao Aluno"
     // "Meta"
     // "Novo Treino"
     // "Nova Refeicao"
