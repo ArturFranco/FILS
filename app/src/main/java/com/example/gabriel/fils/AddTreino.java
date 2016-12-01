@@ -44,6 +44,7 @@ public class AddTreino extends AppCompatActivity {
     private int tipo;
     private static final String PREFS_NAME = "MyPrefs";
     private String idAtleta;
+    private int perfil;
 
     private LinearLayout grupoA;
     private LinearLayout grupoB;
@@ -87,7 +88,7 @@ public class AddTreino extends AppCompatActivity {
 
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        int perfil = settings.getInt("perfil", 0);
+        perfil = settings.getInt("perfil", 0);
         if(perfil == 1){
             idAtleta = user.getUid();
         }else{
@@ -139,7 +140,12 @@ public class AddTreino extends AppCompatActivity {
                        toast.show();
                    }else{
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo B").removeValue();
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo C").removeValue();
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo D").removeValue();
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo E").removeValue();
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").setValue(null);
+                       notificar("Treino de Musculação");
                        finish();
                    }
                }else if(checkB.isChecked()){
@@ -151,7 +157,11 @@ public class AddTreino extends AppCompatActivity {
                    }else{
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo B").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo B").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo C").removeValue();
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo D").removeValue();
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo E").removeValue();
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").setValue(null);
+                       notificar("Treino de Musculação");
                        finish();
                    }
                }else if(checkC.isChecked()){
@@ -165,7 +175,10 @@ public class AddTreino extends AppCompatActivity {
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo B").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo B").getValue());
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo C").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo C").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo D").removeValue();
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo E").removeValue();
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").setValue(null);
+                       notificar("Treino de Musculação");
                        finish();
                    }
                }else if(checkD.isChecked()){
@@ -181,7 +194,9 @@ public class AddTreino extends AppCompatActivity {
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo B").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo B").getValue());
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo C").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo C").getValue());
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo D").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo D").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo E").removeValue();
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").setValue(null);
+                       notificar("Treino de Musculação");
                        finish();
                    }
                }else if(checkE.isChecked()){
@@ -200,6 +215,7 @@ public class AddTreino extends AppCompatActivity {
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo D").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo D").getValue());
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child("Grupo E").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo E").getValue());
                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").setValue(null);
+                       notificar("Treino de Musculação");
                        finish();
                    }
                }else{
@@ -214,13 +230,12 @@ public class AddTreino extends AppCompatActivity {
            }
        });
 
-
-
-
-
-//        Intent intent = new Intent(AddTreino.this, NovoTreino.class);
-//        startActivity(intent);
     }
+
+    public void notificar(String descricao){
+        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Notificacoes").push().setValue(new Notificacao("Novo Treino", descricao));
+    }
+
 /////////////////////////////////DONE
     protected void uploadCorrida(View view){
 
@@ -244,6 +259,8 @@ public class AddTreino extends AppCompatActivity {
 
                     Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo", Toast.LENGTH_LONG);
                     toast.show();
+
+                    notificar("Corrida: "+descricao);
 
                     finish();
                 }
@@ -273,6 +290,7 @@ public class AddTreino extends AppCompatActivity {
                     mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
                     Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
                     toast.show();
+                    notificar("Outro: "+descricao);
                     finish();
                 }
             }
