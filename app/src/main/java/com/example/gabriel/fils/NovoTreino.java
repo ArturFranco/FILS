@@ -157,7 +157,7 @@ public class NovoTreino extends AppCompatActivity {
                             }else{
                                 dialog.setContentView(R.layout.dialog_musc_aluno);
                             }
-                            
+
                             TextView grupo = (TextView) dialog.findViewById(R.id.label1);
                             TextView descText = (TextView) dialog.findViewById(R.id.descText);
                             ListView listaExercicios = (ListView) dialog.findViewById(R.id.listaGrupoExercicios);
