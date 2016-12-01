@@ -59,7 +59,7 @@ public class Agendamento extends AppCompatActivity {
         year = c1.get(Calendar.YEAR);
         month = c1.get(Calendar.MONTH);
         day = c1.get(Calendar.DAY_OF_MONTH);
-
+        setMonth(month+1);
         getDiary();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addAgendamentoButton);
@@ -81,8 +81,8 @@ public class Agendamento extends AppCompatActivity {
                 setDay(d);
                 setMonth(m+1);
                 setYear(y);
-                Toast toast = Toast.makeText(Agendamento.this, getDay()+"/"+getMonth()+"/"+getYear(),Toast.LENGTH_SHORT);
-                toast.show();
+                /*Toast toast = Toast.makeText(Agendamento.this, getDay()+"/"+getMonth()+"/"+getYear(),Toast.LENGTH_SHORT);
+                toast.show();*/
                 getDiary();
             }
 
@@ -114,8 +114,8 @@ public class Agendamento extends AppCompatActivity {
 
     public void getDiary(){
 
-        Toast toast = Toast.makeText(Agendamento.this, getMonth()+"",Toast.LENGTH_SHORT);
-        toast.show();
+        /*Toast toast = Toast.makeText(Agendamento.this, getMonth()+"",Toast.LENGTH_SHORT);
+        toast.show();*/
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
