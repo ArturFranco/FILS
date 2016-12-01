@@ -97,83 +97,151 @@ public class NotificacoesActivity  extends AppCompatActivity {
                             TextView pergunta = (TextView) dialog.findViewById(R.id.label1);
                             pergunta.setText("Aceitar Solicitacão?");
 
+                            //TODO relatar treino
+                            Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirma);
+                            botaoConfirma.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    if(entry.descricao.startsWith("Solicitacao Personal")) {
+                                        mFirebaseDatabaseReference.child("Personais").child(entry.id).child("Alunos").push().setValue(user.getUid());
+                                    }else{
+                                        mFirebaseDatabaseReference.child("Nutricionistas").child(entry.id).child("Alunos").push().setValue(user.getUid());
+                                    }
+
+                                    userDatabaseReference.child("Notificacoes").addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
+                                            //Povoa uma lista com os nomes dos treinos
+                                            Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
+                                            DataSnapshot aux;
+                                            while (it.hasNext()) {
+                                                //Aqui eu tenho o userID do aluno, com o qual posso achar seu nome e foto
+                                                aux = it.next();
+                                                if(aux.child("descricao").getValue().equals(entry.descricao) && aux.child("id").getValue().equals(entry.id) ){
+                                                    userDatabaseReference.child("Notificacoes").child(aux.getKey()).removeValue();
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    dialog.dismiss();
+                                }
+                            });
+
+
+                            //Cancela o relato de treino
+                            Button botaRecusar = (Button) dialog.findViewById(R.id.botaoRecusar);
+                            botaRecusar.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    userDatabaseReference.child("Notificacoes").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
+                                            //Povoa uma lista com os nomes dos treinos
+                                            Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
+                                            DataSnapshot aux;
+                                            while (it.hasNext()) {
+                                                //Aqui eu tenho o userID do aluno, com o qual posso achar seu nome e foto
+                                                aux = it.next();
+                                                if(aux.child("descricao").getValue().toString().equals(entry.descricao) && aux.child("id").getValue().toString().equals(entry.id) ){
+                                                    userDatabaseReference.child("Notificacoes").child(aux.getKey()).removeValue();
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    dialog.dismiss();
+                                }
+                            });
+
                         }else if(entry.descricao.startsWith("Nov")){
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             dialog.setContentView(R.layout.dialog_notificacao_nova_atividade);
 
                             TextView pergunta = (TextView) dialog.findViewById(R.id.label1);
                             pergunta.setText(entry.id);
-                        }
 
-                        //TODO relatar treino
-                        Button botaoVer = (Button) dialog.findViewById(R.id.botaoVer);
-                        botaoVer.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                userDatabaseReference.child("Notificacoes").addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
-                                        //Povoa uma lista com os nomes dos treinos
-                                        Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
-                                        DataSnapshot aux;
-                                        while (it.hasNext()) {
-                                            //Aqui eu tenho o userID do aluno, com o qual posso achar seu nome e foto
-                                            aux = it.next();
-                                            if(aux.child("descricao").getValue().equals(entry.descricao) && aux.child("id").getValue().equals(entry.id) ){
-                                                userDatabaseReference.child("Notificacoes").child(aux.getKey()).removeValue();
+                            //TODO relatar treino
+                            Button botaoVer = (Button) dialog.findViewById(R.id.botaoVer);
+                            botaoVer.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    userDatabaseReference.child("Notificacoes").addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
+                                            //Povoa uma lista com os nomes dos treinos
+                                            Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
+                                            DataSnapshot aux;
+                                            while (it.hasNext()) {
+                                                //Aqui eu tenho o userID do aluno, com o qual posso achar seu nome e foto
+                                                aux = it.next();
+                                                if(aux.child("descricao").getValue().equals(entry.descricao) && aux.child("id").getValue().equals(entry.id) ){
+                                                    userDatabaseReference.child("Notificacoes").child(aux.getKey()).removeValue();
+                                                }
                                             }
                                         }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    Intent intent;
+
+                                    if(entry.descricao.startsWith("Novo Treino")){
+                                        intent = new Intent(NotificacoesActivity.this, NovoTreino.class);
+                                    }else{
+                                        intent = new Intent(NotificacoesActivity.this, NovaRefeicao.class);
                                     }
+                                    startActivity(intent);
 
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                                Intent intent;
-
-                                if(entry.descricao.startsWith("Novo Treino")){
-                                    intent = new Intent(NotificacoesActivity.this, NovoTreino.class);
-                                }else{
-                                    intent = new Intent(NotificacoesActivity.this, NovaRefeicao.class);
+                                    dialog.dismiss();
                                 }
-                                startActivity(intent);
-
-                                dialog.dismiss();
-                            }
-                        });
+                            });
 
 
-                        //Cancela o relato de treino
-                        Button botaoOK = (Button) dialog.findViewById(R.id.botaoOK);
-                        botaoOK.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                userDatabaseReference.child("Notificacoes").addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
-                                        //Povoa uma lista com os nomes dos treinos
-                                        Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
-                                        DataSnapshot aux;
-                                        while (it.hasNext()) {
-                                            //Aqui eu tenho o userID do aluno, com o qual posso achar seu nome e foto
-                                            aux = it.next();
-                                            if(aux.child("descricao").getValue().toString().equals(entry.descricao) && aux.child("id").getValue().toString().equals(entry.id) ){
-                                                userDatabaseReference.child("Notificacoes").child(aux.getKey()).removeValue();
+                            //Cancela o relato de treino
+                            Button botaoOK = (Button) dialog.findViewById(R.id.botaoOK);
+                            botaoOK.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    userDatabaseReference.child("Notificacoes").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
+                                            //Povoa uma lista com os nomes dos treinos
+                                            Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
+                                            DataSnapshot aux;
+                                            while (it.hasNext()) {
+                                                //Aqui eu tenho o userID do aluno, com o qual posso achar seu nome e foto
+                                                aux = it.next();
+                                                if(aux.child("descricao").getValue().toString().equals(entry.descricao) && aux.child("id").getValue().toString().equals(entry.id) ){
+                                                    userDatabaseReference.child("Notificacoes").child(aux.getKey()).removeValue();
+                                                }
                                             }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
 
-                                    }
-                                });
+                                        }
+                                    });
 
-                                dialog.dismiss();
-                            }
-                        });
+                                    dialog.dismiss();
+                                }
+                            });
+
+                        }
 
                         dialog.show();
 
