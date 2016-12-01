@@ -54,6 +54,8 @@ public class AddTreino extends AppCompatActivity {
     private CheckBox checkD;
     private CheckBox checkE;
 
+    private ValueEventListener eventListener;
+
     private Spinner tiposOutro;
 
     @Override
@@ -77,7 +79,12 @@ public class AddTreino extends AppCompatActivity {
         checkC = (CheckBox) findViewById(R.id.checkBoxC);
         checkD = (CheckBox) findViewById(R.id.checkBoxD);
         checkE = (CheckBox) findViewById(R.id.checkBoxE);
+
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+
+
+
 
         //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").setValue(null);
 
@@ -112,60 +119,164 @@ public class AddTreino extends AppCompatActivity {
 
 
    protected void uploadTreino (View view){
-      /* mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-       EditText texto = (EditText) findViewById(R.id.addTreinoText);
-       mFirebaseDatabaseReference.child("Treinos").push().setValue(texto.getText().toString());*/
 
-       Toast toast = Toast.makeText(AddTreino.this, "Função Ainda Não Implementada",Toast.LENGTH_LONG);
-       toast.show();
+       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+               if(checkA.isChecked()){
+                   TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+                   if(grupoAdesc.getText().equals("")){
+                       Toast toast = Toast.makeText(AddTreino.this, "Descrição Incompleta",Toast.LENGTH_LONG);
+                       toast.show();
+                   }else{
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").setValue(null);
+                       finish();
+                   }
+               }else if(checkB.isChecked()){
+                   TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+                   TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
+                   if(grupoAdesc.getText().equals("") || grupoBdesc.getText().equals("")){
+                       Toast toast = Toast.makeText(AddTreino.this, "Descrição Incompleta",Toast.LENGTH_LONG);
+                       toast.show();
+                   }else{
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo B").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo B").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").setValue(null);
+                       finish();
+                   }
+               }else if(checkC.isChecked()){
+                   TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+                   TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
+                   TextView grupoCdesc = (TextView) findViewById(R.id.grupoCdescription);
+                   if(grupoAdesc.getText().equals("") || grupoBdesc.getText().equals("") || grupoCdesc.getText().equals("")){
+                       Toast toast = Toast.makeText(AddTreino.this, "Descrição Incompleta",Toast.LENGTH_LONG);
+                       toast.show();
+                   }else{
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo B").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo B").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo C").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo C").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").setValue(null);
+                       finish();
+                   }
+               }else if(checkD.isChecked()){
+                   TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+                   TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
+                   TextView grupoCdesc = (TextView) findViewById(R.id.grupoCdescription);
+                   TextView grupoDdesc = (TextView) findViewById(R.id.grupoDdescription);
+                   if(grupoAdesc.getText().equals("") || grupoBdesc.getText().equals("") || grupoCdesc.getText().equals("") || grupoDdesc.getText().equals("")){
+                       Toast toast = Toast.makeText(AddTreino.this, "Descrição Incompleta",Toast.LENGTH_LONG);
+                       toast.show();
+                   }else{
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo B").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo B").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo C").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo C").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo D").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo D").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").setValue(null);
+                       finish();
+                   }
+               }else if(checkE.isChecked()){
+                   TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+                   TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
+                   TextView grupoCdesc = (TextView) findViewById(R.id.grupoCdescription);
+                   TextView grupoDdesc = (TextView) findViewById(R.id.grupoDdescription);
+                   TextView grupoEdesc = (TextView) findViewById(R.id.grupoEdescription);
+                   if(grupoAdesc.getText().equals("") || grupoBdesc.getText().equals("") || grupoCdesc.getText().equals("") || grupoDdesc.getText().equals("") || grupoEdesc.getText().equals("")){
+                       Toast toast = Toast.makeText(AddTreino.this, "Descrição Incompleta",Toast.LENGTH_LONG);
+                       toast.show();
+                   }else{
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo A").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo A").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo B").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo B").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo C").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo C").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo D").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo D").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child("Grupo E").setValue(dataSnapshot.child("temp").child("Treino").child("Grupo E").getValue());
+                       mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").setValue(null);
+                       finish();
+                   }
+               }else{
+                   Toast toast = Toast.makeText(AddTreino.this, "Descrição Incompleta",Toast.LENGTH_LONG);
+                   toast.show();
+               }
+           }
 
-       finish();
+           @Override
+           public void onCancelled(DatabaseError databaseError) {
+
+           }
+       });
+
+
+
+
 
 //        Intent intent = new Intent(AddTreino.this, NovoTreino.class);
 //        startActivity(intent);
     }
-
+/////////////////////////////////DONE
     protected void uploadCorrida(View view){
 
-        EditText desc = (EditText) findViewById(R.id.descCorrida);
-        EditText dur = (EditText) findViewById(R.id.durCorrida);
-        EditText dist = (EditText) findViewById(R.id.distCorrida);
-        String descricao = desc.getText().toString();
+        final EditText desc = (EditText) findViewById(R.id.descCorrida);
+        final EditText dur = (EditText) findViewById(R.id.durCorrida);
+        final EditText dist = (EditText) findViewById(R.id.distCorrida);
+        final String descricao = desc.getText().toString();
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(desc.getText().toString().contentEquals("") || dur.getText().toString().contentEquals("") || dist.getText().toString().contentEquals("")) {
+                    Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
+                }else if(dataSnapshot.child("Treinos").hasChild(descricao)){
+                    Toast.makeText(getApplicationContext(), descricao + " já existe em sua lista!", Toast.LENGTH_SHORT).show();
+                }else {
 
-        if(desc.getText().toString().contentEquals("") || dur.getText().toString().contentEquals("") || dist.getText().toString().contentEquals("")){
-            Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
-        }else {
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Corrida");
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(dur.getText().toString());
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Distancia").setValue(dist.getText().toString());
 
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Corrida");
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(dur.getText().toString());
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Distancia").setValue(dist.getText().toString());
+                    Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo", Toast.LENGTH_LONG);
+                    toast.show();
 
-            Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo", Toast.LENGTH_LONG);
-            toast.show();
+                    finish();
+                }
+            }
 
-            finish();
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
-
+//////////////////////////////////////////DONE
     protected void uploadOutro(View view){
-        Spinner tipoOutro = (Spinner) findViewById(R.id.spinnerOutro);
-        EditText durOutro = (EditText) findViewById(R.id.duracaoOutro);
-        String descricao = tipoOutro.getSelectedItem().toString();
+        final Spinner tipoOutro = (Spinner) findViewById(R.id.spinnerOutro);
+        final EditText durOutro = (EditText) findViewById(R.id.duracaoOutro);
+        final String descricao = tipoOutro.getSelectedItem().toString();
+        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(tipoOutro.getSelectedItem().toString().contentEquals("") || durOutro.getText().toString().contentEquals("")){
+                    Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
+                }else if(dataSnapshot.child("Treinos").hasChild(descricao)) {
+                    Toast.makeText(getApplicationContext(), descricao + " já existe em sua lista!", Toast.LENGTH_SHORT).show();
+                }else{
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Outro");
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
+                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
+                    Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
+                    toast.show();
+                    finish();
+                }
+            }
 
-        if(tipoOutro.getSelectedItem().toString().contentEquals("") || durOutro.getText().toString().contentEquals("")){
-            Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
-        }else {
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Tipo").setValue("Outro");
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Descricao").setValue(descricao);
-            mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").child(descricao).child("Duracao").setValue(durOutro.getText().toString());
-            Toast toast = Toast.makeText(AddTreino.this, "Treino Salvo",Toast.LENGTH_LONG);
-            toast.show();
-            finish();
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
-
+////////////////////////////////////DONE
     protected void passarTipoTreino (View view){
         if(tipo == 1){
             setContentView(R.layout.add_treino_corrida);
@@ -190,10 +301,11 @@ public class AddTreino extends AppCompatActivity {
             checkC = (CheckBox) findViewById(R.id.checkBoxC);
             checkD = (CheckBox) findViewById(R.id.checkBoxD);
             checkE = (CheckBox) findViewById(R.id.checkBoxE);
+
             tipo = 1;
         }
     }
-
+/////////////////////////////////////////DONE
     protected void voltarTipoTreino (View view){
         if(tipo == 1){
             setContentView(R.layout.add_treino_outro);
@@ -215,13 +327,14 @@ public class AddTreino extends AppCompatActivity {
             checkC = (CheckBox) findViewById(R.id.checkBoxC);
             checkD = (CheckBox) findViewById(R.id.checkBoxD);
             checkE = (CheckBox) findViewById(R.id.checkBoxE);
+
             tipo = 1;
         }else{
             setContentView(R.layout.add_treino_corrida);
             tipo = 2;
         }
     }
-
+//////////////////////////////////////////DONE
     protected void clickA(View view){
         checkB.setChecked(false);
         checkC.setChecked(false);
@@ -248,6 +361,8 @@ public class AddTreino extends AppCompatActivity {
         grupoE.setVisibility(View.INVISIBLE);
         grupoE.setClickable(false);
     }
+
+    //////////////////////////////////////////DONE
     protected void clickB(View view){
         checkA.setChecked(false);
         checkC.setChecked(false);
@@ -279,6 +394,8 @@ public class AddTreino extends AppCompatActivity {
         grupoE.setVisibility(View.INVISIBLE);
         grupoE.setClickable(false);
     }
+
+    ///////////////////////////////////////////////DONE
     protected void clickC(View view){
         checkB.setChecked(false);
         checkA.setChecked(false);
@@ -310,6 +427,8 @@ public class AddTreino extends AppCompatActivity {
         grupoE.setVisibility(View.INVISIBLE);
         grupoE.setClickable(false);
     }
+
+    ///////////////////////////////////////////DONE
     protected void clickD(View view){
         checkB.setChecked(false);
         checkC.setChecked(false);
@@ -344,12 +463,15 @@ public class AddTreino extends AppCompatActivity {
         grupoE.setVisibility(View.INVISIBLE);
         grupoE.setClickable(false);
     }
-    protected void clickE(View view){
+
+
+    ////////////////////////////////////////////////////DONE
+    protected void clickE(View view) {
         checkB.setChecked(false);
         checkC.setChecked(false);
         checkD.setChecked(false);
         checkA.setChecked(false);
-        if(checkE.isChecked()){
+        if (checkE.isChecked()) {
             grupoA.setVisibility(View.VISIBLE);
             grupoA.setClickable(true);
 
@@ -364,7 +486,7 @@ public class AddTreino extends AppCompatActivity {
 
             grupoE.setVisibility(View.VISIBLE);
             grupoE.setClickable(true);
-        }else{
+        } else {
             grupoA.setVisibility(View.INVISIBLE);
             grupoA.setClickable(false);
 
@@ -381,6 +503,7 @@ public class AddTreino extends AppCompatActivity {
             grupoE.setClickable(false);
         }
     }
+
 
     protected void groupAClick(View view){
         Intent intent = new Intent(AddTreino.this, AddGrupo.class);
@@ -410,39 +533,61 @@ public class AddTreino extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode, final int resultCode,final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1){
-            if(resultCode == Activity.RESULT_OK){
-                TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
-                grupoAdesc.setText(data.getStringExtra("result"));
-            }
+            TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+            grupoAdesc.setText(data.getStringExtra("result"));
         }else if(requestCode == 2){
-            if(resultCode == Activity.RESULT_OK){
-                TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
-                grupoBdesc.setText(data.getStringExtra("result"));
-            }
+            TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
+            grupoBdesc.setText(data.getStringExtra("result"));
         }else if(requestCode == 3){
-            if(resultCode == Activity.RESULT_OK){
-                TextView grupoCdesc = (TextView) findViewById(R.id.grupoCdescription);
-                grupoCdesc.setText(data.getStringExtra("result"));
-            }
+            TextView grupoCdesc = (TextView) findViewById(R.id.grupoCdescription);
+            grupoCdesc.setText(data.getStringExtra("result"));
         }else if(requestCode == 4){
-            if(resultCode == Activity.RESULT_OK){
-                TextView grupoDdesc = (TextView) findViewById(R.id.grupoDdescription);
-                grupoDdesc.setText(data.getStringExtra("result"));
-            }
-        }else if(requestCode == 5){
-            if(resultCode == Activity.RESULT_OK){
-                TextView grupoEdesc = (TextView) findViewById(R.id.grupoEdescription);
-                grupoEdesc.setText(data.getStringExtra("result"));
-            }
+            TextView grupoDdesc = (TextView) findViewById(R.id.grupoDdescription);
+            grupoDdesc.setText(data.getStringExtra("result"));
+        }else{
+            TextView grupoEdesc = (TextView) findViewById(R.id.grupoEdescription);
+            grupoEdesc.setText(data.getStringExtra("result"));
         }
+     /*   TextView grupoAdesc = (TextView) findViewById(R.id.grupoAdescription);
+        if (dataSnapshot.child("temp").child("Treino").child("Grupo A").child("Desricao").getValue() != null) {
+            grupoAdesc.setText(dataSnapshot.child("temp").child("Treino").child("Grupo A").child("Descricao").getValue().toString());
+
+        }
+        TextView grupoBdesc = (TextView) findViewById(R.id.grupoBdescription);
+        if (dataSnapshot.child("temp").child("Treino").child("Grupo B").child("Desricao").getValue() != null) {
+            grupoBdesc.setText(dataSnapshot.child("temp").child("Treino").child("Grupo B").child("Descricao").getValue().toString());
+
+        }
+        TextView grupoCdesc = (TextView) findViewById(R.id.grupoCdescription);
+        if (dataSnapshot.child("temp").child("Treino").child("Grupo C").child("Desricao").getValue() != null) {
+            grupoCdesc.setText(dataSnapshot.child("temp").child("Treino").child("Grupo C").child("Descricao").getValue().toString());
+
+        }
+        TextView grupoDdesc = (TextView) findViewById(R.id.grupoDdescription);
+        if (dataSnapshot.child("temp").child("Treino").child("Grupo D").child("Desricao").getValue() != null) {
+            grupoDdesc.setText(dataSnapshot.child("temp").child("Treino").child("Grupo D").child("Descricao").getValue().toString());
+
+        }
+        TextView grupoEdesc = (TextView) findViewById(R.id.grupoEdescription);
+        if (dataSnapshot.child("temp").child("Treino").child("Grupo E").child("Desricao").getValue() != null) {
+            grupoEdesc.setText(dataSnapshot.child("temp").child("Treino").child("Grupo E").child("Descricao").getValue().toString());
+
+        }
+*/
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        mFirebaseDatabaseReference.child("Atleta").child(user.getUid()).child("temp").setValue(null);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }

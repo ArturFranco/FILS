@@ -353,7 +353,8 @@
             android:text="Salvar"
             android:visibility="visible"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/uploadMusc"/>
+            android:id="@+id/uploadMusc"
+            android:onClick="uploadTreino"/>
 
 <!--
         <EditText

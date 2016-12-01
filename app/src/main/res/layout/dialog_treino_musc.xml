@@ -6,8 +6,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Relatar Atividade"
-        android:textAlignment="center"
         android:textSize="20dp"
+        android:textAlignment="center"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -17,45 +17,63 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
-        android:id="@+id/relativeLayout"
+        android:id="@+id/relativeLayout1"
         android:layout_below="@+id/tituloDialogTreino">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo:"
-            android:textSize="15dp"
-            android:id="@+id/label1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/treinoNome"
-            android:textSize="15dp"
-            android:layout_toRightOf="@+id/label1"/>
+            android:id="@+id/label1"
+            android:textSize="15dp"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:id="@+id/relativeLayout2"
-        android:layout_below="@+id/relativeLayout">
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_marginBottom="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duração:"
+            android:text="Descrição:"
+            android:id="@+id/label2"
             android:textSize="15dp"
-            android:id="@+id/label2"/>
+            android:layout_alignParentTop="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/duracaoText"
+            android:id="@+id/descText"
             android:textSize="15dp"
             android:layout_toRightOf="@+id/label2"/>
     </RelativeLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:id="@+id/relativeLayout3"
         android:layout_below="@+id/relativeLayout2"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercícios - Séries - Repetições"
+            android:textSize="15dp"
+            android:id="@+id/cabecalho"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listaGrupoExercicios"
+            android:layout_below="@+id/cabecalho"
+            android:textAlignment="center">
+
+        </ListView>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout3"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

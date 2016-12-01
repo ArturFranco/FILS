@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -124,9 +126,33 @@ public class NovoTreino extends AppCompatActivity {
 
                             //DatabaseReference ref = mFirebaseDatabaseReference.child("Treino").child(s.substring(s.lastIndexOf(":") + 2));
                             TextView dur = (TextView) dialog.findViewById(R.id.duracaoText);
-                            dur.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Duracao").getValue().toString() + "h");
+                            dur.setText(" " + dataSnapshot.child(s.substring(s.lastIndexOf(":") + 2)).child("Duracao").getValue().toString() + "min");
 
-                           }
+                        }else if(entry.startsWith("Grupo")){
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.dialog_treino_musc);
+                            TextView grupo = (TextView) dialog.findViewById(R.id.label1);
+                            TextView descText = (TextView) dialog.findViewById(R.id.descText);
+                            ListView listaExercicios = (ListView) dialog.findViewById(R.id.listaGrupoExercicios);
+
+                            String s = entry.toString();
+
+                            String[] v = s.split(":");
+
+                            grupo.setText(v[0]);
+                            descText.setText(v[1]);
+
+                            Iterator<DataSnapshot> iteratorExer = dataSnapshot.child(v[0]).child("Exercicios").getChildren().iterator();
+                            List<String> listExercicios = new ArrayList<String>();
+                            DataSnapshot aux;
+                            while(iteratorExer.hasNext()){
+                                aux = iteratorExer.next();
+                                listExercicios.add(aux.child("Descricao").getValue() + " - " + aux.child("Series").getValue() + " - " + aux.child("Repeticoes").getValue());
+                            }
+
+                            ArrayAdapter<String> adapterExer = new ArrayAdapter<String>(NovoTreino.this,android.R.layout.simple_list_item_1, listExercicios);
+                            listaExercicios.setAdapter(adapterExer);
+                        }
 
 
 
