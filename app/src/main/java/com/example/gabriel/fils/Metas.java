@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.SharedPreferences;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Metas extends AppCompatActivity {
 
+    private static final String PREFS_NAME = "MyPrefs";
+    private String IdAluno;
     SeekBar seek_barPeso;
     TextView text_viewPeso;
     SeekBar seek_barGordura;
@@ -39,17 +41,27 @@ public class Metas extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.metas_main);
+
         //Autenticacao firebase
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         user = mAuth.getCurrentUser();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int perfil = settings.getInt("perfil", 0);
+        if(perfil == 1){
+            IdAluno = user.getUid();
+        }
+        else{
+            IdAluno = ProfissionalMainActivity.alunoAtual;
+        }
 
         seekbarrPeso();
         seekbarrGordura();
         seekbarrCorrida();
         seekbarrTreino();
 
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        mFirebaseDatabaseReference.child("Atletas").child(IdAluno).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -96,7 +108,7 @@ public class Metas extends AppCompatActivity {
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_viewPeso.setText(""+(progress_value+20)+" Kg");
-                        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Metas").child("Peso").setValue(progress_value+20);
+                        mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Metas").child("Peso").setValue(progress_value+20);
                         //Toast.makeText(Metas.this, "SeekBar in StopTracking", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -126,7 +138,7 @@ public class Metas extends AppCompatActivity {
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_viewGordura.setText(""+progress_value+"% de Gordura");
-                        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Metas").child("Gordura").setValue(progress_value);
+                        mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Metas").child("Gordura").setValue(progress_value);
                         //Toast.makeText(Metas.this, "SeekBar in StopTracking", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -156,7 +168,7 @@ public class Metas extends AppCompatActivity {
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_viewCorrida.setText(""+(progress_value+1)+" Km");
-                        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Metas").child("Corrida").setValue(progress_value+1);
+                        mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Metas").child("Corrida").setValue(progress_value+1);
                         //Toast.makeText(Metas.this, "SeekBar in StopTracking", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -186,7 +198,7 @@ public class Metas extends AppCompatActivity {
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_viewTreino.setText(""+(progress_value+2)+" dias sem faltar!");
-                        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Metas").child("Treino").setValue(progress_value+2);
+                        mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Metas").child("Treino").setValue(progress_value+2);
                         //Toast.makeText(Metas.this, "SeekBar in StopTracking", Toast.LENGTH_LONG).show();
                     }
                 }
