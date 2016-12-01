@@ -26,8 +26,6 @@ import java.util.List;
 
 public class Historico extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
-    CalendarView calendar;
-    private int year = 0;
     private int currentYear = 0;
     private int month= 0;
     private int currentMonth= 0;
@@ -43,7 +41,8 @@ public class Historico extends AppCompatActivity {
         currentData = (TextView) findViewById(R.id.year);
         final Calendar c = Calendar.getInstance();
         currentYear = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH);
+        currentMonth = c.get(Calendar.MONTH);
+        currentMonth++;
         currentdayofMonth = c.get(Calendar.DAY_OF_MONTH);
 
        /* long date = System.currentTimeMillis();

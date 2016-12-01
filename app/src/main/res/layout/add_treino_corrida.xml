@@ -93,12 +93,13 @@
                 android:id="@+id/durCorrida"
                 android:inputType="number"/>
         </LinearLayout>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/uploadNovaCorrida"
             android:text="Salvar"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center_horizontal|bottom"
             android:onClick="uploadCorrida"
             android:backgroundTint="@color/botao"
             android:textColor="@color/white"/>

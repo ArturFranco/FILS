@@ -41,6 +41,7 @@ public class AddGrupo extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private boolean emptylist;
+    private String titulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class AddGrupo extends AppCompatActivity {
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-        final String titulo = extras.getString("titulo");
+        titulo = extras.getString("titulo");
 
         System.out.println(titulo);
 
@@ -221,6 +222,7 @@ public class AddGrupo extends AppCompatActivity {
                         EditText descText = (EditText) dialog.findViewById(R.id.descricaoText);
                         returnIntent.putExtra("result", descText.getText().toString());
                         mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Descricao").setValue(descText.getText().toString());
+                        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Tipo").setValue(titulo);
                         setResult(RESULT_OK, returnIntent);
                         finish();
                     }
@@ -248,7 +250,7 @@ public class AddGrupo extends AppCompatActivity {
         botaoRefazer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).removeValue();
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).setValue("");
                 EditText series = (EditText) findViewById(R.id.serieText);
                 EditText repeticoes = (EditText) findViewById(R.id.repText);
                 series.setText("");
@@ -257,5 +259,12 @@ public class AddGrupo extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+       // super.onBackPressed();
+        Intent returnIntent = getIntent();
+        returnIntent.putExtra("result", "");
+        setResult(RESULT_OK, returnIntent);
+        finish();
+    }
 }

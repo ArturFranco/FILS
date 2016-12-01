@@ -38,6 +38,10 @@ public class TimeLine extends AppCompatActivity {
     protected int month = 0;
     protected int year = 0;
     protected int clickDay = 1;
+    protected String hour;
+    protected String minute;
+
+
     TextView currentData;
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mAuth;
@@ -99,6 +103,8 @@ public class TimeLine extends AppCompatActivity {
                 getHistorical();
             }
         });
+
+        getHistorical();
     }
 
     public void getHistorical(){
@@ -122,8 +128,9 @@ public class TimeLine extends AppCompatActivity {
                 DataSnapshot aux;
                 while (it.hasNext()) {
                     aux = it.next();
+                    setTime(aux.getKey());
 
-                    list.add(aux.getKey() + "-" + aux.child("Id").getValue() + aux.child("Tipo").getValue());
+                    list.add(getTime() + " - " + aux.child("Id").getValue() +" - "+aux.child("Tipo").getValue());
                 }
 
                 //Atribui a lista de nomes a listview
@@ -137,6 +144,20 @@ public class TimeLine extends AppCompatActivity {
         });
     }
 
+    public void setTime(String aux) {
+       String[] aux1 = aux.split(":");
+        this.hour = aux1[0];
+        this.minute = aux1[1];
+        if(this.hour.length() < 2 ){
+            this.hour = 0+this.hour;
+        }
+        if(this.minute.length() < 2 ){
+            this.minute = 0+this.minute;
+        }
+    }
+    public String getTime(){
+        return this.hour+":"+this.minute;
+    }
 }
 
 
