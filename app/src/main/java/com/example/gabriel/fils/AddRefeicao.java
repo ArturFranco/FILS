@@ -3,6 +3,7 @@ package com.example.gabriel.fils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,9 @@ public class AddRefeicao extends AppCompatActivity {
     ArrayAdapter adapterAlimentos;
     private boolean emptylistAlimentos;
 
+    private static final String PREFS_NAME = "MyPrefs";
+    private String IdAluno;
+
     private List<String> listaAlimentosRefeicao = new ArrayList<String>();
 
     @Override
@@ -52,6 +56,16 @@ public class AddRefeicao extends AppCompatActivity {
         //Pega dados de autenticação
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+
+        //Se o usuario está logando como profissional de saude, vai para a tela correta
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int perfil = settings.getInt("perfil", 0);
+        if(perfil == 1){
+            IdAluno = user.getUid();
+        }
+        else{
+            IdAluno = ProfissionalMainActivity.alunoAtual;
+        }
 
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
@@ -200,8 +214,8 @@ public class AddRefeicao extends AppCompatActivity {
                     ArrayAdapter<String> adapterAlimentos = new ArrayAdapter<String>(AddRefeicao.this, android.R.layout.simple_list_item_1, listaAlimentosRefeicao);
                     listaDeAlimentosSalvos.setAdapter(adapterAlimentos);
 
-                    //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child("Nome da Refeição").child(alimentos.getSelectedItem().toString());
-                    //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child("Nome da Refeição").child(alimentos.getSelectedItem().toString()).child("Quantidade (g)").setValue(qtdAlimento.getText().toString());
+                    //mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Refeições").child("Nome da Refeição").child(alimentos.getSelectedItem().toString());
+                    //mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Refeições").child("Nome da Refeição").child(alimentos.getSelectedItem().toString()).child("Quantidade (g)").setValue(qtdAlimento.getText().toString());
                 }
             }
         });
@@ -215,7 +229,7 @@ public class AddRefeicao extends AppCompatActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_salvar_refeicao);
 
-                /*mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").addValueEventListener(new ValueEventListener() {
+                /*mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Refeições").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
                         EditText descTextRef = (EditText) dialog.findViewById(R.id.descricaoTextRef);
@@ -235,7 +249,7 @@ public class AddRefeicao extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent returnIntent = getIntent();
                         EditText descTextRef = (EditText) dialog.findViewById(R.id.descricaoTextRef);
-                        DatabaseReference mestreSousa = mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child(descTextRef.getText().toString());
+                        DatabaseReference mestreSousa = mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Refeições").child(descTextRef.getText().toString());
 
                         Iterator<String> it = listaAlimentosRefeicao.iterator();
                         String aux;
@@ -244,8 +258,8 @@ public class AddRefeicao extends AppCompatActivity {
                             String[] infoAlimento = aux.split(" / ");
                             mestreSousa.child(infoAlimento[0]).child("Quantidade (g)").setValue(infoAlimento[1]);
                         }
-                        //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child(descTextRef.getText().toString()).child(alimentos.getSelectedItem().toString());
-                        //mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").child(alimentos.getSelectedItem().toString()).child("Quantidade (g)").setValue(qtdAlimento.getText().toString());
+                        //mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Refeições").child(descTextRef.getText().toString()).child(alimentos.getSelectedItem().toString());
+                        //mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Refeições").child(alimentos.getSelectedItem().toString()).child("Quantidade (g)").setValue(qtdAlimento.getText().toString());
                         setResult(RESULT_OK, returnIntent);
                         finish();
                     }
@@ -272,7 +286,14 @@ public class AddRefeicao extends AppCompatActivity {
         botaoRefazer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Refeições").removeValue();
+
+                ListView listaDeAlimentosSalvos = (ListView) findViewById(R.id.listaAlimentosSalvos);
+
+                listaAlimentosRefeicao.clear();
+
+                ArrayAdapter<String> clearList = new ArrayAdapter<String>(AddRefeicao.this, android.R.layout.simple_list_item_1, listaAlimentosRefeicao);
+                listaDeAlimentosSalvos.setAdapter(clearList);
+
                 EditText qtdAlimento = (EditText) findViewById(R.id.qtdAlimento);
                 qtdAlimento.setText("");
             }
