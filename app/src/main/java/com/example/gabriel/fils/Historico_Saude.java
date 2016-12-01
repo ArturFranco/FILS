@@ -137,12 +137,12 @@ public class Historico_Saude extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChild("Metas")){
                             if(dataSnapshot.child("Metas").child("Peso").getValue().toString().equals(peso.getText().toString())){
-                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Notificacoes").push().setValue(new Notificacao("Meta", "Atingiu o peso "+ peso.getText().toString()+"kg"));
+                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Notificacoes").push().setValue(new Notificacao("Meta", "Atingiu o peso "+ peso.getText().toString()+"kg."));
                                 if(dataSnapshot.hasChild("Personal")){
-                                    mFirebaseDatabaseReference.child("Personais").child(dataSnapshot.child("Personal").getValue().toString()).child("Notificacoes").setValue(new Notificacao("Meta", user.getDisplayName()+" atingiu o peso " + peso.getText().toString()+"kg"));
+                                    mFirebaseDatabaseReference.child("Personais").child(dataSnapshot.child("Personal").getValue().toString()).child("Notificacoes").push().setValue(new Notificacao("Meta", user.getDisplayName()+" atingiu o peso " + peso.getText().toString()+"kg."));
                                 }
                                 if(dataSnapshot.hasChild("Nutricionista")){
-                                    mFirebaseDatabaseReference.child("Nutricionistas").child(dataSnapshot.child("Nutricionista").getValue().toString()).child("Notificacoes").setValue(new Notificacao("Meta", user.getDisplayName()+" atingiu o peso " + peso.getText().toString()+"kg"));
+                                    mFirebaseDatabaseReference.child("Nutricionistas").child(dataSnapshot.child("Nutricionista").getValue().toString()).child("Notificacoes").push().setValue(new Notificacao("Meta", user.getDisplayName()+" atingiu o peso " + peso.getText().toString()+"kg."));
                                 }
                             }
                         }
