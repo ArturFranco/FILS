@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
@@ -55,6 +56,9 @@ public class NovoTreino extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private static final String PREFS_NAME = "MyPrefs";
+    private String idAtleta;
+    private int perfil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,8 +73,16 @@ public class NovoTreino extends AppCompatActivity {
         //Pega referencia do banco de dados
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        perfil = settings.getInt("perfil", 0);
+        if(perfil == 1){
+            idAtleta = user.getUid();
+        }else{
+            idAtleta = ProfissionalMainActivity.alunoAtual;
+        }
+
         //Pega a referencia da lista de treinos
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Treinos").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Treinos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
                 //Referencia a listview do xml
@@ -100,7 +112,12 @@ public class NovoTreino extends AppCompatActivity {
                         if(entry.startsWith("Corrida")){
                             //dialog.setTitle("Relatar Treino");
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.dialog_novotreino_corrida);
+                            if(perfil == 1){
+                                dialog.setContentView(R.layout.dialog_novotreino_corrida);
+                            }else{
+                                dialog.setContentView(R.layout.dialog_corrida_aluno);
+                            }
+
 
                             TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
                             String s = entry.toString();
@@ -117,7 +134,12 @@ public class NovoTreino extends AppCompatActivity {
                         }else if(entry.startsWith("Outro")){
                             //dialog.setTitle("Relatar Treino");
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.dialog_novotreino_outro);
+                            if(perfil == 1){
+                                dialog.setContentView(R.layout.dialog_novotreino_outro);
+                            }else{
+                                dialog.setContentView(R.layout.dialog_outro_aluno);
+                            }
+
 
                             TextView nome = (TextView) dialog.findViewById(R.id.treinoNome);
                             String s = entry.toString();
@@ -130,7 +152,12 @@ public class NovoTreino extends AppCompatActivity {
 
                         }else if(entry.startsWith("Grupo")){
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.dialog_treino_musc);
+                            if(perfil == 1){
+                                dialog.setContentView(R.layout.dialog_treino_musc);
+                            }else{
+                                dialog.setContentView(R.layout.dialog_musc_aluno);
+                            }
+                            
                             TextView grupo = (TextView) dialog.findViewById(R.id.label1);
                             TextView descText = (TextView) dialog.findViewById(R.id.descText);
                             ListView listaExercicios = (ListView) dialog.findViewById(R.id.listaGrupoExercicios);
@@ -157,28 +184,30 @@ public class NovoTreino extends AppCompatActivity {
 
 
 
-                        //TODO relatar treino
-                        Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirma);
-                        botaoConfirma.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Calendar c = Calendar.getInstance();
-                                Integer ano = c.get(Calendar.YEAR);
-                                Integer dia = c.get(Calendar.DAY_OF_MONTH);
-                                Integer mes = c.get(Calendar.MONTH);
-                                mes++;
-                                Integer hora = c.get(Calendar.HOUR_OF_DAY);
-                                Integer minutos = c.get(Calendar.MINUTE);
-                                Integer segundos = c.get(Calendar.SECOND);
-                                String s = entry.toString();
-                                String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
-                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Treino");
-                                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
-                                //Log.d("NovoTreino", day.toString());
-                                finish();
-                                //dialog.dismiss();
-                            }
-                        });
+                        if(perfil == 1){
+                            Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirma);
+                            botaoConfirma.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Calendar c = Calendar.getInstance();
+                                    Integer ano = c.get(Calendar.YEAR);
+                                    Integer dia = c.get(Calendar.DAY_OF_MONTH);
+                                    Integer mes = c.get(Calendar.MONTH);
+                                    mes++;
+                                    Integer hora = c.get(Calendar.HOUR_OF_DAY);
+                                    Integer minutos = c.get(Calendar.MINUTE);
+                                    Integer segundos = c.get(Calendar.SECOND);
+                                    String s = entry.toString();
+                                    String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
+                                    mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Treino");
+                                    mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
+                                    //Log.d("NovoTreino", day.toString());
+                                    finish();
+                                    //dialog.dismiss();
+                                }
+                            });
+                        }
+
 
 
                         //Cancela o relato de treino

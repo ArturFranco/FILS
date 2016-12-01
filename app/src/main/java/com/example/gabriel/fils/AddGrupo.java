@@ -3,6 +3,7 @@ package com.example.gabriel.fils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,10 @@ public class AddGrupo extends AppCompatActivity {
     private boolean emptylist;
     private String titulo;
 
+    private static final String PREFS_NAME = "MyPrefs";
+    private String idAtleta;
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +62,14 @@ public class AddGrupo extends AppCompatActivity {
         //Pega dados de autenticação
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int perfil = settings.getInt("perfil", 0);
+        if(perfil == 1){
+            idAtleta = user.getUid();
+        }else{
+            idAtleta = ProfissionalMainActivity.alunoAtual;
+        }
 
 
         //Pega referencia do banco de dados
@@ -77,7 +90,7 @@ public class AddGrupo extends AppCompatActivity {
 
         spinnerExercicios = (Spinner) findViewById(R.id.spinnerExercicios);
 
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Exercicios").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).child("Exercicios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
                 //Referencia a listview do xml
@@ -183,9 +196,9 @@ public class AddGrupo extends AppCompatActivity {
                 if (series.getText().toString().contentEquals("") || repeticoes.getText().toString().contentEquals("")) {
                     Toast.makeText(getApplicationContext(), "Dados Incompletos", Toast.LENGTH_SHORT).show();
                 } else {
-                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Exercicios").child(exercicio.getSelectedItem().toString()).child("Descricao").setValue(exercicio.getSelectedItem().toString());
-                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Exercicios").child(exercicio.getSelectedItem().toString()).child("Series").setValue(series.getText().toString());
-                    mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Exercicios").child(exercicio.getSelectedItem().toString()).child("Repeticoes").setValue(repeticoes.getText().toString());
+                    mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).child("Exercicios").child(exercicio.getSelectedItem().toString()).child("Descricao").setValue(exercicio.getSelectedItem().toString());
+                    mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).child("Exercicios").child(exercicio.getSelectedItem().toString()).child("Series").setValue(series.getText().toString());
+                    mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).child("Exercicios").child(exercicio.getSelectedItem().toString()).child("Repeticoes").setValue(repeticoes.getText().toString());
                 }
 
             }
@@ -200,7 +213,7 @@ public class AddGrupo extends AppCompatActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_salvar_grupo);
 
-                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).addValueEventListener(new ValueEventListener() {
+                mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
                         EditText descText = (EditText) dialog.findViewById(R.id.descricaoText);
@@ -221,8 +234,8 @@ public class AddGrupo extends AppCompatActivity {
                         Intent returnIntent = getIntent();
                         EditText descText = (EditText) dialog.findViewById(R.id.descricaoText);
                         returnIntent.putExtra("result", descText.getText().toString());
-                        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Descricao").setValue(descText.getText().toString());
-                        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).child("Tipo").setValue(titulo);
+                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).child("Descricao").setValue(descText.getText().toString());
+                        mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).child("Tipo").setValue(titulo);
                         setResult(RESULT_OK, returnIntent);
                         finish();
                     }
@@ -250,7 +263,7 @@ public class AddGrupo extends AppCompatActivity {
         botaoRefazer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("temp").child("Treino").child(titulo).setValue("");
+                mFirebaseDatabaseReference.child("Atletas").child(idAtleta).child("temp").child("Treino").child(titulo).setValue("");
                 EditText series = (EditText) findViewById(R.id.serieText);
                 EditText repeticoes = (EditText) findViewById(R.id.repText);
                 series.setText("");

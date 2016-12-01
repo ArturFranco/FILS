@@ -76,6 +76,10 @@ public class Historico_Saude extends AppCompatActivity {
     private String alturas;
     private String pesos;
     private String idades;
+    private String alergias;
+    private String aversoess;
+    private String lesoess;
+    private String intolerancias;
 
     private String quals;
 
@@ -109,6 +113,10 @@ public class Historico_Saude extends AppCompatActivity {
         final EditText idade = (EditText) findViewById(R.id.idade);
         final EditText altura = (EditText) findViewById(R.id.altura);
         final EditText peso = (EditText) findViewById(R.id.peso);
+        final EditText alergia = (EditText) findViewById(R.id.alergia);
+        final EditText aversoes = (EditText) findViewById(R.id.aversoes);
+        final EditText lesoes = (EditText) findViewById(R.id.lesoes);
+        final EditText intolerancia = (EditText) findViewById(R.id.intolerancia);
 
 
         final Button salvar = (Button) findViewById(R.id.salvar);
@@ -119,6 +127,11 @@ public class Historico_Saude extends AppCompatActivity {
                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Altura").setValue(altura.getText().toString());
                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Peso").setValue(peso.getText().toString());
                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Idade").setValue(idade.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Alergias").setValue(alergia.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Aversoes_Alimentares").setValue(aversoes.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Lesoes").setValue(lesoes.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Intolerancia_Alimentar").setValue(intolerancia.getText().toString());
+
 
             VoltarMenu(salvar);
             }
@@ -133,6 +146,11 @@ public class Historico_Saude extends AppCompatActivity {
                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Altura").setValue(altura.getText().toString());
                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Peso").setValue(peso.getText().toString());
                 mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Idade").setValue(idade.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Alergias").setValue(alergia.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Aversoes_Alimentares").setValue(aversoes.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Lesoes").setValue(lesoes.getText().toString());
+                mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico_Saude").child("Dados_Gerais").child("Intolerancia_Alimentar").setValue(intolerancia.getText().toString());
+
 
                 Click1(proximo);
             }
@@ -159,6 +177,26 @@ public class Historico_Saude extends AppCompatActivity {
                 if(dataSnapshot.child("Idade").getValue()!=null){
                     idades = dataSnapshot.child("Idade").getValue().toString();
                     idade.setText(idades);
+
+                }
+                if(dataSnapshot.child("Alergias").getValue()!=null){
+                    alergias = dataSnapshot.child("Alergias").getValue().toString();
+                    alergia.setText(alergias);
+
+                }
+                if(dataSnapshot.child("Aversoes_Alimentares").getValue()!=null){
+                    aversoess = dataSnapshot.child("Aversoes_Alimentares").getValue().toString();
+                    aversoes.setText(aversoess);
+
+                }
+                if(dataSnapshot.child("Lesoes").getValue()!=null){
+                    lesoess = dataSnapshot.child("Lesoes").getValue().toString();
+                    lesoes.setText(lesoess);
+
+                }
+                if(dataSnapshot.child("Intolerancia_Alimentar").getValue()!=null){
+                    intolerancias = dataSnapshot.child("Intolerancia_Alimentar").getValue().toString();
+                    intolerancia.setText(intolerancias);
 
                 }
 
