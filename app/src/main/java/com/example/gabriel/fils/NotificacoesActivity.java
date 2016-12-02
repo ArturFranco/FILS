@@ -104,8 +104,10 @@ public class NotificacoesActivity  extends AppCompatActivity {
                                 public void onClick(View view) {
                                     if(entry.descricao.startsWith("Solicitacao Personal")) {
                                         mFirebaseDatabaseReference.child("Personais").child(entry.id).child("Alunos").push().setValue(user.getUid());
+                                        userDatabaseReference.child("Personal").setValue(entry.id);
                                     }else{
                                         mFirebaseDatabaseReference.child("Nutricionistas").child(entry.id).child("Alunos").push().setValue(user.getUid());
+                                        userDatabaseReference.child("Nutricionista").setValue(entry.id);
                                     }
 
                                     userDatabaseReference.child("Notificacoes").addValueEventListener(new ValueEventListener() {
