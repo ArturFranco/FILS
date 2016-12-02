@@ -21,8 +21,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import static com.example.gabriel.fils.MainActivity.getBitmapFromURL;
 
@@ -80,6 +82,7 @@ public class AlunoActivity extends AppCompatActivity
         if(user != null && !user.isAnonymous()) {
             // Header do slide menu
             View hView =  navigationView.getHeaderView(0);
+            final Menu menu =  navigationView.getMenu();
 
             //Nome
             TextView nameTextView = (TextView) hView.findViewById(R.id.profissional_nameTextView);
@@ -104,6 +107,26 @@ public class AlunoActivity extends AppCompatActivity
 
                 profileImage.setImageBitmap(bitmap);
             }
+
+            DatabaseReference referenciaDatabaseUsuario = mFirebaseDatabaseReference.child(ProfissionalMainActivity.perfilString).child(user.getUid());
+            referenciaDatabaseUsuario.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                    long count;
+                    if(!dataSnapshot.hasChild("Notificacoes")){
+                        count = 0;
+                    }else{
+                        count = dataSnapshot.child("Notificacoes").getChildrenCount();
+                    }
+
+                    menu.findItem(R.id.profissional_nav_notificacoes).setTitle("Notificações (" + count + ")");
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
 
         }
 
@@ -236,17 +259,14 @@ public class AlunoActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.profissional_nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.profissional_nav_gallery) {
-
-        } else if (id == R.id.profissional_nav_slideshow) {
-
-        } else if (id == R.id.profissional_nav_manage) {
+        if (id == R.id.profissional_nav_notificacoes) {
+            Intent intent = new Intent(AlunoActivity.this, NotificacoesActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.dados_gerais) {
+            Intent intent = new Intent(AlunoActivity.this, PersonalDadosGerais.class);
+            startActivity(intent);
 
-        } else if (id == R.id.profissional_nav_send) {
 
         } else if (id == R.id.profissional_signout) {
             mAuth.signOut();

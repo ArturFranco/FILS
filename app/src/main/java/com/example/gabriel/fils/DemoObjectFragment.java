@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,7 @@ public class DemoObjectFragment extends Fragment
             if(user != null && !user.isAnonymous()) {
                 // Header do slide menu
                 View hView =  navigationView.getHeaderView(0);
+                final Menu menu =  navigationView.getMenu();
 
                 //Nome
                 TextView nameTextView = (TextView) hView.findViewById(R.id.profissional_nameTextView);
@@ -98,6 +100,26 @@ public class DemoObjectFragment extends Fragment
 
                     profileImage.setImageBitmap(bitmap);
                 }
+
+                DatabaseReference referenciaDatabaseUsuario = mFirebaseDatabaseReference.child(ProfissionalMainActivity.perfilString).child(user.getUid());
+                referenciaDatabaseUsuario.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                        long count;
+                        if(!dataSnapshot.hasChild("Notificacoes")){
+                            count = 0;
+                        }else{
+                            count = dataSnapshot.child("Notificacoes").getChildrenCount();
+                        }
+
+                        menu.findItem(R.id.profissional_nav_notificacoes).setTitle("Notificações (" + count + ")");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
         }else if(args.getInt(ARG_OBJECT) == 2){ //Tela "Alunos"
@@ -182,19 +204,13 @@ public class DemoObjectFragment extends Fragment
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.profissional_nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.profissional_nav_gallery) {
-
-        } else if (id == R.id.profissional_nav_slideshow) {
-
-        } else if (id == R.id.profissional_nav_manage) {
+        if (id == R.id.profissional_nav_notificacoes) {
+            Intent intent = new Intent(getActivity(), NotificacoesActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.dados_gerais) {
             Intent intent = new Intent(getActivity(), PersonalDadosGerais.class);
             startActivity(intent);
-
-        } else if (id == R.id.profissional_nav_send) {
 
         } else if (id == R.id.profissional_signout) {
             mAuth.signOut();

@@ -3,21 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/profissional_nav_camera"
+            android:id="@+id/profissional_nav_notificacoes"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/profissional_nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/profissional_nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/profissional_nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Notificações" />
+
     </group>
 
     <item android:title="Conta">
@@ -26,10 +15,6 @@
                 android:id="@+id/dados_gerais"
                 android:icon="@android:drawable/ic_dialog_info"
                 android:title="Dados Gerais" />
-            <item
-                android:id="@+id/profissional_nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
             <item
                 android:id="@+id/profissional_signout"
                 android:icon="@android:drawable/ic_lock_lock"
