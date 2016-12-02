@@ -21,7 +21,7 @@
         <menu>
             <item
                 android:id="@+id/signout"
-                android:icon="@android:drawable/ic_lock_lock"
+                android:icon="@drawable/ic_https_black_24dp"
                 android:title="Sign out"/>
         </menu>
     </item>
