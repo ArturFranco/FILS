@@ -260,17 +260,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.slideMenu_personal) {
-            // Handle the camera action
+            Intent intent = new Intent(MainActivity.this, PersonalInfo.class);
+            startActivity(intent);
         } else if (id == R.id.slideMenu_nutricionista) {
-
+            Intent intent = new Intent(MainActivity.this, NutricionistaInfo.class);
+            startActivity(intent);
         } else if (id == R.id.slideMenu_notificacoes) {
             Intent intent = new Intent(MainActivity.this, NotificacoesActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.signout) {
             mAuth.signOut();
