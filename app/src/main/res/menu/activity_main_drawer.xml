@@ -8,11 +8,11 @@
             android:title="Personal Trainer" />
         <item
             android:id="@+id/slideMenu_nutricionista"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_local_dining_black_24dp"
             android:title="Nutricionista" />
         <item
             android:id="@+id/slideMenu_notificacoes"
-            android:icon="@drawable/ic_local_dining_black_24dp"
+            android:icon="@drawable/ic_notifications_black_24dp"
             android:title="Notificações" />
 
     </group>
