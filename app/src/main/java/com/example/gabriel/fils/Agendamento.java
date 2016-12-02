@@ -1,6 +1,7 @@
 package com.example.gabriel.fils;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -44,6 +45,13 @@ public class Agendamento extends AppCompatActivity {
     protected int day = 0;
     protected int month = 0;
     protected int year = 0;
+    public String hour;
+    public String minute;
+
+    private static final String PREFS_NAME = "MyPrefs";
+    private String IdAluno;
+
+    public String profi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +61,21 @@ public class Agendamento extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        Intent intent = getIntent();
+        //Se o usuario está logando como profissional de saude, vai para a tela correta
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int perfil = settings.getInt("perfil", 0);
+        if(perfil == 1){
+            IdAluno = user.getUid();
+            profi = "Atletas";
+        }
+        else{
+            IdAluno = ProfissionalMainActivity.alunoAtual;
+            if(perfil == 2){
+                profi = "Personais";
+            }else{
+                profi = "Nutricionistas";
+            }
+        }
 
         final Calendar c1 = Calendar.getInstance();
         year = c1.get(Calendar.YEAR);
@@ -120,7 +142,7 @@ public class Agendamento extends AppCompatActivity {
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         //Pega a referencia da lista de treinos
-        mFirebaseDatabaseReference.child("Atletas").child(user.getUid()).child("Historico").child((year+"")).child((month+"")).child((day+"")).addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabaseReference.child(profi).child(user.getUid()).child("Eventos").child((year+"")).child((month+"")).child((day+"")).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(final com.google.firebase.database.DataSnapshot dataSnapshot) {
@@ -133,7 +155,9 @@ public class Agendamento extends AppCompatActivity {
                 DataSnapshot aux;
                 while (it.hasNext()) {
                     aux = it.next();
-                    list.add(aux.getKey() + "-" + aux.child("Id").getValue() + aux.child("Tipo").getValue());
+                    setTime(aux.getKey());
+
+                    list.add(getTime() + " - " + aux.child("Descricao").getValue());
                 }
 
                 //Atribui a lista de nomes a listview
@@ -150,6 +174,20 @@ public class Agendamento extends AppCompatActivity {
 
 
 
+    }
+    public void setTime(String aux) {
+        String[] aux1 = aux.split(":");
+        this.hour = aux1[0];
+        this.minute = aux1[1];
+        if(this.hour.length() < 2 ){
+            this.hour = 0+this.hour;
+        }
+        if(this.minute.length() < 2 ){
+            this.minute = 0+this.minute;
+        }
+    }
+    public String getTime(){
+        return this.hour+":"+this.minute;
     }
 
 }

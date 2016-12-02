@@ -186,6 +186,15 @@
         <item>Prancha Lateral</item>
     </string-array>
 
+    <string-array name="profissionais">
+        <item>Personal</item>
+        <item>Nutricionista</item>
+    </string-array>
+
+    <string-array name="nada">
+        <item>Atleta</item>
+    </string-array>
+
     <string-array name="grupos_alimentares">
         <item>Cereais e derivados</item>
         <item>Verduras, hortaliças e derivados</item>

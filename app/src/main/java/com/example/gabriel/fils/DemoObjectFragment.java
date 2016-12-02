@@ -2,6 +2,7 @@ package com.example.gabriel.fils;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -191,7 +192,11 @@ public class DemoObjectFragment extends Fragment
             });
 
         }else{ //Tela "Agenda"
-            rootView = inflater.inflate(R.layout.fragment_pager_agenda, container, false);
+
+            rootView = inflater.inflate(R.layout.agendamento_main, container, false);
+            ImageView imgView = (ImageView) rootView.findViewById(R.id.calendarBackground);
+            Drawable imgDrawable = getResources().getDrawable(R.drawable.calendarbackground);
+            imgView.setImageDrawable(imgDrawable);
         }
 
         return rootView;

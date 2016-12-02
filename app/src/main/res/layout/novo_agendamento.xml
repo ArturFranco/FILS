@@ -5,33 +5,247 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/txt_tipo_agendamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="5dp"
-        android:text="Com qual profissional você deseja agendar?"
+        android:text="Teste"
         android:textColor="@color/escuro"
         android:textSize="25dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_weight="1"/>
 
-    <CheckBox
-        android:id="@+id/personal"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/personal_trainer"
-        android:textSize="18dp" />
+        android:scrollbarSize="30dp"
+        android:padding="8dp"
+        android:id="@+id/spinnerProfissionais"
+        android:layout_weight="1">
+    </Spinner>
 
-    <CheckBox
-        android:id="@+id/nutricionista"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nutricionista"
-        android:textSize="18dp" />
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/dateNextDay"
+                android:onClick="dateNextDay"
+                android:rotation="90"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateDay"
+                android:textSize="30dp"
+                android:text="2016"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_weight="0.01"
+                android:textColor="@color/botao" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/foward_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/dateBackDay"
+                android:onClick="dateBackDay"
+                android:rotation="90"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/dateNextMonth"
+                android:onClick="dateNextMonth"
+                android:rotation="90"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateMonth"
+                android:textSize="30dp"
+                android:text="2016"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_weight="0.01"
+                android:textColor="@color/botao" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/foward_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/dateBackMonth"
+                android:onClick="dateBackMonth"
+                android:rotation="90"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/dateNextYear"
+                android:onClick="dateNextYear"
+                android:rotation="90"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateYear"
+                android:textSize="30dp"
+                android:text="2016"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_weight="0.01"
+                android:textColor="@color/botao" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/foward_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/dateBackYear"
+                android:onClick="dateBackYear"
+                android:rotation="90"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/timeNextHour"
+                android:onClick="timeNextHour"
+                android:rotation="90"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeHour"
+                android:textSize="30dp"
+                android:text="2016"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_weight="0.01"
+                android:textColor="@color/botao" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/foward_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/timeBackHour"
+                android:onClick="timeBackHour"
+                android:rotation="90"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textSize="30dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/botao"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/timeNextMin"
+                android:onClick="timeNextMin"
+                android:rotation="90"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeMin"
+                android:textSize="30dp"
+                android:text="2016"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_weight="0.01"
+                android:textColor="@color/botao" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/foward_arrow"
+                android:backgroundTint="@color/transparente"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/timeBackMin"
+                android:onClick="timeBackMin"
+                android:rotation="90"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="OK"
+            android:layout_weight="1"
+            android:id="@+id/buttonsalvarAgendamento"
+            android:backgroundTint="@color/botao"
+            android:textColor="@color/white"/>
+    </LinearLayout>
 
 </LinearLayout>

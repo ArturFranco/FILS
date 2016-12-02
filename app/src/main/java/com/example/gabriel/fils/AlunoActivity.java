@@ -52,9 +52,9 @@ public class AlunoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         typeUser = ProfissionalMainActivity.perfilString;
-
+/*
         Toast toast = Toast.makeText(AlunoActivity.this, typeUser+"",Toast.LENGTH_SHORT);
-        toast.show();
+        toast.show();*/
 
         //Setando o arquivo xml que vai ser usado
         setContentView(R.layout.profissional_activity_main);
