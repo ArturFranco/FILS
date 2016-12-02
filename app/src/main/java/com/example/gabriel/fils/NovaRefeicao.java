@@ -54,6 +54,7 @@ public class NovaRefeicao extends AppCompatActivity {
     private FirebaseUser user;
     private static final String PREFS_NAME = "MyPrefs";
     private String IdAluno;
+    private int perfil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class NovaRefeicao extends AppCompatActivity {
 
         //Se o usuario está logando como profissional de saude, vai para a tela correta
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        int perfil = settings.getInt("perfil", 0);
+        perfil = settings.getInt("perfil", 0);
         if(perfil == 1){
             IdAluno = user.getUid();
         }
@@ -111,34 +112,40 @@ public class NovaRefeicao extends AppCompatActivity {
                         final Dialog dialog = new Dialog(NovaRefeicao.this);
                         //dialog.setTitle("Relatar Refeição");
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(R.layout.dialog_novarefeicao);
+                        if(perfil == 1) {
+                            dialog.setContentView(R.layout.dialog_novarefeicao);
+                        } else {
+                            dialog.setContentView(R.layout.dialog_refeicao_aluno);
+                        }
 
                         final String entry = (String) parent.getAdapter().getItem(position);
 
                         //TextView nome = (TextView) dialog.findViewById(R.id.refeicaoNome);
 
-                        //TODO relatar treino
-                        Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirmaRef);
-                        botaoConfirma.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Calendar c = Calendar.getInstance();
-                                Integer ano = c.get(Calendar.YEAR);
-                                Integer dia = c.get(Calendar.DAY_OF_MONTH);
-                                Integer mes = c.get(Calendar.MONTH);
-                                mes++;
-                                Integer hora = c.get(Calendar.HOUR_OF_DAY);
-                                Integer minutos = c.get(Calendar.MINUTE);
-                                Integer segundos = c.get(Calendar.SECOND);
-                                String s = entry;
-                                String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
-                                mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Refeição");
-                                mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
-                                //Log.d("NovoTreino", day.toString());
-                                finish();
-                                //dialog.dismiss();
-                            }
-                        });
+                        if(perfil == 1) {
+                            //TODO relatar treino
+                            Button botaoConfirma = (Button) dialog.findViewById(R.id.botaoConfirmaRef);
+                            botaoConfirma.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Calendar c = Calendar.getInstance();
+                                    Integer ano = c.get(Calendar.YEAR);
+                                    Integer dia = c.get(Calendar.DAY_OF_MONTH);
+                                    Integer mes = c.get(Calendar.MONTH);
+                                    mes++;
+                                    Integer hora = c.get(Calendar.HOUR_OF_DAY);
+                                    Integer minutos = c.get(Calendar.MINUTE);
+                                    Integer segundos = c.get(Calendar.SECOND);
+                                    String s = entry;
+                                    String idHistorico = hora.toString()+":"+minutos.toString()+":"+segundos.toString();
+                                    mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Tipo").setValue("Refeição");
+                                    mFirebaseDatabaseReference.child("Atletas").child(IdAluno).child("Historico").child(ano.toString()).child(mes.toString()).child(dia.toString()).child(idHistorico).child("Id").setValue(s.substring(s.lastIndexOf(":") + 1));
+                                    //Log.d("NovoTreino", day.toString());
+                                    finish();
+                                    //dialog.dismiss();
+                                }
+                            });
+                        }
 
 
                         //Cancela o relato de treino
